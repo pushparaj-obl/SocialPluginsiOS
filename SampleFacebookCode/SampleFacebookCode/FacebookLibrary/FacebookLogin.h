@@ -20,28 +20,34 @@ typedef void (^FBCompletionHandler)();
 
 /*login with default permission*/
 //block-comlition handler block
-+ (NSError *) loginWithFBCompletionHandler:(FBCompletionHandler) block;
++ (NSError *)loginWithFBCompletionHandler:(FBCompletionHandler) block;
 
 /*login with given read permission*/
 //block-comlition handler block
 //permission- read permissions
-+ (NSError *) loginWithFBReadPermissions:(NSArray *)permission andCompletionHandler: (FBCompletionHandler) block;
++ (NSError *)loginWithFBReadPermissions:(NSArray *)permission andCompletionHandler: (FBCompletionHandler) block;
 
 /*login with given publish permission*/
 //block-comlition handler block
 //permission- publish permissions
-+ (NSError *) loginWithFBPublishPermissions:(NSArray *)permission andCompletionHandler: (FBCompletionHandler) block;
++ (NSError *)loginWithFBPublishPermissions:(NSArray *)permission andCompletionHandler: (FBCompletionHandler) block;
 
 
 /*changes to be made when session state change or handle the errors...*/
-+ (void)sessionStateChanged:(FBSession *)session state:(FBSessionState) state error:(NSError *)error;
++ (void)sessionStateChanged:(FBSession *)session state:(FBSessionState) state;
 
+/*logs error if any if debbuging mode is ON*/
++ (void)errorLog:(NSError *)error;
 
 /*logout from facebook - current session*/
 //returns YES if logged out otherwise NO
-+ (BOOL) logout;
++ (BOOL)logout;
 
-+ (BOOL) isLogin;
+/*checks if user has already logged in or not. returns status*/
++ (BOOL)isLogin;
+
+/*turn debugging mode on or off*/
++ (void)debugON:(BOOL)on;
 
 
 @end
