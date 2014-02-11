@@ -10,13 +10,14 @@
 
 #import <Foundation/Foundation.h>
 
+/*login protocol for login and logout function*/
 @protocol login
 
-/*implement logion method*/
-+ (NSError *) login;
+/*logion method - force subclass to implement login functionality*/
++ (NSError *)login;
 
-/*implement logput method*/
-+ (BOOL) logout;
+/*logout method - force subclass to implement logout functionality*/
++ (BOOL)logout;
 
 @end
 
