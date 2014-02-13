@@ -11,6 +11,33 @@
 
 @implementation FacebookLogin
 
+#pragma mark - Session handler
+
+/*handle the incoming URL and update session info*/
+//call this function from [UIApplicationDelegate application:openURL:sourceApplication:annotation:]
++ (BOOL)handleOpenUrl:(NSURL *)url
+{
+    return [FBSession.activeSession handleOpenURL:url];
+}
+
+/*set the global state change handler*/
+//call this method only if unable to assign a session state change handler explicitly
++ (void)sessionHandler:(FBSession *)session state:(FBSessionState)state
+{
+    [FBSession.activeSession setStateChangeHandler:
+     ^(FBSession *session, FBSessionState state, NSError *error)
+     {
+         if (error)
+         {
+             [FacebookLogin errorLog:error];
+         }
+         else
+         {
+             [FacebookLogin sessionStateChanged:session state:state];
+         }
+     }];
+}
+
 #pragma mark - Login
 
 /* basic login method with default permission and nil complitionhandler */
@@ -74,7 +101,7 @@
         [FBSession setActiveSession:session];
         // Open the session
         
-        [session openWithBehavior:FBSessionLoginBehaviorForcingWebView
+        [session openWithBehavior:FBSessionLoginBehaviorWithFallbackToWebView
                 completionHandler:^(FBSession *session,
                                     FBSessionState state,
                                     NSError *error) {
@@ -107,7 +134,7 @@
         NSLog(@"Found a cached session");
         // If there's one, just open the session silently, without showing the user the login UI
         [FBSession openActiveSessionWithPublishPermissions:permission
-                                           defaultAudience:FBSessionDefaultAudienceFriends
+                                           defaultAudience:FBSessionDefaultAudienceEveryone
                                               allowLoginUI:NO
                                          completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
                                              // Handler for session state changes
@@ -134,7 +161,7 @@
         [FBSession setActiveSession:session];
         // Open the session
         
-        [session openWithBehavior:FBSessionLoginBehaviorForcingWebView
+        [session openWithBehavior:FBSessionLoginBehaviorWithFallbackToWebView
                 completionHandler:^(FBSession *session,
                                     FBSessionState state,
                                     NSError *error) {
@@ -165,7 +192,7 @@
 #pragma mark - Logout
 
 /*logout from facebook - current session*/
-+ (BOOL) logout
++ (BOOL)logout
 {
     BOOL isLogout = NO;
     if (FBSession.activeSession.state == FBSessionStateOpen || FBSession.activeSession.state == FBSessionStateOpenTokenExtended)
@@ -183,6 +210,83 @@
     return isLogout;
 }
 
+#pragma mark - FacebookPermission
+
+/*returns array of permission of the current active session*/
++ (NSArray*)getPermissions
+{
+    return ([FBSession activeSession].accessTokenData.permissions);
+}
+
+/*request new publish permission with completionhandler block*/
++ (void)requestNewPublishPermissions:(NSArray *)permission
+                andCompletionHandler: (FBCompletionHandler) block
+{
+    [FBSession.activeSession requestNewPublishPermissions:permission
+                                          defaultAudience:FBSessionDefaultAudienceFriends
+                                        completionHandler:^(FBSession *session, NSError *error)
+     {
+         if (!error)
+         {
+             BOOL granted = YES;
+             for (NSObject *a in permission)
+             {
+                 if ([FBSession.activeSession.permissions indexOfObject:a] == NSNotFound)
+                 {
+                     // Permission not granted
+                     [OBLLog logMessage:@"Permission not granted"];
+                     granted = NO;
+                     break;
+                 }
+             }
+             if(granted)
+             {
+                 // Permission granted, call the handler block
+                 block();
+             }
+         }
+         else
+         {
+             [OBLLog logMessage:error.description];
+         }
+     }
+     ];
+}
+
+/*request new read permission with completionhandler block*/
++ (void)requestNewReadPermissions:(NSArray *)permission
+             andCompletionHandler: (FBCompletionHandler) block
+{
+    [FBSession.activeSession requestNewReadPermissions:permission
+                                     completionHandler:^(FBSession *session, NSError *error)
+     {
+         if (!error)
+         {
+             BOOL granted = YES;
+             for (NSObject *a in permission)
+             {
+                 if ([FBSession.activeSession.permissions indexOfObject:a] == NSNotFound)
+                 {
+                     // Permission not granted
+                     [OBLLog logMessage:@"Permission not granted"];
+                     granted = NO;
+                     break;
+                 }
+             }
+             if(granted)
+             {
+                 // Permission granted, call the handler block
+                 block();
+             }
+         }
+         else
+         {
+             [self errorLog:error];
+             //[OBLLog logMessage:error.description];
+         }
+     }
+     ];
+}
 
 #pragma mark - Debug
 

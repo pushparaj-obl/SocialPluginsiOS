@@ -16,7 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5hu-Nn-ChE">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5hu-Nn-ChE">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
@@ -40,15 +40,57 @@
                                             <action selector="logout:" destination="X0N-X4-mQJ" eventType="touchUpInside" id="uqf-SG-jzz"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a4v-ex-Cac">
+                                        <rect key="frame" x="135" y="430" width="50" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="3Aw-50-s0P"/>
+                                            <constraint firstAttribute="width" constant="50" id="CA1-pk-k0j"/>
+                                        </constraints>
+                                        <state key="normal" title="Post">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="post:" destination="X0N-X4-mQJ" eventType="touchUpInside" id="vGf-Da-axB"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F80-oC-rHp">
+                                        <rect key="frame" x="20" y="225" width="100" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="PG6-I8-zhr"/>
+                                            <constraint firstAttribute="height" constant="30" id="QsX-Dp-FQJ"/>
+                                        </constraints>
+                                        <state key="normal" title="Fatch Details">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="fatchDetails:" destination="X0N-X4-mQJ" eventType="touchUpInside" id="QAT-f4-Pdf"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="a4v-ex-Cac" secondAttribute="bottom" constant="20" symbolic="YES" id="Tau-h4-QCr"/>
+                                    <constraint firstItem="F80-oC-rHp" firstAttribute="leading" secondItem="5hu-Nn-ChE" secondAttribute="leading" constant="20" symbolic="YES" id="lcK-F6-c6H"/>
+                                    <constraint firstAttribute="centerX" secondItem="a4v-ex-Cac" secondAttribute="centerX" id="qJR-vu-wH3"/>
+                                    <constraint firstAttribute="centerY" secondItem="F80-oC-rHp" secondAttribute="centerY" id="x43-K4-Axx"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="5hu-Nn-ChE" firstAttribute="top" secondItem="acq-Xh-7Vd" secondAttribute="top" id="9Wr-ly-py9"/>
+                            <constraint firstAttribute="bottom" secondItem="5hu-Nn-ChE" secondAttribute="bottom" id="9p8-Sv-Bw0"/>
+                            <constraint firstAttribute="trailing" secondItem="5hu-Nn-ChE" secondAttribute="trailing" id="hlN-v6-sHZ"/>
+                            <constraint firstItem="5hu-Nn-ChE" firstAttribute="leading" secondItem="acq-Xh-7Vd" secondAttribute="leading" id="zSu-YA-e2F"/>
+                        </constraints>
                     </view>
                     <connections>
+                        <outlet property="fatchButton" destination="F80-oC-rHp" id="uKz-nc-MpY"/>
                         <outlet property="login" destination="200-UF-R91" id="3bb-EM-VZa"/>
                         <outlet property="logout" destination="Mwa-Rj-Uii" id="Oro-gg-cjx"/>
+                        <outlet property="post" destination="a4v-ex-Cac" id="R7r-3R-wBN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="41u-RF-VEv" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -27,16 +27,26 @@
          annotation:(id)annotation
 {
     // Note this handler block should be the exact same as the handler passed to any open calls.
-    [FBSession.activeSession setStateChangeHandler:
+    /*
+     [FBSession.activeSession setStateChangeHandler:
      ^(FBSession *session, FBSessionState state, NSError *error) {
-         // Retrieve the app delegate
-         //         FacebookAppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
-         // Call the app delegate's sessionStateChanged:state:error method to handle session state changes
-         //FacebookLogin *cv=[[FacebookLogin alloc]init];
-         [FacebookLogin sessionStateChanged:session state:state error:error];
+     // Retrieve the app delegate
+     //         FacebookAppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
+     // Call the app delegate's sessionStateChanged:state:error method to handle session state changes
+     //FacebookLogin *cv=[[FacebookLogin alloc]init];
+     if (error)
+     {
+     [FacebookLogin errorLog:error];
+     }
+     else
+     {
+     [FacebookLogin sessionStateChanged:session state:state];
+     }
      }];
+     */
     
-    return [FBSession.activeSession handleOpenURL:url];
+    return [FacebookLogin handleOpenUrl:(NSURL *)url];
+    
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application

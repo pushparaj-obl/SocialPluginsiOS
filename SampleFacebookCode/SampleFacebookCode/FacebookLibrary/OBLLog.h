@@ -21,9 +21,3 @@
 
 
 @end
-
-/*
-//debug having state of debugging, if it's on of off
-//user can set it when he wants to start logs.
-@property (nonatomic,assign) BOOL debug;
-*/

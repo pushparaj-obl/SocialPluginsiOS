@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 Pushparaj Zala. All rights reserved.
 //
 
+//import this class and set debug to YSE to turn on the error logs.
+
 #import "OBLLog.h"
 
 @implementation OBLLog
