@@ -8,7 +8,9 @@
 //FacebookLoging class provide basic utilities for the facebook loging
 //login, logout, loging with permissions.
 
-//user has to implement application:openURL:sourceApplication:annotation: of UIApplicationDelegate... for handling url
+//user has to call handleOpenUrl:(NSURL *)url in the application:openURL:sourceApplication:annotation: of UIApplicationDelegate...
+//for handling url
+//also call applicationActiveHandle in applicationDidBecomeActive:application for updating session info.
 
 #import <Foundation/Foundation.h>
 #import <FacebookSDK/FacebookSDK.h>
@@ -52,14 +54,14 @@ If the application was previously in the background, optionally refresh the user
 //block- completion handler block with error if any.
 //permission- read permissions
 + (void)loginWithFBReadPermissions:(NSArray *)permission
-              andCompletionHandler: (FBCompletionHandler) block;
+              andCompletionHandler:(FBCompletionHandler) block;
 
 /*login with given publish permission*/
 //block- completion handler block with error if any.
 //permission- publish permissions
 + (void)loginWithFBPublishPermissions:(NSArray *)permission
                       defaultAudience:(OBLDefaultAudiance)defaultAudience
-                 andCompletionHandler: (FBCompletionHandler) block;
+                 andCompletionHandler:(FBCompletionHandler) block;
 
 /*checks if user has already logged in or not. returns status*/
 + (BOOL)isLogin;

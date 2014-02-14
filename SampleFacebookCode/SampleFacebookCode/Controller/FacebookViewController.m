@@ -23,8 +23,6 @@
 @implementation FacebookViewController
 - (IBAction)login:(id)sender
 {
-    //                                  defaultAudience:OBLDefaultAudienceEveryone
-
     [OBLFacebookLogin loginWithFBReadPermissions:@[EMAIL]
                                andCompletionHandler:^(NSError *error)
                             {
@@ -35,19 +33,6 @@
                             [self buttonChange];
                             }
      ];
-     /*
-     if (!error && FBSession.activeSession.state == FBSessionStateOpen)
-     {
-     self.login.enabled = NO;
-     self.logout.enabled = YES
-     }
-     */
-    
-     /*
-     [FacebookLogin loginWithFBCompletionHandler:^{
-     NSLog(@"Hello logged in...");
-     }];
-     */
 }
 
 - (IBAction)logout:(id)sender
@@ -61,14 +46,6 @@
     [super viewWillAppear:animated];
     
     [self buttonChange];
-    /*
-     [OBLFacebookQuery fetchFriendsProfileWithCompletionHandler:^(NSArray *result, NSError *error)
-     {
-     NSLog(@"%@",((OBLFacebookFriend *)[result firstObject]).socialMediaId);
-     NSLog(@"%@",((OBLFacebookFriend *)[result lastObject]).socialMediaId);
-     }];
-     NSLog(@"HAha");
-     */
     NSLog(@"permissions: %@",[FBSession activeSession].permissions);
 }
 
@@ -81,7 +58,6 @@
                         ^{
                             NSLog(@"Got permission");
                         });
-
          //[OBLFacebookPost postStatus:@"New1 status check"];
      }
      ];

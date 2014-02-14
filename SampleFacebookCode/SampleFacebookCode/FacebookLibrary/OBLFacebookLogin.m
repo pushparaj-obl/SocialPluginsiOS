@@ -6,6 +6,13 @@
 //  Copyright (c) 2014 Pushparaj Zala. All rights reserved.
 //
 
+//FacebookLoging class provide basic utilities for the facebook loging
+//login, logout, loging with permissions.
+
+//user has to call handleOpenUrl:(NSURL *)url in the application:openURL:sourceApplication:annotation: of UIApplicationDelegate...
+//for handling url
+//also call applicationActiveHandle in applicationDidBecomeActive:application for updating session info.
+
 #import "OBLFacebookLogin.h"
 
 @implementation OBLFacebookLogin

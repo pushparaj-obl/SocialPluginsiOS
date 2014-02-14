@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 Pushparaj Zala. All rights reserved.
 //
 
+//This class allows user to post on user's wall.
+
 #import "OBLFacebookPost.h"
 
 @implementation OBLFacebookPost
@@ -54,30 +56,6 @@
                             }
      ];
     return success;
-}
-
-//post on friend's wall     ...!!(Remaining)
-+ (BOOL) postStatus:(NSString *)status
-      onFriendsWall:(NSArray *)facebookId
-{
-    [OBLFacebookPost postStatus:status
-                  onFriendsWall:facebookId
-                      withTitle:nil
-                    description:nil
-                       andImage:nil
-                            url:nil];
-    return YES;
-}
-
-//post on friend's wall with title, description and image   ...!!(Remaining)
-+ (BOOL) postStatus:(NSString *)status
-      onFriendsWall:(NSArray *)facebookId
-          withTitle:(NSString *)title
-        description:(NSString *)description
-           andImage:(UIImage *)imageUrl
-                url:(NSString *)url
-{
-    return YES;
 }
 
 @end

@@ -43,7 +43,4 @@
 //Array of friends of user having OBLFacebookFriend objects.
 @property (nonatomic,strong) NSArray *friends;
 
-//work information of user..        !!!Remaining to include..
-@property (nonatomic,strong) NSArray *work;
-
 @end

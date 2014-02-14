@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 Pushparaj Zala. All rights reserved.
 //
 
+//All the Facebook Permissions that can be used with this library..
+
 #import "OBLFacebookPermission.h"
 
 @implementation OBLFacebookPermission

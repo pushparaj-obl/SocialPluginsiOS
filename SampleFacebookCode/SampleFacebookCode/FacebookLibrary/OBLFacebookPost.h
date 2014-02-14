@@ -32,17 +32,4 @@
            andImage:(NSString *)imageUrl
              andURL:(NSString *)url;
 
-//post on friend's wall
-+ (BOOL) postStatus:(NSString *)status
-      onFriendsWall:(NSString *)facebookId;
-
-
-//post on friend's wall with title, description and image
-+ (BOOL) postStatus:(NSString *)status
-      onFriendsWall:(NSArray *)facebookId
-          withTitle:(NSString *)title
-        description:(NSString *)description
-           andImage:(UIImage *)imageUrl
-                url:(NSString *)url;
-
 @end

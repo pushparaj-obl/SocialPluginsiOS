@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 Pushparaj Zala. All rights reserved.
 //
 
+//Class fetches the user and user's friends' profile.
+
 #import <Foundation/Foundation.h>
 #import <FacebookSDK/FacebookSDK.h>
 #import "OBLFacebookUser.h"

@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 Pushparaj Zala. All rights reserved.
 //
 
+//Class fetches the user and user's friends' profile.
+
 #import "OBLFacebookQuery.h"
 
 @implementation OBLFacebookQuery

@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 Pushparaj Zala. All rights reserved.
 //
 
+//class having all profile information of facebook friend
+
 #import "OBLFacebookFriend.h"
 
 @implementation OBLFacebookFriend

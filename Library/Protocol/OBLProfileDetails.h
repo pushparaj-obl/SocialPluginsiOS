@@ -10,6 +10,7 @@
 
 #import <Foundation/Foundation.h>
 
+//OBLProfileDetails protocol - should be implemented by all classes having user profile.
 @protocol OBLProfileDetails
 
 //unique social media id of user - may be facebook id or google plus id

@@ -10,7 +10,7 @@
 
 #import <Foundation/Foundation.h>
 
-/*login protocol for login and logout function*/
+/*OBLLogin protocol for login and logout function*/
 @protocol OBLLogin
 
 /*logion method - force subclass to implement login functionality*/
