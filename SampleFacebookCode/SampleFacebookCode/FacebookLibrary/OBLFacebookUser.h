@@ -11,7 +11,7 @@
 #import <Foundation/Foundation.h>
 #import "OBLProfileDetails.h"
 
-@interface OBLFacebookUser : NSObject <ProfileDetails>
+@interface OBLFacebookUser : NSObject <OBLProfileDetails>
 
 //email-id of user.
 @property (nonatomic,strong) NSString *email;

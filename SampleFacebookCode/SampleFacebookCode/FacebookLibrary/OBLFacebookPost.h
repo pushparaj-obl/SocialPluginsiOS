@@ -8,16 +8,15 @@
 
 //This class allows user to post on user's wall.
 
-#import <Foundation/Foundation.h>
 #import "OBLPost.h"
+#import <FacebookSDK/FacebookSDK.h>
+#import "OBLLog.h"
 
-@interface OBLFacebookPost : NSObject <post>
+@interface OBLFacebookPost : NSObject <OBLPost>
 
 //implement post:status method of post protocol
-+ (void)post:(NSString *)status;
-
 //post on user's wall with status
-+ (BOOL) postStatus:(NSString *)status;
++ (BOOL)post:(NSString *)status;
 
 /*
 //post status with title, description and image

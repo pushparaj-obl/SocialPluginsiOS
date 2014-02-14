@@ -8,7 +8,7 @@
 
 #import "FBAppDelegate.h"
 #import <FacebookSDK/FacebookSDK.h>
-#import "FacebookLogin.h"
+#import "OBLFacebookLogin.h"
 
 @implementation FBAppDelegate
 
@@ -45,7 +45,7 @@
      }];
      */
     
-    return [FacebookLogin handleOpenUrl:(NSURL *)url];
+    return [OBLFacebookLogin handleOpenUrl:(NSURL *)url];
     
 }
 

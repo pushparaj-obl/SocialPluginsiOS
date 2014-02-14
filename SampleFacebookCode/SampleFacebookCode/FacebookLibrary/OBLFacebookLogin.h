@@ -13,10 +13,16 @@
 #import <Foundation/Foundation.h>
 #import <FacebookSDK/FacebookSDK.h>
 #import "OBLLogin.h"
+#import "OBLLog.h"
+#import "OBLFacebookPermission.h"
 
-typedef void (^FBCompletionHandler)();
+/*typedef for completionhandler*/
+typedef void (^FBCompletionHandler)(NSError *error);
 
-@interface FacebookLogin : NSObject <login>
+/*typedef for new permission block completionhandler*/
+typedef void (^FBNewCompletionHandler)();
+
+@interface OBLFacebookLogin : NSObject <OBLLogin>
 
 //@property (nonatomic,strong)
 
@@ -30,27 +36,29 @@ typedef void (^FBCompletionHandler)();
 
 
 /*login with default permission*/
-//block-comlition handler block
-+ (NSError *)loginWithFBCompletionHandler:(FBCompletionHandler) block;
+//default permission includes - name, profile-picture, gender, userID, list of friends and information that user made public.
+//block-completion handler block with error if any.
++ (void)loginWithFBCompletionHandler:(FBCompletionHandler) block;
 
 /*login with given read permission*/
-//block-comlition handler block
+//block- completion handler block with error if any.
 //permission- read permissions
-+ (NSError *)loginWithFBReadPermissions:(NSArray *)permission andCompletionHandler: (FBCompletionHandler) block;
++ (void)loginWithFBReadPermissions:(NSArray *)permission
+              andCompletionHandler: (FBCompletionHandler) block;
 
 /*login with given publish permission*/
-//block-comlition handler block
+//block-completion handler block with error if any.
 //permission- publish permissions
-+ (NSError *)loginWithFBPublishPermissions:(NSArray *)permission andCompletionHandler: (FBCompletionHandler) block;
++ (void)loginWithFBPublishPermissions:(NSArray *)permission
+                      defaultAudience:(OBLDefaultAudiance)defaultAudience
+                 andCompletionHandler: (FBCompletionHandler) block;
 
 /*checks if user has already logged in or not. returns status*/
 + (BOOL)isLogin;
 
 
-
 /*logout from facebook - current session*/
-//returns YES if logged out otherwise NO
-+ (BOOL)logout;
++ (void)logout;
 
 
 
@@ -59,21 +67,10 @@ typedef void (^FBCompletionHandler)();
 
 /*request new publish permission with completionhandler block*/
 + (void)requestNewPublishPermissions:(NSArray *)permission
-                andCompletionHandler: (FBCompletionHandler) block;
+                andCompletionHandler:(FBNewCompletionHandler) block;
 
 /*request new read permission with completionhandler block*/
 + (void)requestNewReadPermissions:(NSArray *)permission
-             andCompletionHandler: (FBCompletionHandler) block;
-
-
-/*logs error if any if debbuging mode is ON*/
-+ (void)errorLog:(NSError *)error;
-
-/*changes to be made when session state change or handle the errors...*/
-+ (void)sessionStateChanged:(FBSession *)session state:(FBSessionState) state;
-
-/*turn debugging mode on or off*/
-+ (void)debugON:(BOOL)on;
-
+             andCompletionHandler:(FBNewCompletionHandler) block;
 
 @end

@@ -7,7 +7,7 @@
 //
 
 #import "FacebookViewController.h"
-#import "FacebookLogin.h"
+#import "OBLFacebookLogin.h"
 #import "OBLFacebookQuery.h"
 #import "OBLFacebookPost.h"
 #import "OBLFacebookPermission.h"
@@ -22,11 +22,15 @@
 @implementation FacebookViewController
 - (IBAction)login:(id)sender
 {
-    NSError *error=[FacebookLogin loginWithFBReadPermissions:@[EMAIL]
-                                        andCompletionHandler:^{
-                                            NSLog(@"hi all permission....");
-                                            [self buttonChange];
-                                            
+    [OBLFacebookLogin loginWithFBPublishPermissions:@[PUBLISH_ACTION]
+                                    defaultAudience:OBLDefaultAudienceEveryone
+                               andCompletionHandler:^(NSError *error)
+                            {
+                                NSLog(@"hi all permission....");
+                                [self buttonChange];
+                                NSLog(@"%@",error);
+                            }
+     ];
                                             /*login check
                                              FBRequest* myRequest = [FBRequest requestForMe];
                                              [myRequest startWithCompletionHandler: ^(FBRequestConnection *connection,
@@ -38,9 +42,7 @@
                                              NSLog(@"email : %@",[result objectForKey:@"email"]);
                                              }];
                                              */
-                                        }
-                    ];
-    /*
+        /*
      if (!error && FBSession.activeSession.state == FBSessionStateOpen)
      {
      self.login.enabled = NO;
@@ -53,18 +55,20 @@
      NSLog(@"Hello logged in...");
      }];
      */
-    NSLog(@"%@",error);
 }
 
 - (IBAction)logout:(id)sender
 {
-    BOOL logout=[FacebookLogin logout];
+    [OBLFacebookLogin logout];
+    /*
+    BOOL logout=
     NSLog(@"%d",logout);
     if (logout)
     {
         self.login.enabled = YES;
         self.logout.enabled = NO;
     }
+     */
     [self buttonChange];
 }
 
@@ -88,7 +92,8 @@
 - (IBAction)post:(id)sender
 {
     NSLog(@"permissions: %@",[FBSession activeSession].accessTokenData.permissions);
-    [FacebookLogin requestNewPublishPermissions:@[PUBLISH_ACTION]
+    /*
+    [OBLFacebookLogin requestNewPublishPermissions:@[PUBLISH_ACTION]
                            andCompletionHandler:^
      {
          NSLog(@"Got permission");
@@ -101,7 +106,16 @@
          
      }
      ];
-    
+*/
+    [OBLFacebookPost post:@"Hi all"];
+    /*
+    [OBLFacebookPost postStatus:@"my new status"
+                      withTitle:@"Tea Time:"
+                 andDescription:@"the time when u ask ur brain nothing but it gives much"
+                       andImage:@"http://www.gstatic.com/webp/gallery/1.jpg"
+                         andURL:@"https://developers.facebook.com/docs/reference/fql/permissions/"];
+
+    */
 }
 
 - (IBAction)fatchDetails:(id)sender
@@ -123,12 +137,13 @@
     [super viewDidLoad];
 	//Do any additional setup after loading the view.
     [self buttonChange];
-    [FacebookLogin debugON:YES];
+    [OBLLog setDebug:YES];
+    [OBLLog setFacebookDebug:YES];
 }
 
 - (void)buttonChange
 {
-    if ([FacebookLogin isLogin])
+    if ([OBLFacebookLogin isLogin])
     {
         self.login.enabled = NO;
         self.fatchButton.enabled = YES;

@@ -6,10 +6,9 @@
 //  Copyright (c) 2014 Pushparaj Zala. All rights reserved.
 //
 
-#import "FacebookLogin.h"
-#import "OBLLog.h"
+#import "OBLFacebookLogin.h"
 
-@implementation FacebookLogin
+@implementation OBLFacebookLogin
 
 #pragma mark - Session handler
 
@@ -29,48 +28,48 @@
      {
          if (error)
          {
-             [FacebookLogin errorLog:error];
+             [OBLLog FBErrorLog:error];
          }
          else
          {
-             [FacebookLogin sessionStateChanged:session state:state];
+             [OBLLog sessionStateChanged:session state:state];
          }
      }];
 }
 
 #pragma mark - Login
 
-/* basic login method with default permission and nil complitionhandler */
-+ (NSError *)login
+/* basic login method with default permission and nil completionhandler */
++ (void)login
 {
-    return [FacebookLogin login:@[@"basic_info"] withCompltion:nil];
+    [OBLFacebookLogin login:@[BASIC_INFO] withCompltion:nil];
 }
 
 
 /*login with default permission*/
-//block-comlition handler block
-
-+ (NSError *) loginWithFBCompletionHandler:(FBCompletionHandler) block
+//default permission includes - name, profile-picture, gender, userID, list of friends and information that user made public.
+//block-completion handler block with error if any.
++ (void)loginWithFBCompletionHandler:(FBCompletionHandler) block
 {
-    return  [FacebookLogin login:@[@"basic_info"] withCompltion:block];
+    [OBLFacebookLogin login:@[BASIC_INFO] withCompltion:block];
     
 }
 
 /*login with given read permission*/
-//block-comlition handler block
+//block-completion handler block with error if any.
 //permission- read permissions
 
-+ (NSError *) loginWithFBReadPermissions:(NSArray *)permission
++ (void)loginWithFBReadPermissions:(NSArray *)permission
                     andCompletionHandler: (FBCompletionHandler) block
 {
-    return [FacebookLogin login:permission withCompltion:block];
+    [OBLFacebookLogin login:permission withCompltion:block];
     
 }
 
 /*private method for login with read permissions or login with basic info*/
-+ (NSError *)login:(NSArray*)permission withCompltion:(FBCompletionHandler)block
+//block-completion handler block with error if any.
++ (void)login:(NSArray*)permission withCompltion:(FBCompletionHandler)block
 {
-    __block NSError *errorInside=nil;
     if (FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded)
     {
         NSLog(@"Found a cached session");
@@ -82,16 +81,14 @@
                                           // This method will be called EACH time the session state changes,
                                           if (error)
                                           {
-                                              errorInside=error;
-                                              [FacebookLogin errorLog:error];
+                                              [OBLLog FBErrorLog:error];
                                           }
                                           else
                                           {
-                                              [FacebookLogin sessionStateChanged:session state:state];
-                                              block();
+                                              [OBLLog sessionStateChanged:session state:state];
+                                              block(error);
                                           }
                                       }];
-        
         // If there's no cached session..
     }
     else
@@ -105,50 +102,44 @@
                 completionHandler:^(FBSession *session,
                                     FBSessionState state,
                                     NSError *error) {
-                    //AppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
                     if (error)
                     {
-                        errorInside=error;
-                        [FacebookLogin errorLog:error];
+                        [OBLLog FBErrorLog:error];
                     }
                     else
                     {
-                        [FacebookLogin sessionStateChanged:session state:state];
-                        block();
+                        [OBLLog sessionStateChanged:session state:state];
+                        block(error);
                     }
                 }];
     }
-    return errorInside;
 }
 
 /*login with given publish permission*/
-//block - comlition handler block
+//block - comlition handler block with error if any.
 //permission - publish permissions
-
-+ (NSError *) loginWithFBPublishPermissions:(NSArray *)permission
-                       andCompletionHandler: (FBCompletionHandler) block
++ (void) loginWithFBPublishPermissions:(NSArray *)permission
+                       defaultAudience:(OBLDefaultAudiance)defaultAudience
+                  andCompletionHandler:(FBCompletionHandler) block
 {
-    __block NSError *errorInside=nil;
     if (FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded)
     {
         NSLog(@"Found a cached session");
         // If there's one, just open the session silently, without showing the user the login UI
         [FBSession openActiveSessionWithPublishPermissions:permission
-                                           defaultAudience:FBSessionDefaultAudienceEveryone
+                                           defaultAudience:(FBSessionDefaultAudience)defaultAudience
                                               allowLoginUI:NO
                                          completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
                                              // Handler for session state changes
                                              // This method will be called EACH time the session state changes,
-                                             [FacebookLogin sessionStateChanged:session state:state];
+                                             [OBLLog sessionStateChanged:session state:state];
                                              if (error)
                                              {
-                                                 errorInside=error;
-                                                 [FacebookLogin errorLog:error];
+                                                 [OBLLog FBErrorLog:error];
                                              }
                                              else
                                              {
-                                                 [FacebookLogin sessionStateChanged:session state:state];
-                                                 block();
+                                                 block(error);
                                              }
                                          }];
         
@@ -169,17 +160,15 @@
                     
                     if (error)
                     {
-                        errorInside=error;
-                        [FacebookLogin errorLog:error];
+                        [OBLLog FBErrorLog:error];
                     }
                     else
                     {
-                        [FacebookLogin sessionStateChanged:session state:state];
-                        block();
+                        [OBLLog sessionStateChanged:session state:state];
+                        block(error);
                     }
                 }];
     }
-    return errorInside;
 }
 
 /*checks if user has already logged in or not. returns status*/
@@ -192,22 +181,9 @@
 #pragma mark - Logout
 
 /*logout from facebook - current session*/
-+ (BOOL)logout
++ (void)logout
 {
-    BOOL isLogout = NO;
-    if (FBSession.activeSession.state == FBSessionStateOpen || FBSession.activeSession.state == FBSessionStateOpenTokenExtended)
-    {
-        // Close the session and remove the access token from the cache
-        // The session state handler (in the app delegate) will be called automatically
-        [FBSession.activeSession closeAndClearTokenInformation];
-        isLogout=YES;
-        // If the session state is not any of the two "open" states when method is called
-    }
-    else
-    {
-        NSLog(@"Logged out can't be performed because you are not logged in state....!!");
-    }
-    return isLogout;
+    [FBSession.activeSession closeAndClearTokenInformation];
 }
 
 #pragma mark - FacebookPermission
@@ -220,7 +196,7 @@
 
 /*request new publish permission with completionhandler block*/
 + (void)requestNewPublishPermissions:(NSArray *)permission
-                andCompletionHandler: (FBCompletionHandler) block
+                andCompletionHandler:(FBNewCompletionHandler) block
 {
     [FBSession.activeSession requestNewPublishPermissions:permission
                                           defaultAudience:FBSessionDefaultAudienceFriends
@@ -255,7 +231,7 @@
 
 /*request new read permission with completionhandler block*/
 + (void)requestNewReadPermissions:(NSArray *)permission
-             andCompletionHandler: (FBCompletionHandler) block
+             andCompletionHandler:(FBNewCompletionHandler) block
 {
     [FBSession.activeSession requestNewReadPermissions:permission
                                      completionHandler:^(FBSession *session, NSError *error)
@@ -281,8 +257,7 @@
          }
          else
          {
-             [self errorLog:error];
-             //[OBLLog logMessage:error.description];
+             [OBLLog logMessage:error.description];
          }
      }
      ];
@@ -290,84 +265,6 @@
 
 #pragma mark - Debug
 
-/*error log if error in login*/
 
-+ (void)errorLog:(NSError *)error
-{
-    //    OBLLog *log=[[OBLLog alloc] init];
-    if ([OBLLog getDebug])
-    {
-        if (error)
-        {
-            NSLog(@"Error");
-            NSString *alertText;
-            NSString *alertTitle;
-            // If the error requires people using an app to make an action outside of the app in order to recover
-            if ([FBErrorUtility shouldNotifyUserForError:error] == YES)
-            {
-                alertTitle = @"Something went wrong";
-                alertText = [FBErrorUtility userMessageForError:error];
-                NSLog(@"%@ : %@ ",alertTitle,alertText);
-            }
-            else
-            {
-                // If the user cancelled login, do nothing
-                if ([FBErrorUtility errorCategoryForError:error] == FBErrorCategoryUserCancelled)
-                {
-                    NSLog(@"User cancelled login");
-                    
-                    // Handle session closures that happen outside of the app
-                }
-                else if ([FBErrorUtility errorCategoryForError:error] == FBErrorCategoryAuthenticationReopenSession)
-                {
-                    alertTitle = @"Session Error";
-                    alertText = @"Your current session is no longer valid. Please log in again.";
-                    NSLog(@"%@ : %@ ",alertTitle,alertText);
-                    // For simplicity, here we just show a generic message for all other errors
-                }
-                else
-                {
-                    //Get more error information from the error
-                    NSDictionary *errorInformation = [[[error.userInfo objectForKey:@"com.facebook.sdk:ParsedJSONResponseKey"] objectForKey:@"body"] objectForKey:@"error"];
-                    
-                    // Show the user an error message
-                    alertTitle = @"Something went wrong";
-                    alertText = [NSString stringWithFormat:@"Please retry. \n\n If the problem persists contact us and mention this error code: %@", [errorInformation objectForKey:@"message"]];
-                    NSLog(@"%@ : %@ ",alertTitle,alertText);
-                }
-            }
-            // Clear this token
-            [FBSession.activeSession closeAndClearTokenInformation];
-            // Show the user the logged-out UI
-            
-        }   //error check close
-        
-    }   //debug check close
-    
-}
 
-//changes to be made when session state change or handle the errors...
-+ (void)sessionStateChanged:(FBSession *)session state:(FBSessionState) state
-{
-    // If the session was opened successfully
-    if (state == FBSessionStateOpen)
-    {
-        NSLog(@"Session opened");
-        // Show the user the logged-in UI
-        return;
-    }
-    if (state == FBSessionStateClosed || state == FBSessionStateClosedLoginFailed)
-    {
-        // If the session is closed
-        NSLog(@"Session closed");
-        // Show the user the logged-out UI
-        
-    }
-}
-
-/*turn debugging mode on or off*/
-+ (void)debugON:(BOOL)on
-{
-    [OBLLog setDebug:YES];
-}
 @end

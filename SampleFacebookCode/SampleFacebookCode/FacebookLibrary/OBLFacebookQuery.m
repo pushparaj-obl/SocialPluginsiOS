@@ -7,7 +7,6 @@
 //
 
 #import "OBLFacebookQuery.h"
-#import "OBLLog.h"
 
 @implementation OBLFacebookQuery
 
@@ -35,30 +34,12 @@
             user.lastName = [result objectForKey:@"last_name"];
             user.userName = [result objectForKey:@"username"];
             user.homeTown = [result objectForKey:@""];
-            user.birthdate = [result objectForKey:@"id"];
+            user.birthdate = [result objectForKey:@""];
             user.currentLocation = [result objectForKey:@"location"];
             user.gender = [result objectForKey:@"gender"];
         }
         block(user,errorIn);
     }];
-}
-
-//returns all the friends.
-+ (NSArray *)allFriends
-{
-    __block NSArray *friends=nil;
-    [OBLFacebookQuery fetchFriendsProfileWithCompletionHandler:^(NSArray *result, NSError *error) {
-        if (error)
-        {
-            [OBLLog logMessage:error.description];
-        }
-        else
-        {
-            friends=result;
-        }
-    }];
-    
-    return friends;
 }
 
 //fatch user's friends' data and return the object of OBLfacebookUser class with detail and error if any.
@@ -97,12 +78,6 @@
         block(newArray,errorIn);
     }];
 
-}
-
-//fatch user's friends' data and return the object of OBLfacebookUser class with detail and error if any.   ...!!(Remaining)
-+ (void)fetchFriendsProfile:(NSArray *)facebookId withCompletionHandler:(CompletionFriendBlock)block
-{
-    
 }
 
 

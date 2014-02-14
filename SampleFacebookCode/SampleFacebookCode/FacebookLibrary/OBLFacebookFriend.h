@@ -11,7 +11,7 @@
 #import <Foundation/Foundation.h>
 #import "OBLProfileDetails.h"
 
-@interface OBLFacebookFriend : NSObject <ProfileDetails>
+@interface OBLFacebookFriend : NSObject <OBLProfileDetails>
 
 //firstname of friend
 @property (nonatomic,strong) NSString *firstName;
