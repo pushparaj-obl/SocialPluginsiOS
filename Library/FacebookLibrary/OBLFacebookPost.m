@@ -43,17 +43,17 @@
                                  parameters:params
                                  HTTPMethod:@"POST"
                           completionHandler:^(FBRequestConnection *connection,id result,NSError *error)
-                            {
-                                if (error)
-                                {
-                                    [OBLLog logMessage:error.description];
-                                }
-                                else
-                                {
-                                    [OBLLog logMessage:@"Post successful"];
-                                    success=YES;
-                                }
-                            }
+     {
+         if (error)
+         {
+             [OBLLog logMessage:error.description];
+         }
+         else
+         {
+             [OBLLog logMessage:@"Post successful"];
+             success=YES;
+         }
+     }
      ];
     return success;
 }

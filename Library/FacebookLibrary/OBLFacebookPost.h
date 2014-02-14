@@ -19,13 +19,13 @@
 + (BOOL)post:(NSString *)status;
 
 /*
-//post status with title, description and image
-//status:- status message for posting
-//titile:- title of link
-//description:- description of link
-//imageUrl:- preview image associated with the link(image url)
-//url:- the URL of a link to attach to the post
-*/
+ //post status with title, description and image
+ //status:- status message for posting
+ //titile:- title of link
+ //description:- description of link
+ //imageUrl:- preview image associated with the link(image url)
+ //url:- the URL of a link to attach to the post
+ */
 + (BOOL) postStatus:(NSString *)status
           withTitle:(NSString *)title
      andDescription:(NSString *)description
