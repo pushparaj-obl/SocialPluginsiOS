@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 Pushparaj Zala. All rights reserved.
 //
 
+//All the Facebook Permissions that can be used with this library..
+
 #import "OBLFacebookPermission.h"
 
 @implementation OBLFacebookPermission
@@ -29,6 +31,12 @@ NSString *const LINK = @"link";
 NSString *const GENDER = @"gender";
 
 //location permission
-NSString *const currentLocation = @"user_location";
+NSString *const CURRENT_LOCATION = @"user_location";
+
+//user's bithday
+NSString *const BIRTH_DAY = @"user_birthday";
+
+//friend's bithday
+NSString *const FRIEND_BIRTH_DAY = @"friends_birthday";
 
 @end

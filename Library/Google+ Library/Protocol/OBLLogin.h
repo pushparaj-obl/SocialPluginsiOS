@@ -10,13 +10,17 @@
 
 #import <Foundation/Foundation.h>
 
-/*OBLLogin protocol for login and logout function*/
-@protocol OBLLogin
+/*login protocol for login and logout function*/
+@protocol login
 
 /*logion method - force subclass to implement login functionality*/
-+ (void)login;
++ (NSError *)login;
 
 /*logout method - force subclass to implement logout functionality*/
 + (BOOL)logout;
+
+@end
+
+@interface OBLLogin : NSObject
 
 @end

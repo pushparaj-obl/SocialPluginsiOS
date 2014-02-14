@@ -10,13 +10,17 @@
 
 #import <Foundation/Foundation.h>
 
-//OBLProfileDetails protocol - should be implemented by all classes having user profile.
-@protocol OBLProfileDetails
+@protocol ProfileDetails
 
 //unique social media id of user - may be facebook id or google plus id
 @property (nonatomic,strong) NSString *socialMediaId;
 
 //name of user.
 @property (nonatomic,strong) NSString *name;
+
+@end
+
+@interface OBLProfileDetails : NSObject
+
 
 @end

@@ -1,17 +1,15 @@
 //
-//  OBLFacebookFriend.h
-//  SampleFacebookCode
+//  OBLGooglePlusFriend.h
+//  Google+Demo
 //
-//  Created by Pushparaj Zala on 2/12/14.
-//  Copyright (c) 2014 Pushparaj Zala. All rights reserved.
+//  Created by Jeneena Jose on 2/14/14.
+//  Copyright (c) 2014 Jeneena Jose. All rights reserved.
 //
-
-//class having all profile information of facebook friend
 
 #import <Foundation/Foundation.h>
 #import "OBLProfileDetails.h"
 
-@interface OBLFacebookFriend : NSObject <OBLProfileDetails>
+@interface OBLGooglePlusFriend : NSObject  <ProfileDetails>
 
 //firstname of friend
 @property (nonatomic,strong) NSString *firstName;
@@ -32,4 +30,3 @@
 @property (nonatomic,strong) NSString *currentLocation;
 
 @end
-
