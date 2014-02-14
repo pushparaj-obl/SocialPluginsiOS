@@ -68,10 +68,26 @@
                                             <action selector="fatchDetails:" destination="X0N-X4-mQJ" eventType="touchUpInside" id="QAT-f4-Pdf"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9BP-C3-ECi">
+                                        <rect key="frame" x="70" y="392" width="180" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="BVn-i1-0Zb"/>
+                                            <constraint firstAttribute="width" constant="180" id="mky-Ye-9QI"/>
+                                        </constraints>
+                                        <state key="normal" title="Request New Permissions">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="request:" destination="X0N-X4-mQJ" eventType="touchUpInside" id="vNY-cX-9b7"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="a4v-ex-Cac" firstAttribute="top" secondItem="9BP-C3-ECi" secondAttribute="bottom" constant="8" symbolic="YES" id="NeP-BW-JZK"/>
                                     <constraint firstAttribute="bottom" secondItem="a4v-ex-Cac" secondAttribute="bottom" constant="20" symbolic="YES" id="Tau-h4-QCr"/>
+                                    <constraint firstAttribute="centerX" secondItem="9BP-C3-ECi" secondAttribute="centerX" id="gPU-AG-NvT"/>
                                     <constraint firstItem="F80-oC-rHp" firstAttribute="leading" secondItem="5hu-Nn-ChE" secondAttribute="leading" constant="20" symbolic="YES" id="lcK-F6-c6H"/>
                                     <constraint firstAttribute="centerX" secondItem="a4v-ex-Cac" secondAttribute="centerX" id="qJR-vu-wH3"/>
                                     <constraint firstAttribute="centerY" secondItem="F80-oC-rHp" secondAttribute="centerY" id="x43-K4-Axx"/>
@@ -91,11 +107,12 @@
                         <outlet property="login" destination="200-UF-R91" id="3bb-EM-VZa"/>
                         <outlet property="logout" destination="Mwa-Rj-Uii" id="Oro-gg-cjx"/>
                         <outlet property="post" destination="a4v-ex-Cac" id="R7r-3R-wBN"/>
+                        <outlet property="requestButton" destination="9BP-C3-ECi" id="DjC-5b-Wrc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="41u-RF-VEv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="855" y="177"/>
+            <point key="canvasLocation" x="302" y="168"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

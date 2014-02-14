@@ -10,17 +10,12 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol ProfileDetails
+@protocol OBLProfileDetails
 
 //unique social media id of user - may be facebook id or google plus id
 @property (nonatomic,strong) NSString *socialMediaId;
 
 //name of user.
 @property (nonatomic,strong) NSString *name;
-
-@end
-
-@interface OBLProfileDetails : NSObject
-
 
 @end

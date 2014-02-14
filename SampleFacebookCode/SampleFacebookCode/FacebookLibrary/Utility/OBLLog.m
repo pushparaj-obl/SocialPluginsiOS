@@ -12,10 +12,6 @@
 
 @implementation OBLLog
 
-/*debug having state of debugging, if it's on of off*/
-//user can set it when he wants to start logs.
-static bool debug;
-
 /*Used for facebook library - facebookDebug having state of debugging, if it's on of off*/
 //user can set it when he wants to start facebook debugging.
 static bool facebookDebug;
@@ -36,7 +32,6 @@ static bool twitterDebug;
 {
     self = [super init];
     if (self) {
-        debug = NO;
         facebookDebug = NO;
         googlePlusDebug = NO;
         twitterDebug = NO;
@@ -45,12 +40,6 @@ static bool twitterDebug;
 }
 
 #pragma mark - logic
-
-/*change state of debugging - logs */
-+ (void)setDebug:(BOOL)debugIn
-{
-    debug=debugIn;
-}
 
 /*change state of facebook debugging */
 + (void)setFacebookDebug:(BOOL)debugIn
@@ -73,7 +62,7 @@ static bool twitterDebug;
 /*log the values if debugging is on*/
 + (void)logMessage:(NSString *)message
 {
-    if (debug)
+    if (facebookDebug)
     {
         NSLog(@"%@",message);
     }
@@ -82,7 +71,7 @@ static bool twitterDebug;
 //changes to be made when session state change or handle the errors...
 + (void)sessionStateChanged:(FBSession *)session state:(FBSessionState) state
 {
-    if (debug)
+    if (facebookDebug)
     {
         // If the session was opened successfully
         if (state == FBSessionStateOpen)

@@ -12,6 +12,15 @@
 
 #pragma mark - Session handler
 
+/*
+Restart any tasks that were paused (or not yet started) while the application was inactive.
+If the application was previously in the background, optionally refresh the user interface.
+*/
++ (void)applicationActiveHandle
+{
+    [FBAppCall handleDidBecomeActive];
+}
+
 /*handle the incoming URL and update session info*/
 //call this function from [UIApplicationDelegate application:openURL:sourceApplication:annotation:]
 + (BOOL)handleOpenUrl:(NSURL *)url
@@ -86,7 +95,10 @@
                                           else
                                           {
                                               [OBLLog sessionStateChanged:session state:state];
-                                              block(error);
+                                              dispatch_async(dispatch_get_main_queue(),
+                                                             ^{
+                                                                 block(error);
+                                                             });
                                           }
                                       }];
         // If there's no cached session..
@@ -109,7 +121,10 @@
                     else
                     {
                         [OBLLog sessionStateChanged:session state:state];
-                        block(error);
+                        dispatch_async(dispatch_get_main_queue(),
+                                       ^{
+                                           block(error);
+                                       });
                     }
                 }];
     }
@@ -139,7 +154,10 @@
                                              }
                                              else
                                              {
-                                                 block(error);
+                                                 dispatch_async(dispatch_get_main_queue(),
+                                                                ^{
+                                                                    block(error);
+                                                                });
                                              }
                                          }];
         
@@ -165,7 +183,10 @@
                     else
                     {
                         [OBLLog sessionStateChanged:session state:state];
-                        block(error);
+                        dispatch_async(dispatch_get_main_queue(),
+                                       ^{
+                                           block(error);
+                                       });
                     }
                 }];
     }
@@ -218,7 +239,10 @@
              if(granted)
              {
                  // Permission granted, call the handler block
-                 block();
+                 dispatch_async(dispatch_get_main_queue(),
+                                ^{
+                                    block();
+                                });
              }
          }
          else
@@ -252,7 +276,10 @@
              if(granted)
              {
                  // Permission granted, call the handler block
-                 block();
+                 dispatch_async(dispatch_get_main_queue(),
+                                ^{
+                                    block();
+                                });
              }
          }
          else
@@ -262,9 +289,6 @@
      }
      ];
 }
-
-#pragma mark - Debug
-
 
 
 @end

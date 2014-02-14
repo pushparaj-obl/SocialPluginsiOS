@@ -74,10 +74,9 @@
       onFriendsWall:(NSArray *)facebookId
           withTitle:(NSString *)title
         description:(NSString *)description
-           andImage:(UIImage *)image
+           andImage:(UIImage *)imageUrl
                 url:(NSString *)url
 {
-    
     return YES;
 }
 

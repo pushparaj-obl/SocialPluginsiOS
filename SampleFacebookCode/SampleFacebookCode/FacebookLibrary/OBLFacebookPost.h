@@ -34,7 +34,7 @@
 
 //post on friend's wall
 + (BOOL) postStatus:(NSString *)status
-      onFriendsWall:(NSArray *)facebookId;
+      onFriendsWall:(NSString *)facebookId;
 
 
 //post on friend's wall with title, description and image
@@ -42,7 +42,7 @@
       onFriendsWall:(NSArray *)facebookId
           withTitle:(NSString *)title
         description:(NSString *)description
-           andImage:(UIImage *)image
+           andImage:(UIImage *)imageUrl
                 url:(NSString *)url;
 
 @end

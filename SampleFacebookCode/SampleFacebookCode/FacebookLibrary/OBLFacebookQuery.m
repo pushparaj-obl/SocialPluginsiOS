@@ -33,12 +33,16 @@
             user.middleName = [result objectForKey:@"middle_name"];
             user.lastName = [result objectForKey:@"last_name"];
             user.userName = [result objectForKey:@"username"];
-            user.homeTown = [result objectForKey:@""];
-            user.birthdate = [result objectForKey:@""];
+            user.homeTown = [result objectForKey:@"hometown"];
+            user.birthdate = [result objectForKey:@"birthday"];
             user.currentLocation = [result objectForKey:@"location"];
             user.gender = [result objectForKey:@"gender"];
         }
-        block(user,errorIn);
+        
+        dispatch_async(dispatch_get_main_queue(),
+                       ^{
+                           block(user,errorIn);
+                       });
     }];
 }
 
@@ -75,7 +79,10 @@
             }
         }
         NSArray *newArray = [[NSArray alloc] initWithArray:friendArray];
-        block(newArray,errorIn);
+        dispatch_async(dispatch_get_main_queue(),
+                       ^{
+                           block(newArray,errorIn);
+                       });
     }];
 
 }

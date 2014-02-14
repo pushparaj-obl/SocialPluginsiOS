@@ -24,7 +24,14 @@ typedef void (^FBNewCompletionHandler)();
 
 @interface OBLFacebookLogin : NSObject <OBLLogin>
 
-//@property (nonatomic,strong)
+
+#pragma mark - Session handler
+
+/*
+Restart any tasks that were paused (or not yet started) while the application was inactive.
+If the application was previously in the background, optionally refresh the user interface.
+*/
++ (void)applicationActiveHandle;
 
 /*handle the incoming URL and update session info*/
 //call this function from [UIApplicationDelegate application:openURL:sourceApplication:annotation:]
@@ -34,6 +41,7 @@ typedef void (^FBNewCompletionHandler)();
 //call this method only if unable to assign a session state change handler explicitly
 + (void)sessionHandler:(FBSession *)session state:(FBSessionState)state;
 
+#pragma mark - Login
 
 /*login with default permission*/
 //default permission includes - name, profile-picture, gender, userID, list of friends and information that user made public.
@@ -47,7 +55,7 @@ typedef void (^FBNewCompletionHandler)();
               andCompletionHandler: (FBCompletionHandler) block;
 
 /*login with given publish permission*/
-//block-completion handler block with error if any.
+//block- completion handler block with error if any.
 //permission- publish permissions
 + (void)loginWithFBPublishPermissions:(NSArray *)permission
                       defaultAudience:(OBLDefaultAudiance)defaultAudience
@@ -57,10 +65,13 @@ typedef void (^FBNewCompletionHandler)();
 + (BOOL)isLogin;
 
 
+#pragma mark - Logout
+
 /*logout from facebook - current session*/
 + (void)logout;
 
 
+#pragma mark - FacebookPermission
 
 /*returns array of permission of the current active session*/
 + (NSArray*)getPermissions;

@@ -8,25 +8,24 @@
 
 //This class allows user to post on user's wall.
 
-#import <Foundation/Foundation.h>
 #import "OBLPost.h"
+#import <FacebookSDK/FacebookSDK.h>
+#import "OBLLog.h"
 
-@interface OBLFacebookPost : NSObject <post>
+@interface OBLFacebookPost : NSObject <OBLPost>
 
 //implement post:status method of post protocol
-+ (void)post:(NSString *)status;
-
 //post on user's wall with status
-+ (BOOL) postStatus:(NSString *)status;
++ (BOOL)post:(NSString *)status;
 
 /*
-//post status with title, description and image
-//status:- status message for posting
-//titile:- title of link
-//description:- description of link
-//imageUrl:- preview image associated with the link(image url)
-//url:- the URL of a link to attach to the post
-*/
+ //post status with title, description and image
+ //status:- status message for posting
+ //titile:- title of link
+ //description:- description of link
+ //imageUrl:- preview image associated with the link(image url)
+ //url:- the URL of a link to attach to the post
+ */
 + (BOOL) postStatus:(NSString *)status
           withTitle:(NSString *)title
      andDescription:(NSString *)description
@@ -35,7 +34,7 @@
 
 //post on friend's wall
 + (BOOL) postStatus:(NSString *)status
-      onFriendsWall:(NSArray *)facebookId;
+      onFriendsWall:(NSString *)facebookId;
 
 
 //post on friend's wall with title, description and image
@@ -43,7 +42,7 @@
       onFriendsWall:(NSArray *)facebookId
           withTitle:(NSString *)title
         description:(NSString *)description
-           andImage:(UIImage *)image
+           andImage:(UIImage *)imageUrl
                 url:(NSString *)url;
 
 @end
