@@ -18,16 +18,16 @@
     return ([OBLFacebookPost postStatus:(NSString *)status
                               withTitle:nil
                          andDescription:nil
-                               andImage:nil
-                                 andURL:nil]);
+                               imageUrl:nil
+                                linkUrl:nil]);
 }
 
 //post status with title, description and image
 + (BOOL) postStatus:(NSString *)status      //status message for posting
           withTitle:(NSString *)title       //title of link
      andDescription:(NSString *)description //description of link
-           andImage:(NSString *)imageUrl        //preview image associated with the link(image url)
-             andURL:(NSString *)url         //the URL of a link to attach to the post
+           imageUrl:(NSString *)imageUrl //preview image associated with the link(image url)
+            linkUrl:(NSString *)url        //LinkUrl of a link to attach to the post
 {
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
                             status, @"message",
