@@ -52,43 +52,43 @@ You can see the demo code present in SampleFacebookCode Folder.
 
 Login/Logout:
 * `OBLFacebookLogin`
-  - Refer to (https://github.com/ObjectLounge/SocialPluginsiOS/blob/beta/Library/FacebookLibrary/OBLFacebookLogin.h)
+  - Refer to **[OBLFacebookLogin.h](https://github.com/ObjectLounge/SocialPluginsiOS/blob/beta/Library/FacebookLibrary/OBLFacebookLogin.h)**
   - FacebookLoging class provide basic utilities for the facebook like login, logout, loging with permissions.
   - Request new read or publish permission.
   - User has to call handleOpenUrl:url in the application:openURL:sourceApplication:annotation: of UIApplicationDelegate... for handling incoming url like `[OBLFacebookLogin handleOpenUrl:(NSURL *)url];`
   - Also call applicationActiveHandle in applicationDidBecomeActive:application for updating session info like `[OBLFacebookLogin applicationActiveHandle];`
 
 * `OBLFacebookPermission`
-  - Refer to (https://github.com/ObjectLounge/SocialPluginsiOS/blob/beta/Library/FacebookLibrary/OBLFacebookPermission.h)
+  - Refer to **[OBLFacebookPermission.h](https://github.com/ObjectLounge/SocialPluginsiOS/blob/beta/Library/FacebookLibrary/OBLFacebookPermission.h)**
   - List all the Facebook Permissions that can be used with this library.
 
 Social media query (Fetch data):
 
 * `OBLFacebookQuey`
-  - Refer to (https://github.com/ObjectLounge/SocialPluginsiOS/blob/beta/Library/FacebookLibrary/OBLFacebookQuery.h)
+  - Refer to **[OBLFacebookQuery.h](https://github.com/ObjectLounge/SocialPluginsiOS/blob/beta/Library/FacebookLibrary/OBLFacebookQuery.h)**
   - Class fetches the user and user's friends' profile.
 
 Social media posting:
 
 * `OBLFacebookPost`
-  - Refer to (https://github.com/ObjectLounge/SocialPluginsiOS/blob/beta/Library/FacebookLibrary/OBLFacebookPost.h)
+  - Refer to **[OBLFacebookPost.h](https://github.com/ObjectLounge/SocialPluginsiOS/blob/beta/Library/FacebookLibrary/OBLFacebookPost.h)**
   - This class allows user to post on user's wall.
 
 
 Profile details:
 
 * `OBLFacebookUser`
-  - Refer to (https://github.com/ObjectLounge/SocialPluginsiOS/blob/beta/Library/FacebookLibrary/OBLFacebookUser.h)
+  - Refer to **[OBLFacebookUser.h](https://github.com/ObjectLounge/SocialPluginsiOS/blob/beta/Library/FacebookLibrary/OBLFacebookUser.h)**
   - Main class having all profile information of facebook user
 
 * `OBLFacebookFriend`
-  - Refer to (https://github.com/ObjectLounge/SocialPluginsiOS/blob/beta/Library/FacebookLibrary/OBLFacebookFriend.h)
+  - Refer to **[OBLFacebookFriend.h](https://github.com/ObjectLounge/SocialPluginsiOS/blob/beta/Library/FacebookLibrary/OBLFacebookFriend.h)**
   - Class having all profile information of facebook friend
 
 Log (Debug):
 
 * `OBLLog`
-  - Refer to (https://github.com/ObjectLounge/SocialPluginsiOS/blob/beta/Library/Utility/OBLLog.h)
+  - Refer to **[OBLLog.h](https://github.com/ObjectLounge/SocialPluginsiOS/blob/beta/Library/Utility/OBLLog.h)**
   - Call this class and set facebookDebug to YES to turn on the error logs like `[OBLLog setFacebookDebug:YES];`
 
 ####Google+ Library:
@@ -101,7 +101,6 @@ Log (Debug):
 ####FacebookLibrary:
 
 * You can see the demo code present in SampleFacebookCode Folder.
-* Refer this file (https://github.com/ObjectLounge/SocialPluginsiOS/blob/beta/SampleFacebookCode/SampleFacebookCode/Controller/FacebookViewController.m) to understand how to use FacebookLibrary. Check sample calls to FacebookLibrary present in the code.
 
 #####Initial setup:
 
@@ -126,33 +125,32 @@ Log (Debug):
     [OBLFacebookLogin applicationActiveHandle];
 }
 ```
+#####Using FacebookLibrary:
+* Refer this file **[FacebookViewController.m](https://github.com/ObjectLounge/SocialPluginsiOS/blob/beta/SampleFacebookCode/SampleFacebookCode/Controller/FacebookViewController.m)** of FacebookSampleCode to understand how to use FacebookLibrary. Check sample calls to FacebookLibrary present in the code.
 
-#####Login/Logout:
+Login/Logout:
 
-Call any login class method of OBLFacebookLogin.
-Provide permission in parameter and pass the completion handler block which will execute after login.
-With this code you can login with basic info and email permission, If there is an error in login then you will get error in completion block.:
+  - Call any login class method of `OBLFacebookLogin`.
 
-```
-    [OBLFacebookLogin loginWithFBReadPermissions:@[EMAIL]
-                               andCompletionHandler:^(NSError *error)
-                            {
-                                if (!error)
-                                {
-                                    NSLog(@"Logged In...");   //Do something.
-                                }
-                            }
-     ];
+  - Refer `login` method in **[FacebookViewController.m](https://github.com/ObjectLounge/SocialPluginsiOS/blob/beta/SampleFacebookCode/SampleFacebookCode/Controller/FacebookViewController.m)** file
 
-```
-
-For logout call logout mehod of OBLFacebookLogin:
+  - For logout call `logout` mehod of `OBLFacebookLogin`:
 ```
     [OBLFacebookLogin logout];
 ```
+  - Refer `logout` method in **[FacebookViewController.m](https://github.com/ObjectLounge/SocialPluginsiOS/blob/beta/SampleFacebookCode/SampleFacebookCode/Controller/FacebookViewController.m)** file
 
-#####Fetch user's data:
+Request new permission:
 
+  - Refer `request` method in **[FacebookViewController.m](https://github.com/ObjectLounge/SocialPluginsiOS/blob/beta/SampleFacebookCode/SampleFacebookCode/Controller/FacebookViewController.m)** file
+
+Fetch user's data:
+
+  - Refer `fatchDetails` method in **[FacebookViewController.m](https://github.com/ObjectLounge/SocialPluginsiOS/blob/beta/SampleFacebookCode/SampleFacebookCode/Controller/FacebookViewController.m)** file
+
+Post on user's wall:
+
+  - Refer `post` method in **[FacebookViewController.m](https://github.com/ObjectLounge/SocialPluginsiOS/blob/beta/SampleFacebookCode/SampleFacebookCode/Controller/FacebookViewController.m)** file
 
 ####Google+ Library:
 
