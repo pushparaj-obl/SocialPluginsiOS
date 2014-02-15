@@ -111,10 +111,7 @@ If the application was previously in the background, optionally refresh the user
                                           {
                                               [OBLFacebookLogin sessionStateChanged:session state:state];
                                           }
-                                          dispatch_async(dispatch_get_main_queue(),
-                                                         ^{
-                                                             block(error);
-                                                         });
+                                          block(error);
                                       }];
         // If there's no cached session..
     }
@@ -137,10 +134,7 @@ If the application was previously in the background, optionally refresh the user
                     {
                         [OBLFacebookLogin sessionStateChanged:session state:state];
                     }
-                    dispatch_async(dispatch_get_main_queue(),
-                                   ^{
-                                       block(error);
-                                   });
+                    block(error);
                 }];
     }
 }
@@ -170,10 +164,7 @@ If the application was previously in the background, optionally refresh the user
                                              {
                                                  [OBLFacebookLogin sessionStateChanged:session state:state];
                                              }
-                                             dispatch_async(dispatch_get_main_queue(),
-                                                            ^{
-                                                                block(error);
-                                                            });
+                                             block(error);
                                          }];
         
         // If there's no cached session..
@@ -198,10 +189,7 @@ If the application was previously in the background, optionally refresh the user
                     {
                         [OBLFacebookLogin sessionStateChanged:session state:state];
                     }
-                    dispatch_async(dispatch_get_main_queue(),
-                                   ^{
-                                       block(error);
-                                   });
+                    block(error);
                 }];
     }
 }
@@ -247,10 +235,7 @@ If the application was previously in the background, optionally refresh the user
              if(granted)
              {
                  // Permission granted, call the handler block
-                 dispatch_async(dispatch_get_main_queue(),
-                                ^{
-                                    block();
-                                });
+                 block();
              }
          }
          else
@@ -285,10 +270,7 @@ If the application was previously in the background, optionally refresh the user
              if(granted)
              {
                  // Permission granted, call the handler block
-                 dispatch_async(dispatch_get_main_queue(),
-                                ^{
-                                    block();
-                                });
+                 block();
              }
          }
          else
