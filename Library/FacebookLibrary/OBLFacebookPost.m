@@ -46,11 +46,11 @@
      {
          if (error)
          {
-             [OBLLog logMessage:error.description];
+             [OBLLog logFBMessage:error.description];
          }
          else
          {
-             [OBLLog logMessage:@"Post successful"];
+             [OBLLog logFBMessage:@"Post successful"];
              success=YES;
          }
      }

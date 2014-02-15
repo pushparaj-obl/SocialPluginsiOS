@@ -45,6 +45,10 @@ typedef void (^FBNewCompletionHandler)();
 
 #pragma mark - Login
 
+
+/*checks if user has already logged in or not. returns status*/
++ (BOOL)isLogin;
+
 /*login with default permission*/
 //default permission includes - name, profile-picture, gender, userID, list of friends and information that user made public.
 //block-completion handler block with error if any.
@@ -63,16 +67,6 @@ typedef void (^FBNewCompletionHandler)();
                       defaultAudience:(OBLDefaultAudiance)defaultAudience
                  andCompletionHandler:(FBCompletionHandler) block;
 
-/*checks if user has already logged in or not. returns status*/
-+ (BOOL)isLogin;
-
-
-#pragma mark - Logout
-
-/*logout from facebook - current session*/
-+ (void)logout;
-
-
 #pragma mark - FacebookPermission
 
 /*returns array of permission of the current active session*/
@@ -85,5 +79,12 @@ typedef void (^FBNewCompletionHandler)();
 /*request new read permission with completionhandler block*/
 + (void)requestNewReadPermissions:(NSArray *)permission
              andCompletionHandler:(FBNewCompletionHandler) block;
+
+#pragma mark - Debug
+
+/*changes to be made when session state change or handle the errors...*/
+//for facebook only
++ (void)sessionStateChanged:(FBSession *)session state:(FBSessionState) state;
+
 
 @end
