@@ -103,15 +103,22 @@
                                       completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
                                           // Handler for session state changes
                                           // This method will be called EACH time the session state changes,
-                                          if (error)
+                                          if ([FBSession activeSession].state  == FBSessionStateClosed || [FBSession activeSession].state == FBSessionStateClosedLoginFailed)
                                           {
-                                              [OBLLog FBErrorLog:error];
+                                              [OBLLog logFBMessage:@"Session Closed"];
                                           }
                                           else
                                           {
-                                              [OBLFacebookLogin sessionStateChanged:session state:state];
+                                              if (error)
+                                              {
+                                                  [OBLLog FBErrorLog:error];
+                                              }
+                                              else
+                                              {
+                                                  [OBLFacebookLogin sessionStateChanged:session state:state];
+                                              }
+                                              block(error);
                                           }
-                                          block(error);
                                       }];
         // If there's no cached session..
     }
@@ -126,15 +133,22 @@
                 completionHandler:^(FBSession *session,
                                     FBSessionState state,
                                     NSError *error) {
-                    if (error)
+                    if ([FBSession activeSession].state  == FBSessionStateClosed || [FBSession activeSession].state == FBSessionStateClosedLoginFailed)
                     {
-                        [OBLLog FBErrorLog:error];
+                        [OBLLog logFBMessage:@"Session Closed"];
                     }
                     else
                     {
-                        [OBLFacebookLogin sessionStateChanged:session state:state];
+                        if (error)
+                        {
+                            [OBLLog FBErrorLog:error];
+                        }
+                        else
+                        {
+                            [OBLFacebookLogin sessionStateChanged:session state:state];
+                        }
+                        block(error);
                     }
-                    block(error);
                 }];
     }
 }
@@ -156,15 +170,22 @@
                                          completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
                                              // Handler for session state changes
                                              // This method will be called EACH time the session state changes,
-                                             if (error)
+                                             if ([FBSession activeSession].state  == FBSessionStateClosed || [FBSession activeSession].state == FBSessionStateClosedLoginFailed)
                                              {
-                                                 [OBLLog FBErrorLog:error];
+                                                 [OBLLog logFBMessage:@"Session Closed"];
                                              }
                                              else
                                              {
-                                                 [OBLFacebookLogin sessionStateChanged:session state:state];
+                                                 if (error)
+                                                 {
+                                                     [OBLLog FBErrorLog:error];
+                                                 }
+                                                 else
+                                                 {
+                                                     [OBLFacebookLogin sessionStateChanged:session state:state];
+                                                 }
+                                                 block(error);
                                              }
-                                             block(error);
                                          }];
         
         // If there's no cached session..
@@ -180,16 +201,22 @@
                 completionHandler:^(FBSession *session,
                                     FBSessionState state,
                                     NSError *error) {
-                    //AppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
-                    if (error)
+                    if ([FBSession activeSession].state  == FBSessionStateClosed || [FBSession activeSession].state == FBSessionStateClosedLoginFailed)
                     {
-                        [OBLLog FBErrorLog:error];
+                        [OBLLog logFBMessage:@"Session Closed"];
                     }
                     else
                     {
-                        [OBLFacebookLogin sessionStateChanged:session state:state];
+                        if (error)
+                        {
+                            [OBLLog FBErrorLog:error];
+                        }
+                        else
+                        {
+                            [OBLFacebookLogin sessionStateChanged:session state:state];
+                        }
+                        block(error);
                     }
-                    block(error);
                 }];
     }
 }
