@@ -17,6 +17,6 @@
 + (void)login;
 
 /*logout method - force subclass to implement logout functionality*/
-+ (BOOL)logout;
++ (void)logout;
 
 @end
