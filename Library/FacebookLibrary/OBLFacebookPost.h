@@ -24,12 +24,12 @@
  //titile:- title of link
  //description:- description of link
  //imageUrl:- preview image associated with the link(image url)
- //url:- the URL of a link to attach to the post
+ //LinkUrl:- the URL of a link to attach to the post
  */
 + (BOOL) postStatus:(NSString *)status
           withTitle:(NSString *)title
      andDescription:(NSString *)description
-           andImage:(NSString *)imageUrl
-             andURL:(NSString *)url;
+           imageUrl:(NSString *)imageUrl
+            linkUrl:(NSString *)url;
 
 @end
