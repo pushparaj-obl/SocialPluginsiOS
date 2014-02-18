@@ -24,7 +24,7 @@
         if (error)
         {
             errorIn=error;
-            [OBLLog logMessage:error.description];
+            [OBLLog logFBMessage:error.description];
         }
         else
         {
@@ -60,7 +60,7 @@
         if (error)
         {
             errorIn=error;
-            [OBLLog logMessage:error.description];
+            [OBLLog logFBMessage:error.description];
         }
         else
         {

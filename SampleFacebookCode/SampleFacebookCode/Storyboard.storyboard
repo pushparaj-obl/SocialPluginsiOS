@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="X0N-X4-mQJ">
     <dependencies>
+        <deployment defaultVersion="1536" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
@@ -20,9 +21,13 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="200-UF-R91">
-                                        <rect key="frame" x="137" y="225" width="38" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="200-UF-R91">
+                                        <rect key="frame" x="125" y="20" width="70" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="70" id="j3C-aY-6o0"/>
+                                            <constraint firstAttribute="height" constant="30" id="lay-O2-LeS"/>
+                                        </constraints>
                                         <state key="normal" title="Login">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -30,9 +35,13 @@
                                             <action selector="login:" destination="X0N-X4-mQJ" eventType="touchUpInside" id="Luc-u3-Hci"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mwa-Rj-Uii">
-                                        <rect key="frame" x="20" y="20" width="49" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mwa-Rj-Uii">
+                                        <rect key="frame" x="20" y="20" width="70" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="KQK-Fa-kNc"/>
+                                            <constraint firstAttribute="width" constant="70" id="wsW-2V-0eQ"/>
+                                        </constraints>
                                         <state key="normal" title="Logout">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -54,11 +63,11 @@
                                             <action selector="post:" destination="X0N-X4-mQJ" eventType="touchUpInside" id="vGf-Da-axB"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F80-oC-rHp">
-                                        <rect key="frame" x="20" y="225" width="100" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F80-oC-rHp">
+                                        <rect key="frame" x="20" y="225" width="120" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="100" id="PG6-I8-zhr"/>
+                                            <constraint firstAttribute="width" constant="120" id="PG6-I8-zhr"/>
                                             <constraint firstAttribute="height" constant="30" id="QsX-Dp-FQJ"/>
                                         </constraints>
                                         <state key="normal" title="Fatch Details">
@@ -69,11 +78,11 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9BP-C3-ECi">
-                                        <rect key="frame" x="70" y="392" width="180" height="30"/>
+                                        <rect key="frame" x="55" y="392" width="210" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="BVn-i1-0Zb"/>
-                                            <constraint firstAttribute="width" constant="180" id="mky-Ye-9QI"/>
+                                            <constraint firstAttribute="width" constant="210" id="mky-Ye-9QI"/>
                                         </constraints>
                                         <state key="normal" title="Request New Permissions">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -87,9 +96,13 @@
                                 <constraints>
                                     <constraint firstItem="a4v-ex-Cac" firstAttribute="top" secondItem="9BP-C3-ECi" secondAttribute="bottom" constant="8" symbolic="YES" id="NeP-BW-JZK"/>
                                     <constraint firstAttribute="bottom" secondItem="a4v-ex-Cac" secondAttribute="bottom" constant="20" symbolic="YES" id="Tau-h4-QCr"/>
+                                    <constraint firstItem="200-UF-R91" firstAttribute="top" secondItem="5hu-Nn-ChE" secondAttribute="top" constant="20" symbolic="YES" id="blQ-Gx-G5f"/>
+                                    <constraint firstItem="Mwa-Rj-Uii" firstAttribute="leading" secondItem="5hu-Nn-ChE" secondAttribute="leading" constant="20" symbolic="YES" id="eR2-y3-QFO"/>
                                     <constraint firstAttribute="centerX" secondItem="9BP-C3-ECi" secondAttribute="centerX" id="gPU-AG-NvT"/>
                                     <constraint firstItem="F80-oC-rHp" firstAttribute="leading" secondItem="5hu-Nn-ChE" secondAttribute="leading" constant="20" symbolic="YES" id="lcK-F6-c6H"/>
+                                    <constraint firstItem="Mwa-Rj-Uii" firstAttribute="top" secondItem="5hu-Nn-ChE" secondAttribute="top" constant="20" symbolic="YES" id="ldw-yC-Ucl"/>
                                     <constraint firstAttribute="centerX" secondItem="a4v-ex-Cac" secondAttribute="centerX" id="qJR-vu-wH3"/>
+                                    <constraint firstAttribute="centerX" secondItem="200-UF-R91" secondAttribute="centerX" id="tSk-G5-G8c"/>
                                     <constraint firstAttribute="centerY" secondItem="F80-oC-rHp" secondAttribute="centerY" id="x43-K4-Axx"/>
                                 </constraints>
                             </view>
@@ -112,7 +125,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="41u-RF-VEv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="302" y="168"/>
+            <point key="canvasLocation" x="99" y="160"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

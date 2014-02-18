@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Pushparaj Zala. All rights reserved.
 //
 
-//FacebookLoging class provide basic utilities for the facebook loging
+//OBLFacebookLoging class provide basic utilities for the facebook loging
 //login, logout, loging with permissions.
 
 //user has to call handleOpenUrl:(NSURL *)url in the application:openURL:sourceApplication:annotation: of UIApplicationDelegate...
@@ -48,14 +48,22 @@
          }
          else
          {
-             [OBLLog sessionStateChanged:session state:state];
+             [OBLFacebookLogin sessionStateChanged:session state:state];
          }
      }];
 }
 
 #pragma mark - Login
 
+/*checks if user has already logged in or not. returns status*/
++ (BOOL)isLogin
+{
+    return (FBSession.activeSession.state == FBSessionStateOpen||FBSession.activeSession.state == FBSessionStateOpenTokenExtended);
+}
+
+
 /* basic login method with default permission and nil completionhandler */
+//default permission includes - name, profile-picture, gender, userID, list of friends and information that user made public.
 + (void)login
 {
     [OBLFacebookLogin login:@[BASIC_INFO] withCompltion:nil];
@@ -95,17 +103,21 @@
                                       completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
                                           // Handler for session state changes
                                           // This method will be called EACH time the session state changes,
-                                          if (error)
+                                          if ([FBSession activeSession].state  == FBSessionStateClosed || [FBSession activeSession].state == FBSessionStateClosedLoginFailed)
                                           {
-                                              [OBLLog FBErrorLog:error];
+                                              [OBLLog logFBMessage:@"Session Closed"];
                                           }
                                           else
                                           {
-                                              [OBLLog sessionStateChanged:session state:state];
-                                              dispatch_async(dispatch_get_main_queue(),
-                                                             ^{
-                                                                 block(error);
-                                                             });
+                                              if (error)
+                                              {
+                                                  [OBLLog FBErrorLog:error];
+                                              }
+                                              else
+                                              {
+                                                  [OBLFacebookLogin sessionStateChanged:session state:state];
+                                              }
+                                              block(error);
                                           }
                                       }];
         // If there's no cached session..
@@ -121,17 +133,21 @@
                 completionHandler:^(FBSession *session,
                                     FBSessionState state,
                                     NSError *error) {
-                    if (error)
+                    if ([FBSession activeSession].state  == FBSessionStateClosed || [FBSession activeSession].state == FBSessionStateClosedLoginFailed)
                     {
-                        [OBLLog FBErrorLog:error];
+                        [OBLLog logFBMessage:@"Session Closed"];
                     }
                     else
                     {
-                        [OBLLog sessionStateChanged:session state:state];
-                        dispatch_async(dispatch_get_main_queue(),
-                                       ^{
-                                           block(error);
-                                       });
+                        if (error)
+                        {
+                            [OBLLog FBErrorLog:error];
+                        }
+                        else
+                        {
+                            [OBLFacebookLogin sessionStateChanged:session state:state];
+                        }
+                        block(error);
                     }
                 }];
     }
@@ -154,17 +170,21 @@
                                          completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
                                              // Handler for session state changes
                                              // This method will be called EACH time the session state changes,
-                                             [OBLLog sessionStateChanged:session state:state];
-                                             if (error)
+                                             if ([FBSession activeSession].state  == FBSessionStateClosed || [FBSession activeSession].state == FBSessionStateClosedLoginFailed)
                                              {
-                                                 [OBLLog FBErrorLog:error];
+                                                 [OBLLog logFBMessage:@"Session Closed"];
                                              }
                                              else
                                              {
-                                                 dispatch_async(dispatch_get_main_queue(),
-                                                                ^{
-                                                                    block(error);
-                                                                });
+                                                 if (error)
+                                                 {
+                                                     [OBLLog FBErrorLog:error];
+                                                 }
+                                                 else
+                                                 {
+                                                     [OBLFacebookLogin sessionStateChanged:session state:state];
+                                                 }
+                                                 block(error);
                                              }
                                          }];
         
@@ -181,34 +201,30 @@
                 completionHandler:^(FBSession *session,
                                     FBSessionState state,
                                     NSError *error) {
-                    //AppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
-                    
-                    if (error)
+                    if ([FBSession activeSession].state  == FBSessionStateClosed || [FBSession activeSession].state == FBSessionStateClosedLoginFailed)
                     {
-                        [OBLLog FBErrorLog:error];
+                        [OBLLog logFBMessage:@"Session Closed"];
                     }
                     else
                     {
-                        [OBLLog sessionStateChanged:session state:state];
-                        dispatch_async(dispatch_get_main_queue(),
-                                       ^{
-                                           block(error);
-                                       });
+                        if (error)
+                        {
+                            [OBLLog FBErrorLog:error];
+                        }
+                        else
+                        {
+                            [OBLFacebookLogin sessionStateChanged:session state:state];
+                        }
+                        block(error);
                     }
                 }];
     }
 }
 
-/*checks if user has already logged in or not. returns status*/
-+ (BOOL)isLogin
-{
-    return (FBSession.activeSession.state == FBSessionStateOpen||FBSession.activeSession.state == FBSessionStateOpenTokenExtended);
-}
-
-
 #pragma mark - Logout
 
 /*logout from facebook - current session*/
+//implementation of method logout of OBLLogin protocol
 + (void)logout
 {
     [FBSession.activeSession closeAndClearTokenInformation];
@@ -238,7 +254,7 @@
                  if ([FBSession.activeSession.permissions indexOfObject:a] == NSNotFound)
                  {
                      // Permission not granted
-                     [OBLLog logMessage:@"Permission not granted"];
+                     [OBLLog logFBMessage:@"Permission not granted"];
                      granted = NO;
                      break;
                  }
@@ -246,19 +262,17 @@
              if(granted)
              {
                  // Permission granted, call the handler block
-                 dispatch_async(dispatch_get_main_queue(),
-                                ^{
-                                    block();
-                                });
+                 block();
              }
          }
          else
          {
-             [OBLLog logMessage:error.description];
+             [OBLLog logFBMessage:error.description];
          }
      }
      ];
 }
+
 
 /*request new read permission with completionhandler block*/
 + (void)requestNewReadPermissions:(NSArray *)permission
@@ -275,7 +289,7 @@
                  if ([FBSession.activeSession.permissions indexOfObject:a] == NSNotFound)
                  {
                      // Permission not granted
-                     [OBLLog logMessage:@"Permission not granted"];
+                     [OBLLog logFBMessage:@"Permission not granted"];
                      granted = NO;
                      break;
                  }
@@ -283,19 +297,35 @@
              if(granted)
              {
                  // Permission granted, call the handler block
-                 dispatch_async(dispatch_get_main_queue(),
-                                ^{
-                                    block();
-                                });
+                 block();
              }
          }
          else
          {
-             [OBLLog logMessage:error.description];
+             [OBLLog logFBMessage:error.description];
          }
      }
      ];
 }
 
+#pragma mark - Debug
+
+//changes to be made when session state change or handle the errors...
++ (void)sessionStateChanged:(FBSession *)session state:(FBSessionState) state
+{
+    // If the session was opened successfully
+    if (state == FBSessionStateOpen)
+    {
+        [OBLLog logFBMessage:@"Session opened"];
+        // Show the user the logged-in UI
+        return;
+    }
+    if (state == FBSessionStateClosed || state == FBSessionStateClosedLoginFailed)
+    {
+        // If the session is closed
+        [OBLLog logFBMessage:@"Session closed"];
+        // Show the user the logged-out UI
+    }
+}
 
 @end

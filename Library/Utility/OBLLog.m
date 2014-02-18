@@ -39,28 +39,34 @@ static bool twitterDebug;
     return self;
 }
 
-#pragma mark - logic
-
-/*change state of facebook debugging */
-+ (void)setFacebookDebug:(BOOL)debugIn
-{
-    facebookDebug=debugIn;
-}
+#pragma mark - googleplus
 
 /*change state of facebook debugging */
 + (void)setGooglePlusDebug:(BOOL)debugIn
 {
-    googlePlusDebug=debugIn;
+    googlePlusDebug = debugIn;
 }
+
+#pragma mark - twitter
 
 /*change state of facebook debugging */
 + (void)setTwitterDebug:(BOOL)debugIn
 {
-    twitterDebug=debugIn;
+    twitterDebug = debugIn;
+}
+#pragma mark - facebook
+
+/*change state of facebook debugging */
+//for facebook only
++ (void)setFacebookDebug:(BOOL)debugIn
+{
+    facebookDebug = debugIn;
 }
 
-/*log the values if debugging is on*/
-+ (void)logMessage:(NSString *)message
+
+/*log the values for facebook if debugging is on*/
+//for facebook only
++ (void)logFBMessage:(NSString *)message
 {
     if (facebookDebug)
     {
@@ -68,30 +74,8 @@ static bool twitterDebug;
     }
 }
 
-//changes to be made when session state change or handle the errors...
-+ (void)sessionStateChanged:(FBSession *)session state:(FBSessionState) state
-{
-    if (facebookDebug)
-    {
-        // If the session was opened successfully
-        if (state == FBSessionStateOpen)
-        {
-            NSLog(@"Session opened");
-            // Show the user the logged-in UI
-            return;
-        }
-        if (state == FBSessionStateClosed || state == FBSessionStateClosedLoginFailed)
-        {
-            // If the session is closed
-            NSLog(@"Session closed");
-            // Show the user the logged-out UI
-            
-        }
-    }
-}
-
-
-/*error log if error in login*/
+/*facebook error log if error in login*/
+//for facebook only
 + (void)FBErrorLog:(NSError *)error
 {
     if (facebookDebug)
@@ -138,7 +122,6 @@ static bool twitterDebug;
             // Clear this token
             [FBSession.activeSession closeAndClearTokenInformation];
             // Show the user the logged-out UI
-            
         }   //error check close
         
     }   //debug check close

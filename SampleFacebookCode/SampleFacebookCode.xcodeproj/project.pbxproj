@@ -41,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5D2FA80918B1D8E200DDAD5A /* OBLLogin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OBLLogin.h; sourceTree = "<group>"; };
 		5D448FB318A9E8D4007E90E1 /* SampleFacebookCode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleFacebookCode.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D448FB618A9E8D4007E90E1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5D448FB818A9E8D4007E90E1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -70,7 +71,6 @@
 		5D8CF25218ADDA0C006C659C /* OBLFacebookQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBLFacebookQuery.m; sourceTree = "<group>"; };
 		5D8CF25318ADDA0C006C659C /* OBLFacebookUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBLFacebookUser.h; sourceTree = "<group>"; };
 		5D8CF25418ADDA0C006C659C /* OBLFacebookUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBLFacebookUser.m; sourceTree = "<group>"; };
-		5D8CF25E18ADDA1A006C659C /* OBLLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBLLogin.h; sourceTree = "<group>"; };
 		5D8CF25F18ADDA1A006C659C /* OBLPost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBLPost.h; sourceTree = "<group>"; };
 		5D8CF26018ADDA1A006C659C /* OBLProfileDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBLProfileDetails.h; sourceTree = "<group>"; };
 		5D8CF26218ADE570006C659C /* OBLLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBLLog.h; sourceTree = "<group>"; };
@@ -192,7 +192,7 @@
 		5D8CF25D18ADDA1A006C659C /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
-				5D8CF25E18ADDA1A006C659C /* OBLLogin.h */,
+				5D2FA80918B1D8E200DDAD5A /* OBLLogin.h */,
 				5D8CF25F18ADDA1A006C659C /* OBLPost.h */,
 				5D8CF26018ADDA1A006C659C /* OBLProfileDetails.h */,
 			);
@@ -433,7 +433,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SampleFacebookCode/SampleFacebookCode-Prefix.pch";
 				INFOPLIST_FILE = "SampleFacebookCode/SampleFacebookCode-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -450,7 +452,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SampleFacebookCode/SampleFacebookCode-Prefix.pch";
 				INFOPLIST_FILE = "SampleFacebookCode/SampleFacebookCode-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
