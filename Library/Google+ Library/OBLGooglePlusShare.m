@@ -101,6 +101,8 @@ static OBLGooglePlusShare * _sharedInstance = nil;
     // if somebody opens the link on a supported mobile device
     [shareBuilder setContentDeepLinkID:@"rest=1234567"];
 
+    if(url)
+    {
     // This method creates a call-to-action button with the label "RSVP".
     // - URL specifies where people will go if they click the button on a platform
     // that doesn't support deep linking.
@@ -110,6 +112,7 @@ static OBLGooglePlusShare * _sharedInstance = nil;
                                              URL:[NSURL URLWithString:url]
                                       deepLinkID:@"rsvp=4815162342"];
     
+    }
     [shareBuilder open];
 
 }
