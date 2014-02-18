@@ -6,14 +6,14 @@
 //  Copyright (c) 2014 Jeneena Jose. All rights reserved.
 //
 
-//Main class having all profile information of facebook user
+//Main class having all profile information of Google Plus user
 
 #import <Foundation/Foundation.h>
 #import "OBLProfileDetails.h"
 
-@interface OBLGooglePlusUser : NSObject <ProfileDetails>
+@interface OBLGooglePlusUser : NSObject <OBLProfileDetails>
 
-//email-id of user.
+//email
 @property (nonatomic,strong) NSString *email;
 
 //firstname of user
@@ -25,14 +25,15 @@
 //lastname of user
 @property (nonatomic,strong) NSString *lastName;
 
-//username of user(may be different from the name)
-@property (nonatomic,strong) NSString *profileName;
-
 //image
+@property (nonatomic,strong) UIImage *image;
 
 
-//hometown of user
-//@property (nonatomic,strong) NSString *homeTown;
+//the URL of this user's image
+@property (copy) NSString *imageUrl;
+
+//the URL of this  user's  profile.
+@property (copy) NSString *url;
 
 //birthday of user
 @property (nonatomic,strong) NSString *birthdate;
@@ -43,14 +44,16 @@
 //gender of user
 @property (nonatomic,strong) NSString *gender;
 
-//Array of friends of user having OBLGooglePlusFriend objects.
+//array of friends of user having OBLGooglePlusFriend objects.
 @property (nonatomic,strong) NSArray *friends;
 
 
-//place information of user..
+//places lived information of user
+// the key  *primary is "true", this place of residence is this person's primary residence.
+//the key *value displays place where this person has lived. For example: "Seattle, WA"
 @property (nonatomic,strong) NSArray *placesLived;
 
-//work information of user..
+//work information of user
 @property (nonatomic,strong) NSArray *organizations;
 
 @end
