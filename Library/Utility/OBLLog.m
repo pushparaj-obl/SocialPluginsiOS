@@ -1,4 +1,4 @@
-//
+            //
 //  OBLLog.m
 //  SampleFacebookCode
 //
@@ -17,11 +17,11 @@
 static bool facebookDebug;
 
 /*Used for googleplus library - googlePlusDebug having state of debugging, if it's on of off*/
-//user can set it when he wants to start facebook debugging.
+//user can set it when he wants to start GooglePlus debugging.
 static bool googlePlusDebug;
 
 /*Used for twitter library - twitterDebug having state of debugging, if it's on of off*/
-//user can set it when he wants to start facebook debugging.
+//user can set it when he wants to start Twitter debugging.
 static bool twitterDebug;
 
 

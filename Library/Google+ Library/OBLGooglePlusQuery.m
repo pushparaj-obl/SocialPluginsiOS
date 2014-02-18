@@ -11,15 +11,41 @@
 @implementation OBLGooglePlusQuery
 
 
-//fatch user data and return the object of OBLfacebookUser class with detail and error if any.
+//fetch user data and return the object of OBLGooglePlusUser class with detail and error if any.
+
 + (void)fetchUserProfileWithCompletionHandler:(CompletionBlock)block
 {
+    [OBLGooglePlusQuery getProfileDetails:@"me" completion:^(OBLGooglePlusUser *user, NSError *error) {
+        
+        
+        NSString *accessToken=[GPPSignIn sharedInstance].authentication.accessToken;
+        NSString *str=[NSString stringWithFormat:@"https://www.googleapis.com/oauth2/v1/userinfo?access_token=%@",accessToken];
+        NSString *escapedUrl = [str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@",escapedUrl]];
+        NSString *jsonData = [[NSString alloc] initWithContentsOfURL:url usedEncoding:nil error:nil];
+        NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData:[jsonData dataUsingEncoding:NSUTF8StringEncoding]
+                                                                           options:NSJSONReadingMutableContainers error:&error];
     
+        NSString *userId=[jsonDictionary objectForKey:@"id"];
+        NSString *emailId=[jsonDictionary objectForKey:@"email"];
+    
+        user.socialMediaId=userId;
+        user.email=emailId;
+        
+        [OBLGooglePlusQuery fetchFriendsProfileWithCompletionHandler:^(NSArray *result, NSError *error) {
+           user.friends=[result copy];
+            block(user,error);
+        }];
+    }];
+}
+
++(void) getProfileDetails:(NSString *)id completion:(CompletionBlock)block
+{
     GTLServicePlus* plusService = [[GTLServicePlus alloc] init];
     plusService.retryEnabled = YES;
     [plusService setAuthorizer:[GPPSignIn sharedInstance].authentication ];
     
-    GTLQueryPlus *query = [GTLQueryPlus queryForPeopleGetWithUserId:@"me"];
+    GTLQueryPlus *query = [GTLQueryPlus queryForPeopleGetWithUserId:id];
     
     [plusService executeQuery:query
             completionHandler:^(GTLServiceTicket *ticket,GTLPlusPerson *person,NSError *error) {
@@ -27,146 +53,113 @@
                 OBLGooglePlusUser *user=[[OBLGooglePlusUser alloc]init];
                 
                 if (error) {
-                    GTMLoggerError(@"Error: %@", error);
+                    [OBLLog logMessage:error.description];
                 } else {
-
+                    
                     GTLPlusPersonName *name=person.name;
                     user.firstName= [name valueForKey:@"givenName"];
                     user.middleName=[name valueForKey:@"middleName"];
                     user.lastName=[name valueForKey:@"familyName"];
-                
-                    user.profileName=person.displayName;
+                    
+                    user.name=person.displayName;
                     user.birthdate=person.birthday;
                     user.currentLocation=person.currentLocation;
                     user.gender=person.gender;
-          
-                    NSLog(@"F: %@ M:%@ L:%@",user.firstName, user.middleName, user.lastName);
-                    
-                    NSLog(@"\n ProfileNaMe:%@  BiIRTHDATE:%@ & LoCaTiOn:%@ & GEnDer: %@ ", user.profileName, user.birthdate, user.currentLocation, user.gender);
-                    
-         //         NSArray *placesLived=[person.placesLived copy];
+                    user.url=person.url;
                     user.placesLived=[person.placesLived copy];
-           
-                    for(NSString *place in user.placesLived)
-                    {
-                        NSLog(@"\n PlaCes LiVeD: %@",place);
-                    }
-                    
                     user.organizations=[person.organizations copy];
-                    for(NSString *place in user.organizations)
-                    {
-                        NSLog(@"\n WoRkS aT: %@",place);
-                    }
                     
-//                    GTLPlusPersonImage *image  =person.image;
-//                    NSString *strimag=[image valueForKey:@"url"];
-//                    // [self setImageFromURL:[NSURL URLWithString:strimag]];
-//                    NSData *receivedData = [NSData dataWithContentsOfURL:[NSURL URLWithString:strimag]];
-//                    UIImage *img = [[UIImage alloc] initWithData:receivedData ];
-//                    receivedData=UIImageJPEGRepresentation(img,50);
-//                    UIImage *img1=[UIImage imageWithData:receivedData];
-//                    [self.imageView setImage:img1];
-//                    NSLog(@"\nPersoN ImagE: %@",image);
+                    GTLPlusPersonImage *image  =person.image;
+                    user.imageUrl=[image valueForKey:@"url"];
+                    
+                    NSData *receivedData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[image valueForKey:@"url"] ]];
+                    user.image= [[UIImage alloc] initWithData:receivedData ];
                 }
-                
                 block(user,error);
                 
             }];
 }
 
-//returns all the friends.
-+ (NSArray *)allFriends
+//fetch user's friends' data and return the object of OBLGooglePlusUser class with detail and error if any.
++ (void)fetchFriendsProfileWithCompletionHandler:(CompletionFriendAll)block
 {
-    __block NSArray *friends=nil;
-    
     GTLServicePlus* plusService = [[GTLServicePlus alloc] init];
     plusService.retryEnabled = YES;
     [plusService setAuthorizer:[GPPSignIn sharedInstance].authentication ];
+    __block NSMutableArray *friends=[[NSMutableArray alloc]init];
     
     GTLQueryPlus *query1 =[GTLQueryPlus queryForPeopleListWithUserId:@"me"
                                                           collection:kGTLPlusCollectionVisible];
     [plusService executeQuery:query1
             completionHandler:^(GTLServiceTicket *ticket,
                                 GTLPlusPeopleFeed *peopleFeed,
-                                NSError *error) {
-                if (error) {
-                    NSLog(@"Error: %@", error);
-                }
-                else {
-                    // Get an array of people from GTLPlusPeopleFeed
-                    NSDictionary *peopleList = [peopleFeed.items copy] ;
-                    
-                    for(NSDictionary *names in peopleList)
-                    {
-                        GTLQueryPlus *query = [GTLQueryPlus queryForPeopleGetWithUserId:(NSString *)((GTLPlusPerson*)names).identifier];
-                     
-                        
-                        
-                    }
-//    [OBLFacebookQuery fetchFriendsProfileWithCompletionHandler:^(NSArray *result, NSError *error) {
-//        if (error)
-//        {
-//            [OBLLog logMessage:error.description];
-//        }
-//        else
-//        {
-//            friends=result;
-//        }
-//    }];
-//    
-    return friends;
+                                NSError *error)
+     {
+         if (error)
+         {
+             [OBLLog logMessage:error.description];
+         }
+         else
+         {
+             NSNumber *n=peopleFeed.totalItems;
+             __block   int i=0;
+             // Get an array of people from GTLPlusPeopleFeed
+             NSArray *peopleList = [peopleFeed.items copy] ;
+             
+             for(GTLPlusPerson *names in peopleList)
+             {
+                 NSString *id=(NSString *)((GTLPlusPerson*)names).identifier;
+                 
+                 GTLQueryPlus *query = [GTLQueryPlus queryForPeopleGetWithUserId:id];
+                 
+                 [plusService executeQuery:query
+                         completionHandler:^(GTLServiceTicket *ticket,GTLPlusPerson *person,NSError *error)
+                  {
+                      OBLGooglePlusFriend *user=[[OBLGooglePlusFriend alloc]init];
+                      
+                      if (error) {
+                          [OBLLog logMessage:error.description];
+                      }
+                      else
+                      {
+                          user.socialMediaId=id;
+                          
+                          GTLPlusPersonName *name=person.name;
+                          user.firstName= [name valueForKey:@"givenName"];
+                          user.middleName=[name valueForKey:@"middleName"];
+                          user.lastName=[name valueForKey:@"familyName"];
+                          
+                          user.name=person.displayName;
+                          user.birthdate=person.birthday;
+                          user.currentLocation=person.currentLocation;
+                          user.gender=person.gender;
+                          user.url=person.url;
+                          
+                          user.placesLived=[person.placesLived copy];
+                          
+                          user.organizations=[person.organizations copy];
+                          
+                          GTLPlusPersonImage *image  =person.image;
+                          user.imageUrl=[image valueForKey:@"url"];
+                          
+                          NSData *receivedData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[image valueForKey:@"url"] ]];
+                          user.image= [[UIImage alloc] initWithData:receivedData ];
+                          
+                          [friends addObject:user];
+                          i++;
+                          
+                          if(i == [n intValue])
+                          {
+                              block(friends,error);
+                          }
+                      }
+                  }];
+             }
+         }
+     }];
 }
 
 
-/*
- 
-//fetch user's friends' data and return the object of OBLfacebookUser class with detail and error if any.
-+ (void)fetchFriendsProfileWithCompletionHandler:(CompletionFriendAll)block
-{
-    
-    
-    
-    
-//    FBRequest* friendsRequest = [FBRequest requestForMyFriends];
-//    [friendsRequest startWithCompletionHandler: ^(FBRequestConnection *connection,
-//                                                  NSDictionary* result,
-//                                                  NSError *error) {
-//        NSError *errorIn=nil;
-//        NSMutableArray *friendArray = [[NSMutableArray alloc] init];
-//        if (error)
-//        {
-//            errorIn=error;
-//            [OBLLog logMessage:error.description];
-//        }
-//        else
-//        {
-//            NSArray *friends = [result objectForKey:@"data"];
-//            
-//            for (NSDictionary<FBGraphUser>* friend in friends)
-//            {
-//                OBLFacebookFriend *userFriend = [[OBLFacebookFriend alloc] init];
-//                userFriend.socialMediaId = [friend objectForKey:@"id"];
-//                userFriend.name  = [friend objectForKey:@"name"];
-//                userFriend.firstName  = [friend objectForKey:@"first_name"];
-//                userFriend.middleName  = [friend objectForKey:@"middle_name"];
-//                userFriend.lastName  = [friend objectForKey:@"last_name"];
-//                userFriend.userName  = [friend objectForKey:@"username"];
-//                userFriend.birthdate  = [friend objectForKey:@"birthdate"];
-//                userFriend.currentLocation  = [friend objectForKey:@"location"];
-//                [friendArray addObject:userFriend];
-//            }
-//        }
-//        NSArray *newArray = [[NSArray alloc] initWithArray:friendArray];
-//        block(newArray,errorIn);
-//    }];
-    
-}
-
-//fatch user's friends' data and return the object of OBLfacebookUser class with detail and error if any.   ...!!(Remaining)
-+ (void)fetchFriendsProfile:(NSArray *)facebookId withCompletionHandler:(CompletionFriendBlock)block
-{
-    
-}
-*/
 
 @end
+

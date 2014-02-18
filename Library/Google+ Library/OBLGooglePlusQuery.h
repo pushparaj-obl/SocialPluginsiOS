@@ -6,22 +6,20 @@
 //  Copyright (c) 2014 Jeneena Jose. All rights reserved.
 //
 
+//Provides methods for querying user's profile information
+//in addtition to the users friends profile information
+
 #import <Foundation/Foundation.h>
 #import "GooglePlus/GooglePlus.h"
 #import <GoogleOpenSource/GoogleOpenSource.h>
-
 #import "OBLGooglePlusUser.h"
 #import "OBLGooglePlusFriend.h"
-
 #import "OBLLog.h"
 
 //completion block having output user data or error if any
-typedef void (^CompletionBlock)(OBLGooglePlusUser *result,
+typedef void (^CompletionBlock)(OBLGooglePlusUser *user,
                                 NSError *error);
 
-//completion block having output friend data or error if any
-typedef void (^CompletionFriendBlock)(OBLGooglePlusFriend *result,
-                                      NSError *error);
 
 //completion block having output all the friend data in array or error if any
 typedef void (^CompletionFriendAll)(NSArray *result,
@@ -33,13 +31,10 @@ typedef void (^CompletionFriendAll)(NSArray *result,
 //fetch user data and return the object of OBLGooglePlusUser class with detail and error if any
 + (void)fetchUserProfileWithCompletionHandler:(CompletionBlock)block;
 
-//returns all the friends of signed-in user
-+ (NSArray *)allFriends;
+
 
 //fetch all the friends profile data with completion handler. Returns array of the OBLGooglePlusFriend object
 + (void)fetchFriendsProfileWithCompletionHandler:(CompletionFriendAll)block;
 
-//fetch user's friends' data and return the object of OBLGooglePlusUser class with detail and error if any
-+ (void)fetchFriendsProfile:(NSArray *)facebookId withCompletionHandler:(CompletionFriendBlock)block;
 
 @end

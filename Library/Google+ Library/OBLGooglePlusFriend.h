@@ -6,27 +6,44 @@
 //  Copyright (c) 2014 Jeneena Jose. All rights reserved.
 //
 
+//Main class having all profile information of Google Plus user's friend
+
 #import <Foundation/Foundation.h>
 #import "OBLProfileDetails.h"
 
-@interface OBLGooglePlusFriend : NSObject  <ProfileDetails>
+@interface OBLGooglePlusFriend : NSObject  <OBLProfileDetails>
 
-//firstname of friend
+//firstname of user's friend
 @property (nonatomic,strong) NSString *firstName;
 
-//middlename of friend
+//middlename of user's friend
 @property (nonatomic,strong) NSString *middleName;
 
-//lastname of friend
+//lastname of user's friend
 @property (nonatomic,strong) NSString *lastName;
 
-//username of friend(may be different from the name)
-@property (nonatomic,strong) NSString *userName;
+//image of user's friend
+@property (nonatomic,strong) UIImage *image;
 
-//birthday of friend
+//the URL of image of user's friend
+@property (copy) NSString *imageUrl;
+
+// The URL of user's friend profile
+@property (copy) NSString *url;
+
+//birthday of user's friend
 @property (nonatomic,strong) NSString *birthdate;
 
-//current locatiion of friend
+//current locatiion of user's friend
 @property (nonatomic,strong) NSString *currentLocation;
+
+//gender of user's friend
+@property (nonatomic,strong) NSString *gender;
+
+//place lived information of user's friend
+@property (nonatomic,strong) NSArray *placesLived;
+
+//work information of user's friend
+@property (nonatomic,strong) NSArray *organizations;
 
 @end
