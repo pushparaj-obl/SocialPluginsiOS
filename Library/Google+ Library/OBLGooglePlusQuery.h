@@ -17,7 +17,7 @@
 #import "OBLLog.h"
 
 //completion block having output user data or error if any
-typedef void (^CompletionBlock)(OBLGooglePlusUser *user,
+typedef void (^CompletionBlockOFUser)(OBLGooglePlusUser *user,
                                 NSError *error);
 
 
@@ -29,7 +29,7 @@ typedef void (^CompletionFriendAll)(NSArray *result,
 @interface OBLGooglePlusQuery : NSObject
 
 //fetch user data and return the object of OBLGooglePlusUser class with detail and error if any
-+ (void)fetchUserProfileWithCompletionHandler:(CompletionBlock)block;
++ (void)fetchUserProfileWithCompletionHandler:(CompletionBlockOFUser)block;
 
 
 

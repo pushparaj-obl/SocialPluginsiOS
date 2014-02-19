@@ -17,10 +17,11 @@
 #import <GooglePlus/GooglePlus.h>
 #import "OBLGooglePlusLoginDelegate.h"
 #import "OBLLog.h"
+#import "GPLogin.h"
 
 @class GPPSignInButton;
 
-@interface OBLGooglePlusLogin : UIViewController <GPPSignInDelegate>
+@interface OBLGooglePlusLogin : UIViewController <GPPSignInDelegate,GPLogin>
 
 // The object to be notified when authentication is finished.
 @property(nonatomic, weak) id<OBLGooglePlusLoginDelegate> delegate;
@@ -95,26 +96,13 @@
 // The default value is |YES|.
 @property (nonatomic) BOOL loginUsingInstalledApp;
 
-
-//Checks whether the ClientID and scopes are set
-//if valid ,calls google sign in page and
-// does |finishedWithAuth:error:| callback to indicate
-// that authentication has failed r succeeded
-- (NSError *) login;
-
-// logs out the user,
-//returns YES if user is logged out
-- (BOOL)logout;
-
 // Disconnects the user from the app and revokes previous authentication.
-// If the operation succeeds, the OAuth 2.0 token is also removed from keychain.
 // The token is needed to disconnect so do not call |logout| if |disconnect| is
 // to be called.
 - (void)disconnect;
 
 // This method should be called from your |UIApplicationDelegate|'s
-// |application:openURL:sourceApplication:annotation|. Returns |YES| if
-// |OBLGooglePlusLogin| handled this URL.
+// |application:openURL:sourceApplication:annotation|.
 - (BOOL)handleURL:(NSURL *)url  sourceApplication:(NSString *)sourceApplication  annotation:(id)annotation;
 
 

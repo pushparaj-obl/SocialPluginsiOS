@@ -32,26 +32,29 @@ static OBLGooglePlusShare * _sharedInstance = nil;
 - (void)finishedSharingWithError:(NSError *)error {
     if (!error) {
         NSLog(@"Successfully posted!");
-        [OBLLog logMessage:@"Successfully posted!"];
+        [OBLLog logGPMessage:@"Successfully posted!"];
         [self.delegate sharingCompleted:YES];
 
     } else if (error.code == kGPPErrorShareboxCanceled) {
         NSLog(@"Canceled posted!");
-        [OBLLog logMessage:@"Canceled posted!!"];
+        NSError *err;
+        NSDictionary *errorDictionary = @{ NSLocalizedDescriptionKey : @"User has cancelled sharing Post process"};
+        err = [[NSError alloc] initWithDomain:@"google+signin"  code:-1 userInfo:errorDictionary];
+
+        [OBLLog GPErrorLog:error];
 
         [self.delegate sharingCompleted:NO];
 
     } else {
         NSString  *text = [NSString stringWithFormat:@"Error (%@)", [error localizedDescription]];
-        [OBLLog logMessage:text];
+        [OBLLog logGPMessage:text];
         [self.delegate sharingCompleted:NO];
-
     }
 }
 
 #pragma mark - Post methods
 
-+ (BOOL)post:(NSString *)status;
+- (void)post:(NSString *)status;
 {
     
     [GPPShare sharedInstance].delegate = self;
@@ -62,7 +65,6 @@ static OBLGooglePlusShare * _sharedInstance = nil;
     [shareBuilder setPrefillText:status];
     
     [shareBuilder open];
-    return YES;
 }
 
 - (void) shareStatus:(NSString *)status

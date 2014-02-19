@@ -11,11 +11,11 @@
 #import <Foundation/Foundation.h>
 #import "GooglePlus/GooglePlus.h"
 #import <GoogleOpenSource/GoogleOpenSource.h>
-#import "OBLPost.h"
+#import "GPPost.h"
 #import "OBLGooglePlusShareDelegate.h"
 #import "OBLLog.h"
 
-@interface OBLGooglePlusShare : NSObject <OBLPost,GPPShareDelegate>
+@interface OBLGooglePlusShare : NSObject <GPPost,GPPShareDelegate>
 
 
 // The object to be notified when sharing is finished.

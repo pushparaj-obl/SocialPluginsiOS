@@ -13,7 +13,7 @@
 
 //fetch user data and return the object of OBLGooglePlusUser class with detail and error if any.
 
-+ (void)fetchUserProfileWithCompletionHandler:(CompletionBlock)block
++ (void)fetchUserProfileWithCompletionHandler:(CompletionBlockOFUser)block
 {
     [OBLGooglePlusQuery getProfileDetails:@"me" completion:^(OBLGooglePlusUser *user, NSError *error) {
         
@@ -39,7 +39,7 @@
     }];
 }
 
-+(void) getProfileDetails:(NSString *)id completion:(CompletionBlock)block
++(void) getProfileDetails:(NSString *)id completion:(CompletionBlockOFUser)block
 {
     GTLServicePlus* plusService = [[GTLServicePlus alloc] init];
     plusService.retryEnabled = YES;
@@ -53,7 +53,7 @@
                 OBLGooglePlusUser *user=[[OBLGooglePlusUser alloc]init];
                 
                 if (error) {
-                    [OBLLog logMessage:error.description];
+                    [OBLLog GPErrorLog:error];
                 } else {
                     
                     GTLPlusPersonName *name=person.name;
@@ -97,7 +97,7 @@
      {
          if (error)
          {
-             [OBLLog logMessage:error.description];
+             [OBLLog GPErrorLog:error];
          }
          else
          {
@@ -118,7 +118,7 @@
                       OBLGooglePlusFriend *user=[[OBLGooglePlusFriend alloc]init];
                       
                       if (error) {
-                          [OBLLog logMessage:error.description];
+                          [OBLLog GPErrorLog:error];
                       }
                       else
                       {

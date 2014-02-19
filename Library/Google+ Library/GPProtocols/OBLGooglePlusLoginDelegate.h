@@ -12,8 +12,6 @@
 
 #import <Foundation/Foundation.h>
 
-
-
 @protocol  OBLGooglePlusLoginDelegate
 
 // The authorization has finished and is successful if |error| is |nil|.

@@ -39,13 +39,12 @@ static OBLGooglePlusLogin * _sharedInstance = nil;
 {
     if(!self.clientID|| !self.scopes)
     {
-        NSError *err=[[NSError alloc]initWithDomain:@"Scope not specified" code:0 userInfo:nil];
+        NSError *err=[[NSError alloc]initWithDomain:@"ClientID and Scopes not specified" code:0 userInfo:nil];
+        [OBLLog GPErrorLog:err];
         return err;
-        [OBLLog logMessage:err.description];
     }
     else
     {
-        NSLog(@"Client ID and Scope are set.");
         GPPSignIn *signIn = [GPPSignIn sharedInstance];
         [GPPSignInButton class];
         signIn.clientID=self.clientID;
@@ -63,13 +62,13 @@ static OBLGooglePlusLogin * _sharedInstance = nil;
 //called after login to show authenication result
 - (void)finishedWithAuth:(GTMOAuth2Authentication *)auth error:(NSError *)error
 {
-    [OBLLog logMessage:error.description];
-    [OBLLog logMessage:auth.accessToken];
+    [OBLLog GPErrorLog:error];
+    [OBLLog logGPMessage:auth.accessToken];
     NSError *err;
 
     if(error.code == -1)
     {
-        NSDictionary *errorDictionary = @{ NSLocalizedDescriptionKey : @"Must have cancelled sign in process"};
+        NSDictionary *errorDictionary = @{ NSLocalizedDescriptionKey : @"User has cancelled sign in process"};
         err = [[NSError alloc] initWithDomain:@"google+signin"  code:-1 userInfo:errorDictionary];
     }
     else
