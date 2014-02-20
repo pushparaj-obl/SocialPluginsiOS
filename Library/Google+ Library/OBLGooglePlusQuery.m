@@ -43,6 +43,7 @@
 {
     GTLServicePlus* plusService = [[GTLServicePlus alloc] init];
     plusService.retryEnabled = YES;
+    plusService.apiVersion = @"v1";
     [plusService setAuthorizer:[GPPSignIn sharedInstance].authentication ];
     
     GTLQueryPlus *query = [GTLQueryPlus queryForPeopleGetWithUserId:id];

@@ -25,7 +25,6 @@
 // Returns a shared |OBLGooglePlusShare| instance.
 + (OBLGooglePlusShare  *)sharedInstance;
 
--(void) shareStatus:(NSString *)status;
 
 - (void) shareStatus:(NSString *)status withTitle:(NSString *)title addDescription:(NSString *)description andImageURL:(NSString *)imageUrl andURL:(NSString *)url;
 @end

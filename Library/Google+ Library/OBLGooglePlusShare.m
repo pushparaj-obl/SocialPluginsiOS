@@ -54,7 +54,7 @@ static OBLGooglePlusShare * _sharedInstance = nil;
 
 #pragma mark - Post methods
 
-- (void)post:(NSString *)status;
+- (void) share:(NSString *)status;
 {
     
     [GPPShare sharedInstance].delegate = self;
@@ -66,20 +66,6 @@ static OBLGooglePlusShare * _sharedInstance = nil;
     
     [shareBuilder open];
 }
-
-- (void) shareStatus:(NSString *)status
-{
-    [GPPShare sharedInstance].delegate = self;
-    
-    // Use the native share dialog in your app:
-    id<GPPNativeShareBuilder> shareBuilder = [[GPPShare sharedInstance] nativeShareDialog];
-    
-    [shareBuilder setPrefillText:status];
-  
-    [shareBuilder open];
-
-}
-
 
 - (void) shareStatus:(NSString *)status withTitle:(NSString *)title addDescription:(NSString *)description andImageURL:(NSString *)imageUrl andURL:(NSString *)url
 {
