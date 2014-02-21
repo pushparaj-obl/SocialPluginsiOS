@@ -45,6 +45,9 @@ If the application was previously in the background, optionally refresh the user
 
 #pragma mark - Login
 
+/*checks if token is already available and loaded of not*/
++ (BOOL)isTokenLodded;
+
 
 /*checks if user has already logged in or not. returns status*/
 + (BOOL)isLogin;
