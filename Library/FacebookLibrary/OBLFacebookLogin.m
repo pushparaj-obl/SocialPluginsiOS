@@ -55,6 +55,20 @@
 
 #pragma mark - Login
 
+/*checks if token is already available and lodded*/
++ (BOOL)isTokenLodded
+{
+    if (FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded)
+    {
+        return YES;
+    }
+    else
+    {
+        return NO;
+    }
+}
+    
+
 /*checks if user has already logged in or not. returns status*/
 + (BOOL)isLogin
 {

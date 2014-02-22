@@ -45,6 +45,8 @@ typedef void (^FBNewCompletionHandler)();
 
 #pragma mark - Login
 
+/*checks if token is already available and lodded*/
++ (BOOL)isTokenLodded;
 
 /*checks if user has already logged in or not. returns status*/
 + (BOOL)isLogin;
