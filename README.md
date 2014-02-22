@@ -21,7 +21,12 @@ Facebook Library:
 * Provides functinality to turn debugging ON or OFF (Log message makes easy to locate error).
 
 Google+ Library:
-
+*Sign in and Sign out with Google+ in your application
+*Share posts with friends
+*Fetch signed in user's profile details.
+*Fetch user's Google+ friend's profile information.
+*Provides functionality of debugging.Logging messages can be activated as ON or OFF.
+ 
 Twitter Library:
 
 ## Requirements 
@@ -36,7 +41,7 @@ Twitter Library:
 steps to include library to project:
 
 1. Download the Library folder from (https://github.com/ObjectLounge/SocialPluginsiOS).
-2. Open your project in Xcode, then drag and drop Library folders(as mentioned below) that you need onto your project. Make sure to select Copy items when asked if you extracted the code archive outside of your project.
+2. Open your project in Xcode, then drag and drop Library folders(as mentioned below) that you need in your project. Make sure to select Copy items when asked if you extracted the code archive outside of your project.
   - Add Protocol and Utility folder
   - Add FacebookLibrary for facebook integration
   - Add Google+ Library for Google+ integration
