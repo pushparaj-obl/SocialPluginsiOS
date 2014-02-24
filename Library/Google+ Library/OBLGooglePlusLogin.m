@@ -30,7 +30,12 @@ static OBLGooglePlusLogin * _sharedInstance = nil;
 
 - (BOOL)trySilentAuthentication
 {
-   return  [[GPPSignIn sharedInstance] trySilentAuthentication];
+    GPPSignIn *signIn = [GPPSignIn sharedInstance];
+    signIn.clientID=self.clientID;
+    signIn.scopes=self.scopes;
+    signIn.actions=self.actions;
+    signIn.delegate=self;
+    return  [[GPPSignIn sharedInstance] trySilentAuthentication];
 }
 
 #pragma mark - Log in
@@ -86,6 +91,7 @@ static OBLGooglePlusLogin * _sharedInstance = nil;
 - (BOOL) logout
 {
     [[GPPSignIn sharedInstance]signOut];
+    self.authentication=[GPPSignIn sharedInstance].authentication;
     if([GPPSignIn sharedInstance].authentication) return NO;
     else return YES;
 }

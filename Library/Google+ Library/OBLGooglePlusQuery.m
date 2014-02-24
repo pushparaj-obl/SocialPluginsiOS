@@ -10,6 +10,28 @@
 
 @implementation OBLGooglePlusQuery
 
+//fetch user data without the friend list and returns the object of OBLGooglePlusUser class with detail and error if any
++(void) fetchProfileDetailOfUser:(CompletionBlockOFUser)block
+{
+    [OBLGooglePlusQuery getProfileDetails:@"me" completion:^(OBLGooglePlusUser *user, NSError *error) {
+        
+        NSString *accessToken=[GPPSignIn sharedInstance].authentication.accessToken;
+        NSString *str=[NSString stringWithFormat:@"https://www.googleapis.com/oauth2/v1/userinfo?access_token=%@",accessToken];
+        NSString *escapedUrl = [str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@",escapedUrl]];
+        NSString *jsonData = [[NSString alloc] initWithContentsOfURL:url usedEncoding:nil error:nil];
+        NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData:[jsonData dataUsingEncoding:NSUTF8StringEncoding]
+                                                                       options:NSJSONReadingMutableContainers error:&error];
+        
+        NSString *userId=[jsonDictionary objectForKey:@"id"];
+        NSString *emailId=[jsonDictionary objectForKey:@"email"];
+        
+        user.socialMediaId=userId;
+        user.email=emailId;
+        
+        block(user,error);
+    }];
+}
 
 //fetch user data and return the object of OBLGooglePlusUser class with detail and error if any.
 
