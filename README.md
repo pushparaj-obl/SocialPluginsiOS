@@ -22,10 +22,10 @@ Facebook Library:
 
 Google+ Library:
 * Sign in and Sign out with Google+ in your application
-* Share posts with friends
+* Share posts with friends.Users can share rich content into the Google+ including text, photos and URL attachments.Interactive posts allow users to share your site or app with their friends and invite them to take a specific action.
 * Fetch signed in user's profile details.
 * Fetch user's Google+ friend's profile information.
-* Provides functionality of debugging.Logging messages can be activated/Deactivated by setting ON or OFF on setGooglePlusDebug.
+* Provides functionality of debugging.Debugging can be activated/deactivated as per user's requirement.
  
 Twitter Library:
 
@@ -104,7 +104,7 @@ Login/Logout:
 * `OBLGooglePlusLogin`
   - Refer to **[OBLGooglePlusLogin.h](https://github.com/ObjectLounge/SocialPluginsiOS/blob/beta/Library/Google+Library/OBLGooglePlusLogin.h)**
   - This class provides functionalities such as login, logout and disconnect for google+ users.
-  - Before calling the methods like [ login ], set clientID which can be obtained from Google APIs Console by creating an APIs Console project, enabling the Google+ API and then by creating a client ID.Also set scopes and actions, shouldFetchGoogleUserEmail, shouldFetchGoogleUserID, shouldFetchGooglePlusUser (optional) as required.
+  - Before calling methods like [ login ], set clientID which can be obtained from Google APIs Console by creating an APIs Console project, enabling the Google+ API and then by creating a client ID.Also set scopes and actions, shouldFetchGoogleUserEmail, shouldFetchGoogleUserID, shouldFetchGooglePlusUser (optional) as required.
   - There are delegates such as finishedWithLogin,didDisconnectWithError to be implemented which gives notification about successful completion of process or error if any.
   - Call the URL handler [ handleURL:sourceApplication:annotation:] from app delegate's URL handler  [ application:openURL:sourceApplication:annotation:]. This handler will properly handle the URL that your application receives at the end of the authentication process.
 
@@ -118,7 +118,7 @@ Social media posting:
 
 * `OBLGooglePlusShare`
   - Refer to **[OBLGooglePlusShare.h](https://github.com/ObjectLounge/SocialPluginsiOS/blob/beta/Library/Google+Library/OBLGooglePlusShare.h)**
-  - This class allows users to share posts.
+  - This class allows user to share posts.
 
 
 Profile details:
@@ -221,7 +221,7 @@ Post on user's wall:
       Other Linker Flags: -ObjC
 4. Add a URL type
     In your app's Info tab, add a URL type and enter your bundle ID as the identifier and scheme.
-4. Call [ handleURL:sourceApplication:annotation: ] from your main application method [ application:openURL:sourceApplication:annotation: ] of UIApplicationDelegate... for handling incoming url like 
+4. Call [ handleURL:sourceApplication:annotation: ] from your main application method [ application:openURL:sourceApplication:annotation: ] of UIApplicationDelegate for handling incoming url.
 ```
 - (BOOL)application:(UIApplication *)application
                openURL:(NSURL *)url
@@ -229,13 +229,13 @@ Post on user's wall:
              annotation:(id)annotation
 {
     return [[OBLGooglePlusLogin sharedInstance] handleURL:url
-                                                                    sourceApplication:sourceApplication
-                                                                                annotation:annotation];
+                                        sourceApplication:sourceApplication
+                                               annotation:annotation];
 }
 ```
 
 #####Using Google+Library:
-* Refer this file **[CheckingVC.m](https://github.com/ObjectLounge/SocialPluginsiOS/blob/beta/SampleGoogle+Code/GooglePlusDemo/Controller/CheckingVC.m)** of SampleGoogle+Code to understand how to use Google+Library. Check calls to Google+Library from the sample code.
+* Refer the file **[CheckingVC.m](https://github.com/ObjectLounge/SocialPluginsiOS/blob/beta/SampleGoogle+Code/GooglePlusDemo/Controller/CheckingVC.m)** of SampleGoogle+Code to understand how to use Google+Library. Check calls to Google+Library from the sample code.
 
 Login/Logout and Disconnect:
 
@@ -273,9 +273,13 @@ Fetch user's friends profile data:
       //code
      }];
 ```
-Post on user's wall:
-
+Share a post:
   - Refer `shareButtonClicked` method in **[CheckingVC.m](https://github.com/ObjectLounge/SocialPluginsiOS/blob/beta/SampleGoogle+Code/GooglePlusDemo/Controller/CheckingVC.m)** file.
+  -For basic sharing with a simple text,the following method can be used 
+```
+ [[OBLGooglePlusShare sharedInstance] shareStatus:@"Check it out!!"];
+```
+  -For interactive sharing,enter additional details of title,description,imageURL and URL of your app.This method sets a contentDeepLinkID by itself,so for handling incoming URL,make some changes in AppDelegate.m
 ```
  [[OBLGooglePlusShare sharedInstance] shareStatus:@"Check it out!!"
                                         withTitle:@"blah..blah.."
@@ -283,4 +287,46 @@ Post on user's wall:
                                       andImageURL:nil
                                            andURL:@"https://www.examplecode.com"];
 ```
+  -When the app launches, it needs to check if the deep-link information is available and launch the correct view in the app.So,follow these steps:
+
+  1.In your app delegate's .h file, import GooglePlus/GooglePlus.h, and add the GPPDeepLinkDelegate protocol
+```
+ @interface AppDelegate : UIResponder <UIApplicationDelegate, GPPDeepLinkDelegate>
+```
+  2.In your app delegate's applicationDidFinishLaunching:withOptions method, set the GPPDeepLink's delegate, and check for incoming deep links by calling readDeepLinkAfterInstall:
+```
+- (BOOL)application: (UIApplication *)application didFinishLaunchingWithOptions: (NSDictionary *)launchOptions
+{
+
+  [GPPDeepLink setDelegate:self];
+  [GPPDeepLink readDeepLinkAfterInstall];
+
+  return YES;
+}
+```
+  3.To process incoming deep-link URLs, call GPPURLHandler's handleURL method from your app delegate's URL handler.
+```
+ - (BOOL)application: (UIApplication *)application
+              openURL: (NSURL *)url
+    sourceApplication: (NSString *)sourceApplication
+           annotation: (id)annotation {
+   return [GPPURLHandler handleURL:url
+                 sourceApplication:sourceApplication
+                        annotation:annotation];
+  }
+```
+  4.Handle the incoming deep link in your app delegate by implementing the didRedceiveDeepLink method, which is part of     the GPPDeepLinkDelegate protocol. This method is where you can perform any application logic based on the deep-link       identifier that the app receives.
+```
+- (void)didReceiveDeepLink: (GPPDeepLink *)deepLink {
+  // An example to handle the deep link data.
+  UIAlertView *alert = [[UIAlertView alloc]
+                         initWithTitle:@"Deep-link Data"
+                               message:[deepLink deepLinkID]
+                              delegate:nil
+                     cancelButtonTitle:@"OK"
+                     otherButtonTitles:nil];
+  [alert show];
+}
+```
+
 ####Twitter Library:
