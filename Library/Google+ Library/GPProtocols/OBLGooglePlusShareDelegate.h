@@ -11,7 +11,7 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol  OBLGooglePlusShareDelegate
+@protocol  OBLGooglePlusShareDelegate <NSObject>
 
 
 // Finished sharing post from the app

@@ -12,7 +12,7 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol  OBLGooglePlusLoginDelegate
+@protocol  OBLGooglePlusLoginDelegate <NSObject>
 
 // The authorization has finished and is successful if |error| is |nil|.
 - (void) finishedWithLogin:(NSError *)error;

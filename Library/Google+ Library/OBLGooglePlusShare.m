@@ -28,82 +28,99 @@ static OBLGooglePlusShare * _sharedInstance = nil;
 
 #pragma mark - GPPShareDelegate
 
+- (void)finishedSharingWithError:(NSError *)error
+{
+    BOOL didShare;
 
-- (void)finishedSharingWithError:(NSError *)error {
-    if (!error) {
-        NSLog(@"Successfully posted!");
-        [OBLLog logGPMessage:@"Successfully posted!"];
-        [self.delegate sharingCompleted:YES];
-
-    } else if (error.code == kGPPErrorShareboxCanceled) {
-        NSLog(@"Canceled posted!");
-        NSError *err;
-        NSDictionary *errorDictionary = @{ NSLocalizedDescriptionKey : @"User has cancelled sharing Post process"};
-        err = [[NSError alloc] initWithDomain:@"google+signin"  code:-1 userInfo:errorDictionary];
-
-        [OBLLog GPErrorLog:error];
-
-        [self.delegate sharingCompleted:NO];
-
-    } else {
-        NSString  *text = [NSString stringWithFormat:@"Error (%@)", [error localizedDescription]];
-        [OBLLog logGPMessage:text];
-        [self.delegate sharingCompleted:NO];
+    if (!error)
+    {
+        didShare=YES;
     }
+    else if (error.code == kGPPErrorShareboxCanceled)
+    {
+        didShare=NO;
+        NSDictionary *errorDictionary = @{ NSLocalizedDescriptionKey : @"User has cancelled sharing Post process"};
+        NSError *error = [[NSError alloc] initWithDomain:@"google+share"  code:-1 userInfo:errorDictionary];
+        [OBLLog GPErrorLog:error];
+    }
+    else
+    {
+        [OBLLog GPErrorLog:error];
+        didShare=NO;
+    }
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(sharingCompleted:)])
+    {
+        [self.delegate sharingCompleted:didShare];
+    }
+
 }
 
-#pragma mark - Post methods
+#pragma mark - Share methods
 
 - (void) share:(NSString *)status;
 {
-    
+    [self shareStatus:status withURL:nil];
+}
+
+-(void) shareStatus:(NSString *)status withURL:(NSString *)url
+{
     [GPPShare sharedInstance].delegate = self;
-    
-    // Use the native share dialog in your app:
     id<GPPNativeShareBuilder> shareBuilder = [[GPPShare sharedInstance] nativeShareDialog];
     
     [shareBuilder setPrefillText:status];
     
+    if(url)
+    {
+        // The share preview includes the title, description, and a thumbnail
+        // generated from the page at the specified URL location.
+        [shareBuilder setURLToShare:[NSURL URLWithString:url]];
+    }
+    
     [shareBuilder open];
 }
 
-- (void) shareStatus:(NSString *)status withTitle:(NSString *)title addDescription:(NSString *)description andImageURL:(NSString *)imageUrl andURL:(NSString *)url
+-(void) shareInteractivePost:(NSString *)status withTitle:(NSString *)title addDescription:(NSString *)description andImageURL:(NSString *)imageUrl
 {
-    
+    [self shareInteractivePost:status withTitle:title addDescription:description andImageURL:imageUrl withURL:nil withCallToActionLabel:nil];
+}
+
+- (void) shareInteractivePost:(NSString *)status withURL:(NSString *)url withCallToActionLabel:(NSString *)label
+{
+    [self shareInteractivePost:status withTitle:nil addDescription:nil andImageURL:nil withURL:url withCallToActionLabel:label];
+}
+
+-(void) shareInteractivePost:(NSString *)status withTitle:(NSString *)title addDescription:(NSString *)description andImageURL:(NSString *)imageUrl withURL:(NSString *)url  withCallToActionLabel:(NSString *)label
+{
     [GPPShare sharedInstance].delegate = self;
     id<GPPNativeShareBuilder> shareBuilder = [[GPPShare sharedInstance] nativeShareDialog];
     
-    // This line will manually fill out the title, description, and thumbnail of the
-    // item you're sharing.
+    // This will manually fill out the title, description, and thumbnail of the item you're sharing.
     [shareBuilder setTitle:title
                description:description
               thumbnailURL:[NSURL URLWithString:imageUrl]];
     
-    // The share preview, which includes the title, description, and a thumbnail,
-    // is generated from the page at the specified URL location.
-   [shareBuilder setURLToShare:[NSURL URLWithString:url]];
+    [shareBuilder setPrefillText:status];
     
-    [shareBuilder setPrefillText:@"Check it out!!"];
-    
-    // This line passes the string "rest=1234567" to your native application
+    // This line passes the string "rest=001198" to your native application
     // if somebody opens the link on a supported mobile device
-    [shareBuilder setContentDeepLinkID:@"rest=1234567"];
-
+    [shareBuilder setContentDeepLinkID:@"rest=001198"];
+    
     if(url)
     {
-    // This method creates a call-to-action button with the label "RSVP".
-    // - URL specifies where people will go if they click the button on a platform
-    // that doesn't support deep linking.
-    // - deepLinkID specifies the deep-link identifier that is passed to your native
-    // application on platforms that do support deep linking
-    [shareBuilder setCallToActionButtonWithLabel:@"RSVP"
-                                             URL:[NSURL URLWithString:url]
-                                      deepLinkID:@"rsvp=4815162342"];
-    
+         [shareBuilder setURLToShare:[NSURL URLWithString:url]];
+        // This method creates a call-to-action button with the given label.
+        // - URL specifies where people will go if they click the button on a platform
+        // that doesn't support deep linking.
+        // - deepLinkID specifies the deep-link identifier that is passed to your native
+        // application on platforms that do support deep linking
+        [shareBuilder setCallToActionButtonWithLabel:label
+                                                 URL:[NSURL URLWithString:url]
+                                          deepLinkID:@"ID=905162"];
+        
     }
+    
     [shareBuilder open];
-
 }
-
 
 @end

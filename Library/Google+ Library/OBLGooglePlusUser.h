@@ -13,47 +13,43 @@
 
 @interface OBLGooglePlusUser : NSObject <OBLProfileDetails>
 
-//email
+//Email ID of user.
 @property (nonatomic,strong) NSString *email;
 
-//firstname of user
+//Firstname of user.
 @property (nonatomic,strong) NSString *firstName;
 
-//middlename of user
+//Middlename of user.
 @property (nonatomic,strong) NSString *middleName;
 
-//lastname of user
+//Lastname of user.
 @property (nonatomic,strong) NSString *lastName;
 
-//image
+//Profile image of user.
 @property (nonatomic,strong) UIImage *image;
 
 
-//the URL of this user's image
+//The URL of this user's image.
 @property (copy) NSString *imageUrl;
 
 //the URL of this  user's  profile.
-@property (copy) NSString *url;
+@property (copy) NSString *profileUrl;
 
-//birthday of user
+//Birthdate of user.
 @property (nonatomic,strong) NSString *birthdate;
 
-//current locatiion of user
+//Current locatiion of user.
 @property (nonatomic,strong) NSString *currentLocation;
 
-//gender of user
+//Gender of user.
 @property (nonatomic,strong) NSString *gender;
 
-//array of friends of user having OBLGooglePlusFriend objects.
-@property (nonatomic,strong) NSArray *friends;
-
-
-//places lived information of user
-// the key  *primary is "true", this place of residence is this person's primary residence.
-//the key *value displays place where this person has lived. For example: "Seattle, WA"
+//Places lived information of user
+//If the key  *primary is "true", the place of residence is this person's primary residence.
+//The key *value displays place where this person has lived. For example: "New Jersey"
 @property (nonatomic,strong) NSArray *placesLived;
 
-//work information of user
+//Work information of user.
 @property (nonatomic,strong) NSArray *organizations;
 
 @end
