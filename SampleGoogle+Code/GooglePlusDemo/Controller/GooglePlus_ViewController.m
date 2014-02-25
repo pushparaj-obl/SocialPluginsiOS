@@ -65,9 +65,14 @@
 {
     [OBLGooglePlusQuery fetchProfileDetailOfUser:^(OBLGooglePlusUser *result, NSError *error)
      {
-         if(error) NSLog(@"Error :%@  ",error);
+         if(error)
+         {
+             NSLog(@"Error :%@  ",error);
+         }
          else
          {
+             UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Fetch Status" message:@"Operation succesful.Got your profile data." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+             [alert show];
              NSLog(@"\nUseR ID:%@ email ID:%@",result.socialMediaId,result.email);
              NSLog(@"\nF: %@ M:%@ L:%@",result.firstName, result.middleName, result.lastName);
              NSLog(@"\nProfile name:%@  BiIRTHDATE:%@ & LoCaTiOn:%@ & GEnDer: %@ ", result.name, result.birthdate, result.currentLocation, result.gender);
@@ -79,20 +84,26 @@
 //fetches the signed in user's friends profile information
 - (IBAction)friendsProfileButtonclicked:(id)sender
 {
+    self.friendsProfileInfo.enabled=NO;
     [OBLGooglePlusQuery fetchFriendsProfileWithCompletionHandler:^(NSArray *result, NSError *error) {
+        
         //NSArray returns an array of objcts of type OBLGooglePlusFriend
-        if(error){
-            UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Status" message:@"Operation failed.Please click again." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        if(error)
+        {
+            UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Fetch Status" message:@"Operation failed.Please click again." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
             [alert show];
         }
         else
         {
+            UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Fetch Status" message:@"Operation succesful.Got friends' profile data." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+            [alert show];
             for(OBLGooglePlusFriend *user in result)
             {
                 NSLog(@"F: %@ M:%@ L:%@",user.firstName, user.middleName, user.lastName);
                 NSLog(@"\n Profile name:%@  BiIRTHDATE:%@ & LoCaTiOn:%@ & GEnDer: %@ ", user.name, user.birthdate, user.currentLocation, user.gender);
             }
         }
+        self.friendsProfileInfo.enabled=YES;
     }];
 }
 
