@@ -35,27 +35,10 @@
     return [FBSession.activeSession handleOpenURL:url];
 }
 
-/*set the global state change handler*/
-//call this method only if unable to assign a session state change handler explicitly
-+ (void)sessionHandler:(FBSession *)session state:(FBSessionState)state
-{
-    [FBSession.activeSession setStateChangeHandler:
-     ^(FBSession *session, FBSessionState state, NSError *error)
-     {
-         if (error)
-         {
-             [OBLLog FBErrorLog:error];
-         }
-         else
-         {
-             [OBLFacebookLogin sessionStateChanged:session state:state];
-         }
-     }];
-}
-
 #pragma mark - Login
 
 /*checks if token is already available and loaded of not*/
+//it will check if availabele token is already lodded do we can call login method directly.(session state may not be open)
 + (BOOL)isTokenLodded
 {
     if (FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded)
@@ -71,6 +54,7 @@
 
 
 /*checks if user has already logged in or not. returns status*/
+//it will check if user is logged in (session state is open or not)
 + (BOOL)isLogin
 {
     return (FBSession.activeSession.state == FBSessionStateOpen||FBSession.activeSession.state == FBSessionStateOpenTokenExtended);
@@ -94,7 +78,8 @@
     
 }
 
-/*login with given read permission*/
+/*login with given read permission, user will also get basic info permissions*/
+//default permission includes - name, profile-picture, gender, userID, list of friends and information that user made public.
 //block-completion handler block with error if any.
 //permission- read permissions
 
@@ -168,7 +153,8 @@
     }
 }
 
-/*login with given publish permission*/
+/*login with given publish permission, user will also get basic info permissions*/
+//default permission includes - name, profile-picture, gender, userID, list of friends and information that user made public.
 //block - comlition handler block with error if any.
 //permission - publish permissions
 + (void) loginWithFBPublishPermissions:(NSArray *)permission
@@ -253,45 +239,9 @@
     return ([FBSession activeSession].accessTokenData.permissions);
 }
 
-/*request new publish permission with completionhandler block*/
-+ (void)requestNewPublishPermissions:(NSArray *)permission
-                andCompletionHandler:(FBNewCompletionHandler) block
-{
-    [FBSession.activeSession requestNewPublishPermissions:permission
-                                          defaultAudience:FBSessionDefaultAudienceFriends
-                                        completionHandler:^(FBSession *session, NSError *error)
-     {
-         if (!error)
-         {
-             BOOL granted = YES;
-             for (NSObject *a in permission)
-             {
-                 if ([FBSession.activeSession.permissions indexOfObject:a] == NSNotFound)
-                 {
-                     // Permission not granted
-                     [OBLLog logFBMessage:@"Permission not granted"];
-                     granted = NO;
-                     break;
-                 }
-             }
-             if(granted)
-             {
-                 // Permission granted, call the handler block
-                 block();
-             }
-         }
-         else
-         {
-             [OBLLog logFBMessage:error.description];
-         }
-     }
-     ];
-}
-
-
 /*request new read permission with completionhandler block*/
 + (void)requestNewReadPermissions:(NSArray *)permission
-             andCompletionHandler:(FBNewCompletionHandler) block
+             andCompletionHandler:(FBCompletionHandler) block
 {
     [FBSession.activeSession requestNewReadPermissions:permission
                                      completionHandler:^(FBSession *session, NSError *error)
@@ -312,16 +262,56 @@
              if(granted)
              {
                  // Permission granted, call the handler block
-                 block();
+                 [OBLLog logFBMessage:@"Permission granted."];
              }
          }
          else
          {
              [OBLLog logFBMessage:error.description];
          }
+         block(error);
      }
      ];
 }
+
+
+/*request new publish permission with completionhandler block*/
++ (void)requestNewPublishPermissions:(NSArray *)permission
+                     defaultAudience:(OBLDefaultAudiance)defaultAudience
+                andCompletionHandler:(FBCompletionHandler) block
+{
+    [FBSession.activeSession requestNewPublishPermissions:permission
+                                          defaultAudience:(FBSessionDefaultAudience)defaultAudience
+                                        completionHandler:^(FBSession *session, NSError *error)
+     {
+         if (!error)
+         {
+             BOOL granted = YES;
+             for (NSObject *a in permission)
+             {
+                 if ([FBSession.activeSession.permissions indexOfObject:a] == NSNotFound)
+                 {
+                     // Permission not granted
+                     [OBLLog logFBMessage:@"Permission not granted"];
+                     granted = NO;
+                     break;
+                 }
+             }
+             if(granted)
+             {
+                 // Permission granted, call the handler block
+                 [OBLLog logFBMessage:@"Permission granted."];
+             }
+         }
+         else
+         {
+             [OBLLog logFBMessage:error.description];
+         }
+         block(error);
+     }
+     ];
+}
+
 
 #pragma mark - Debug
 
