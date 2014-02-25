@@ -85,7 +85,7 @@
 - (IBAction)friendsProfileButtonclicked:(id)sender
 {
     self.friendsProfileInfo.enabled=NO;
-    [OBLGooglePlusQuery fetchFriendsProfileWithCompletionHandler:^(NSArray *result, NSError *error) {
+    [OBLGooglePlusQuery fetchFriendsProfileWithCompletionHandler:^(NSArray *friends, NSError *error) {
         
         //NSArray returns an array of objcts of type OBLGooglePlusFriend
         if(error)
@@ -97,10 +97,10 @@
         {
             UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Fetch Status" message:@"Operation succesful.Got friends' profile data." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
             [alert show];
-            for(OBLGooglePlusFriend *user in result)
+            for(OBLGooglePlusFriend *friend in friends)
             {
-                NSLog(@"F: %@ M:%@ L:%@",user.firstName, user.middleName, user.lastName);
-                NSLog(@"\n Profile name:%@  BiIRTHDATE:%@ & LoCaTiOn:%@ & GEnDer: %@ ", user.name, user.birthdate, user.currentLocation, user.gender);
+                NSLog(@"F: %@ M:%@ L:%@",friend.firstName, friend.middleName, friend.lastName);
+                NSLog(@"\n Profile name:%@  BiIRTHDATE:%@ & LoCaTiOn:%@ & GEnDer: %@ ", friend.name, friend.birthdate, friend.currentLocation, friend.gender);
             }
         }
         self.friendsProfileInfo.enabled=YES;

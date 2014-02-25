@@ -22,7 +22,7 @@ typedef void (^CompletionBlockOFUser)(OBLGooglePlusUser *user,
 
 
 //Completion block having output of all the friend data in array and error,if any.
-typedef void (^CompletionFriendAll)(NSArray *result,
+typedef void (^CompletionFriendAll)(NSArray *friends,
                                     NSError *error);
 
 
