@@ -65,16 +65,18 @@
 //default permission includes - name, profile-picture, gender, userID, list of friends and information that user made public.
 + (void)login
 {
-    [OBLFacebookLogin login:@[BASIC_INFO] withCompltion:nil];
+    [OBLFacebookLogin login:@[BASIC_INFO] withCompletion:nil];
 }
 
 
 /*login with default permission*/
 //default permission includes - name, profile-picture, gender, userID, list of friends and information that user made public.
 //block-completion handler block with error if any.
+//Note: completion block called every time whenever the state of the FBSession is changed
+
 + (void)loginWithFBCompletionHandler:(FBCompletionHandler) block
 {
-    [OBLFacebookLogin login:@[BASIC_INFO] withCompltion:block];
+    [OBLFacebookLogin login:@[BASIC_INFO] withCompletion:block];
     
 }
 
@@ -82,17 +84,19 @@
 //default permission includes - name, profile-picture, gender, userID, list of friends and information that user made public.
 //block-completion handler block with error if any.
 //permission- read permissions
+//Note: completion block called every time whenever the state of the FBSession is changed
 
 + (void)loginWithFBReadPermissions:(NSArray *)permission
               andCompletionHandler: (FBCompletionHandler) block
 {
-    [OBLFacebookLogin login:permission withCompltion:block];
+    [OBLFacebookLogin login:permission withCompletion:block];
     
 }
 
 /*private method for login with read permissions or login with basic info*/
 //block-completion handler block with error if any.
-+ (void)login:(NSArray*)permission withCompltion:(FBCompletionHandler)block
+//Note: completion block called every time whenever the state of the FBSession is changed
++ (void)login:(NSArray*)permission withCompletion:(FBCompletionHandler)block
 {
     if (FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded)
     {
@@ -157,6 +161,8 @@
 //default permission includes - name, profile-picture, gender, userID, list of friends and information that user made public.
 //block - comlition handler block with error if any.
 //permission - publish permissions
+//Note: completion block called every time whenever the state of the FBSession is changed
+
 + (void) loginWithFBPublishPermissions:(NSArray *)permission
                        defaultAudience:(OBLDefaultAudiance)defaultAudience
                   andCompletionHandler:(FBCompletionHandler) block

@@ -62,12 +62,14 @@ If the application was previously in the background, optionally refresh the user
 /*login with default permission*/
 //default permission includes - name, profile-picture, gender, userID, list of friends and information that user made public.
 //block-completion handler block with error if any.
+//Note: completion block called every time whenever the state of the FBSession is changed
 + (void)loginWithFBCompletionHandler:(FBCompletionHandler) block;
 
 /*login with given read permission, user will also get basic info permissions*/
 //default permission includes - name, profile-picture, gender, userID, list of friends and information that user made public.
 //block- completion handler block with error if any.
 //permission- read permissions
+//Note: completion block called every time whenever the state of the FBSession is changed
 + (void)loginWithFBReadPermissions:(NSArray *)permission
               andCompletionHandler:(FBCompletionHandler) block;
 
@@ -75,6 +77,7 @@ If the application was previously in the background, optionally refresh the user
 //default permission includes - name, profile-picture, gender, userID, list of friends and information that user made public.
 //block- completion handler block with error if any.
 //permission- publish permissions
+//Note: completion block called every time whenever the state of the FBSession is changed
 + (void)loginWithFBPublishPermissions:(NSArray *)permission
                       defaultAudience:(OBLDefaultAudiance)defaultAudience
                  andCompletionHandler:(FBCompletionHandler) block;
