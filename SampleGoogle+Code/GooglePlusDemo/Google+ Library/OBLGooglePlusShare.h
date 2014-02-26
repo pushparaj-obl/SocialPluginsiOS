@@ -25,10 +25,13 @@
 // Returns a shared |OBLGooglePlusShare| instance.
 + (OBLGooglePlusShare  *)sharedInstance;
 
+//To share a post with given URL.
 - (void) shareStatus:(NSString *)status withURL:(NSString *)url;
 
+//To share an interactive post with given URL and callToActionLabel.
 - (void) shareInteractivePost:(NSString *)status withURL:(NSString *)url withCallToActionLabel:(NSString *)label;
 
+//To share a post with given title,description and imageUrl.
 - (void) shareInteractivePost:(NSString *)status withTitle:(NSString *)title addDescription:(NSString *)description andImageURL:(NSString *)imageUrl;
 
 @end

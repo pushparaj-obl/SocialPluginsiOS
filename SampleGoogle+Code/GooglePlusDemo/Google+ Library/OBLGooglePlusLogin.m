@@ -12,57 +12,58 @@
 
 #pragma mark - Setters and Getters
 
-@synthesize loginUsingInstalledApp = _loginUsingInstalledApp;
-@synthesize clientID = _clientID;
-@synthesize scopes = _scopes;
-@synthesize actions = _actions;
-@synthesize shouldFetchGooglePlusUser = _shouldFetchGooglePlusUser;
-@synthesize shouldFetchGoogleUserID = _shouldFetchGoogleUserID;
+@synthesize loginUsingInstalledApp;
+@synthesize clientID;
+@synthesize scopes;
+@synthesize actions;
+@synthesize shouldFetchGooglePlusUser;
+@synthesize shouldFetchGoogleUserID;
+@synthesize shouldFetchGoogleUserEmail;
 
--(void) setClientID:(NSString *)clientID
+-(void) setClientID:(NSString *)ClientID
 {
-    _clientID = clientID;
+    clientID = ClientID;
     GPPSignIn *signIn = [GPPSignIn sharedInstance];
     signIn.clientID = self.clientID;
 }
 
--(void) setScopes:(NSArray *)scopes
+-(void) setScopes:(NSArray *)scope
 {
-    _scopes = scopes;
+    scopes = scope;
     GPPSignIn *signIn = [GPPSignIn sharedInstance];
     signIn.scopes = self.scopes;
 }
 
--(void) setActions:(NSArray *)actions{
-    _actions = actions;
+-(void) setActions:(NSArray *)action{
+    actions = action;
     GPPSignIn *signIn = [GPPSignIn sharedInstance];
     signIn.actions = self.actions;
 }
 
--(void) setShouldFetchGooglePlusUser:(BOOL)shouldFetchGooglePlusUser
+-(void) setShouldFetchGooglePlusUser:(BOOL)fetchGooglePlusUser
 {
-    _shouldFetchGooglePlusUser = shouldFetchGooglePlusUser;
+    shouldFetchGooglePlusUser = fetchGooglePlusUser;
     GPPSignIn *signIn = [GPPSignIn sharedInstance];
     signIn.shouldFetchGooglePlusUser = self.shouldFetchGooglePlusUser;
 }
 
-- (void) setShouldFetchGoogleUserEmail:(BOOL)shouldFetchGoogleUserEmail
+- (void) setShouldFetchGoogleUserEmail:(BOOL)fetchGoogleUserEmail
 {
-    _shouldFetchGoogleUserEmail = shouldFetchGoogleUserEmail;
+    shouldFetchGoogleUserEmail = fetchGoogleUserEmail;
     GPPSignIn *signIn = [GPPSignIn sharedInstance];
     signIn.shouldFetchGoogleUserEmail = self.shouldFetchGoogleUserEmail;
 }
 
--(void) setShouldFetchGoogleUserID:(BOOL)shouldFetchGoogleUserID
+-(void) setShouldFetchGoogleUserID:(BOOL)fetchGoogleUserID
 {
-    _shouldFetchGoogleUserID = shouldFetchGoogleUserID ;
+    shouldFetchGoogleUserID = fetchGoogleUserID ;
     GPPSignIn *signIn = [GPPSignIn sharedInstance];
     signIn.shouldFetchGoogleUserID = self.shouldFetchGoogleUserID;
 
 }
--(void) setLoginUsingInstalledApp:(BOOL)loginUsingInstalledApp
+-(void) setLoginUsingInstalledApp:(BOOL)logInUsingInstalledApp
 {
-    _loginUsingInstalledApp = loginUsingInstalledApp;
+    loginUsingInstalledApp = logInUsingInstalledApp;
     [GPPSignIn sharedInstance].attemptSSO = self.loginUsingInstalledApp;
 }
 
@@ -93,6 +94,7 @@ static OBLGooglePlusLogin * _sharedInstance = nil;
 
 #pragma mark - Log in
 
+//Provides sign in feature to user.
 //Returns error if clientID or scope is not set
 - (NSError *) login
 {
@@ -146,6 +148,7 @@ static OBLGooglePlusLogin * _sharedInstance = nil;
 
 #pragma mark - Log Out
 
+//Logs out the user by removing the acqquired access token.
 //Returns YES if user is successfully logged out.
 - (BOOL) logout
 {
@@ -163,6 +166,7 @@ static OBLGooglePlusLogin * _sharedInstance = nil;
 
 #pragma mark - Disconnect
 
+//Disconnects the logged-in user and revokes any authentication.
 - (void)disconnect
 {
     [[GPPSignIn sharedInstance] disconnect];
@@ -182,7 +186,7 @@ static OBLGooglePlusLogin * _sharedInstance = nil;
 
 #pragma mark - HandleUrl
 
-//To be called from AppDelegate
+//To be called from AppDelegate to handle any incoming URLs.
 - (BOOL)handleURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication  annotation:(id)annotation;
 {
     return [GPPURLHandler handleURL:url

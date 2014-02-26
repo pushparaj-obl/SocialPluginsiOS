@@ -118,7 +118,7 @@
                       
                       if (error) {
                           [OBLLog GPErrorLog:error];
-                          block(friends,error);
+                           block(friends,error);
                       }
                       else
                       {

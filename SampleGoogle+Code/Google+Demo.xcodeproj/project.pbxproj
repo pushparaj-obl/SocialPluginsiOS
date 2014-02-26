@@ -181,7 +181,7 @@
 				F1D3EA7918BCB1A30010C116 /* CallToActionButtonLabels.h */,
 			);
 			name = "Google+ Library";
-			path = "../Library/Google+ Library";
+			path = "GooglePlusDemo/Google+ Library";
 			sourceTree = "<group>";
 		};
 		F14362FE18B48D7F00CC2E72 /* GPProtocols */ = {
