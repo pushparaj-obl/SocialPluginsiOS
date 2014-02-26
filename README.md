@@ -279,15 +279,15 @@ Fetch user's friends profile data:
 ```
 Share a post:
   - Refer `shareButtonClicked` method in **[GooglePlus_ViewController.m](https://github.com/jeneena-obl/SocialPluginsiOS/blob/beta/SampleGoogle%2BCode/GooglePlusDemo/Controller/GooglePlus_ViewController.m)** file.
-  -For basic sharing with a simple text,the following method can be used 
+  - For basic sharing with a simple text,the following method can be used 
 ```
  [[OBLGooglePlusShare sharedInstance] shareStatus:@"Check it out!!"];
 ```
-  -For basic sharing with a simple textand URL,the following method can be used 
+  - For basic sharing with a simple textand URL,the following method can be used 
 ```
  [[OBLGooglePlusShare sharedInstance] shareStatus:@"Check it out!!"  withURL:@"http://example.com"];
 ```
-  -For interactive sharing,there are two methods.Either use the method with parameters like title,description,imageURL or the method with parameter URL(it automatically puts image and title from given URL) of your app and CallToActionButtonLabel.A list of valid labels are given in class CallToActionButtonLabels class.This method sets a contentDeepLinkID by itself,so for handling incoming URL,make some changes in AppDelegate.m
+  - For interactive sharing,there are two methods.Either use the method with parameters like title,description,imageURL or the method with parameter URL(it automatically puts image and title from given URL) of your app and CallToActionButtonLabel.A list of valid labels are given in class CallToActionButtonLabels class.This method sets a contentDeepLinkID by itself,so for handling incoming URL,make some changes in AppDelegate.m
 ```
  [[OBLGooglePlusShare sharedInstance] shareInteractivePost:@"Check it out!!"
                                                  withTitle:@"blah..blah.."
@@ -299,7 +299,7 @@ Share a post:
                                                    withURL:@"https://www.myDemo.com" 
                                      withCallToActionLabel:JOIN]
 ```
-  -When the app launches, it needs to check if the deep-link information is available and launch the correct view in the app.So,follow these steps:
+  - When the app launches, it needs to check if the deep-link information is available and launch the correct view in the app.So,follow these steps:
 
   1.In your app delegate's .h file, import GooglePlus/GooglePlus.h, and add the GPPDeepLinkDelegate protocol
 ```
@@ -309,38 +309,37 @@ Share a post:
 ```
 - (BOOL)application: (UIApplication *)application didFinishLaunchingWithOptions: (NSDictionary *)launchOptions
 {
-
   [GPPDeepLink setDelegate:self];
   [GPPDeepLink readDeepLinkAfterInstall];
-
   return YES;
 }
 ```
   3.To process incoming deep-link URLs, call GPPURLHandler's handleURL method from app delegate's URL handler.
 ```
  - (BOOL)application: (UIApplication *)application
-              openURL: (NSURL *)url
-    sourceApplication: (NSString *)sourceApplication
-           annotation: (id)annotation {
-   return [GPPURLHandler handleURL:url
-                 sourceApplication:sourceApplication
-                        annotation:annotation];
+             openURL: (NSURL *)url
+   sourceApplication: (NSString *)sourceApplication
+          annotation: (id)annotation 
+  {
+    return [GPPURLHandler handleURL:url
+                  sourceApplication:sourceApplication
+                         annotation:annotation];
   }
 ```
   4.Handle the incoming deep link in your app delegate by implementing the didRedceiveDeepLink method, which is part of     the GPPDeepLinkDelegate protocol. This method is where you can perform any application logic based on the deep-link       identifier that the app receives.
 ```
-- (void)didReceiveDeepLink: (GPPDeepLink *)deepLink {
+- (void)didReceiveDeepLink: (GPPDeepLink *)deepLink 
+  {
   // An example to handle the deep link data.
-  UIAlertView *alert = [[UIAlertView alloc]
-                         initWithTitle:@"Deep-link Data"
-                               message:[deepLink deepLinkID]
-                              delegate:nil
-                     cancelButtonTitle:@"OK"
-                     otherButtonTitles:nil];
+  UIAlertView *alert = [[UIAlertView alloc]  initWithTitle:@"Deep-link Data"
+                                                   message:[deepLink deepLinkID]
+                                                  delegate:nil
+                                         cancelButtonTitle:@"OK"
+                                         otherButtonTitles:nil];
   [alert show];
-}
+  }
 ```
-  -To know the status whether posts are shared,declare that your view controller implements the OBLGooglePlusShareDelegate  protocol. In `shareButtonClicked` set delegate of OBLGooglePlusShare  to self. Implement the method `sharingCompleted`
+  - To know the status whether posts are shared,declare that your view controller implements the OBLGooglePlusShareDelegate  protocol. In `shareButtonClicked` set delegate of OBLGooglePlusShare  to self. Implement the method `sharingCompleted`
 ```
 -(void) sharingCompleted:(BOOL)shared
 {
