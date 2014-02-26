@@ -10,32 +10,28 @@
 
 @implementation OBLGooglePlusQuery
 
+#pragma  mark - User Profile Details
 
-//fetch user data and return the object of OBLGooglePlusUser class with detail and error if any.
-
-+ (void)fetchUserProfileWithCompletionHandler:(CompletionBlockOFUser)block
+//Fetches user data
++(void) fetchProfileDetailOfUser:(CompletionBlockOFUser)block
 {
     [OBLGooglePlusQuery getProfileDetails:@"me" completion:^(OBLGooglePlusUser *user, NSError *error) {
-        
         
         NSString *accessToken=[GPPSignIn sharedInstance].authentication.accessToken;
         NSString *str=[NSString stringWithFormat:@"https://www.googleapis.com/oauth2/v1/userinfo?access_token=%@",accessToken];
         NSString *escapedUrl = [str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-            NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@",escapedUrl]];
+        NSURL *url = [NSURL URLWithString:escapedUrl];
         NSString *jsonData = [[NSString alloc] initWithContentsOfURL:url usedEncoding:nil error:nil];
         NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData:[jsonData dataUsingEncoding:NSUTF8StringEncoding]
-                                                                           options:NSJSONReadingMutableContainers error:&error];
-    
+                                                                       options:NSJSONReadingMutableContainers error:&error];
+        
         NSString *userId=[jsonDictionary objectForKey:@"id"];
         NSString *emailId=[jsonDictionary objectForKey:@"email"];
-    
+        
         user.socialMediaId=userId;
         user.email=emailId;
         
-        [OBLGooglePlusQuery fetchFriendsProfileWithCompletionHandler:^(NSArray *result, NSError *error) {
-           user.friends=[result copy];
-            block(user,error);
-        }];
+        block(user,error);
     }];
 }
 
@@ -43,6 +39,7 @@
 {
     GTLServicePlus* plusService = [[GTLServicePlus alloc] init];
     plusService.retryEnabled = YES;
+    plusService.apiVersion = @"v1";
     [plusService setAuthorizer:[GPPSignIn sharedInstance].authentication ];
     
     GTLQueryPlus *query = [GTLQueryPlus queryForPeopleGetWithUserId:id];
@@ -65,7 +62,7 @@
                     user.birthdate=person.birthday;
                     user.currentLocation=person.currentLocation;
                     user.gender=person.gender;
-                    user.url=person.url;
+                    user.profileUrl=person.url;
                     user.placesLived=[person.placesLived copy];
                     user.organizations=[person.organizations copy];
                     
@@ -76,11 +73,13 @@
                     user.image= [[UIImage alloc] initWithData:receivedData ];
                 }
                 block(user,error);
-                
-            }];
+        }];
 }
 
-//fetch user's friends' data and return the object of OBLGooglePlusUser class with detail and error if any.
+
+#pragma  mark - Friend's Profile Details
+
+//Fetches user's friends' data and returns the object of OBLGooglePlusUser class 
 + (void)fetchFriendsProfileWithCompletionHandler:(CompletionFriendAll)block
 {
     GTLServicePlus* plusService = [[GTLServicePlus alloc] init];
@@ -119,6 +118,7 @@
                       
                       if (error) {
                           [OBLLog GPErrorLog:error];
+                          block(friends,error);
                       }
                       else
                       {
@@ -133,7 +133,7 @@
                           user.birthdate=person.birthday;
                           user.currentLocation=person.currentLocation;
                           user.gender=person.gender;
-                          user.url=person.url;
+                          user.profileUrl=person.url;
                           
                           user.placesLived=[person.placesLived copy];
                           
@@ -158,8 +158,5 @@
          }
      }];
 }
-
-
-
 @end
 

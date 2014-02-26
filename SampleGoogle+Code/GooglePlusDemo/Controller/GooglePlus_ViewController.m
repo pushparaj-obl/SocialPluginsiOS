@@ -63,7 +63,7 @@
 //fetches user details
 - (IBAction)profileButtonClicked:(id)sender
 {
-    [OBLGooglePlusQuery fetchProfileDetailOfUser:^(OBLGooglePlusUser *result, NSError *error)
+    [OBLGooglePlusQuery fetchProfileDetailOfUser:^(OBLGooglePlusUser *user, NSError *error)
      {
          if(error)
          {
@@ -73,10 +73,10 @@
          {
              UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Fetch Status" message:@"Operation succesful.Got your profile data." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
              [alert show];
-             NSLog(@"\nUseR ID:%@ email ID:%@",result.socialMediaId,result.email);
-             NSLog(@"\nF: %@ M:%@ L:%@",result.firstName, result.middleName, result.lastName);
-             NSLog(@"\nProfile name:%@  BiIRTHDATE:%@ & LoCaTiOn:%@ & GEnDer: %@ ", result.name, result.birthdate, result.currentLocation, result.gender);
-             NSLog(@"\nProfile URL:%@ ",result.profileUrl);
+             NSLog(@"\nUseR ID:%@ email ID:%@",user.socialMediaId,user.email);
+             NSLog(@"\nF: %@ M:%@ L:%@",user.firstName, user.middleName, user.lastName);
+             NSLog(@"\nProfile name:%@  BiIRTHDATE:%@ & LoCaTiOn:%@ & GEnDer: %@ ", user.name, user.birthdate, user.currentLocation, user.gender);
+             NSLog(@"\nProfile URL:%@ ",user.profileUrl);
          }
      }];
 }

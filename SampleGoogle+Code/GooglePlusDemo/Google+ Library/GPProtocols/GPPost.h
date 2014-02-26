@@ -13,7 +13,7 @@
 
 //post method - force subclass to implement the post feature.
 //returns YES if sucess and NO otherwise
-- (void)post:(NSString *)status;
+- (void)share:(NSString *)status;
 
 @end
 

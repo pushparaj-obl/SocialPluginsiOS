@@ -14,25 +14,36 @@
 
 @interface OBLLog : NSObject
 
-/*change state of facebook debugging */
-+ (void)setFacebookDebug:(BOOL)debugIn;
+
+#pragma mark - google plus
 
 /*change state of googleplus debugging */
 + (void)setGooglePlusDebug:(BOOL)debugIn;
+
+/*log the values for google plus if debugging is on*/
+//for  google plus  only
++ (void)logGPMessage:(NSString *)message;
+
+/* google plus  error log if error in login and debugging is ON*/
+//for  google plus  only
++ (void)GPErrorLog:(NSError *)error;
+
+#pragma mark - twitter
 
 /*change state of twitter debugging */
 + (void)setTwitterDebug:(BOOL)debugIn;
 
 
-/*log the values if debugging is on*/
-//any one can use it. change method accordingly.
-+ (void)logMessage:(NSString *)message;
+#pragma mark - facebook
 
-/*changes to be made when session state change or handle the errors...*/
+/*change state of facebook debugging */
++ (void)setFacebookDebug:(BOOL)debugIn;
+
+/*log the values for facebook if debugging is on*/
 //for facebook only
-+ (void)sessionStateChanged:(FBSession *)session state:(FBSessionState) state;
++ (void)logFBMessage:(NSString *)message;
 
-/*logs error if any if debbuging mode is ON*/
+/*facebook error log if error in login and debugging is ON*/
 //for facebook only
 + (void)FBErrorLog:(NSError *)error;
 

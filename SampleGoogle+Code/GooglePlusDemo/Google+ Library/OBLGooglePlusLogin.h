@@ -13,8 +13,8 @@
 
 
 #import <UIKit/UIKit.h>
-#import <GoogleOpenSource/GoogleOpenSource.h>
 #import <GooglePlus/GooglePlus.h>
+#import <GoogleOpenSource/GoogleOpenSource.h>
 #import "OBLGooglePlusLoginDelegate.h"
 #import "OBLLog.h"
 #import "GPLogin.h"
@@ -26,15 +26,15 @@
 // The object to be notified when authentication is finished.
 @property(nonatomic, weak) id<OBLGooglePlusLoginDelegate> delegate;
 
-// The authentication object for the current user, or |nil| if there is
+// The authentication object for the current user, or nil if there is
 // currently no logged in user.
 @property(nonatomic, strong) GTMOAuth2Authentication *authentication;
 
 // The client ID of the app from the Google APIs console.
-// Must set for sign-in to work.
+// Must set it before calling |login|
 @property(nonatomic, strong) NSString *clientID;
 
-// The API scopes requested by the app in an array of |NSString|s.
+// The API scopes requested by the app in an array of NSString.
 // The default value is |@[@"https://www.googleapis.com/auth/plus.login"]|.
 @property(nonatomic, strong) NSArray *scopes;
 
@@ -42,7 +42,7 @@
 // All properties below are optional parameters. If they need to be set, set
 // before calling |authenticate|.
 
-// An |NSString| array of moment types used by your app. Use values from the
+// An NSString array of moment types used by your app. Use values from the
 // full list at
 // https://developers.google.com/+/api/moment-types .
 // such as "http://schemas.google.com/AddActivity".
@@ -56,13 +56,13 @@
 @property(nonatomic) BOOL shouldFetchGoogleUserEmail;
 
 // Whether or not to fetch user ID after signing in. The ID can be retrieved
-// by |googleUserID| after user has been authenticated. Note that using this
+// by googleUserID after user has been authenticated. Note that using this
 // flag automatically adds "https://www.googleapis.com/auth/userinfo.profile"
 // scope to the request if a scope that provides user ID is not already present.
 @property(nonatomic) BOOL shouldFetchGoogleUserID;
 
 // Whether or not to fetch Google+ user profile after signing in. The user
-// profile object can be retrieved by |googlePlusUser| after user has been
+// profile object can be retrieved by googlePlusUser after user has been
 // authenticated. Note that using this flag automatically adds
 // "https://www.googleapis.com/auth/plus.me" scope to the request if needed.
 @property(nonatomic) BOOL shouldFetchGooglePlusUser;
@@ -71,10 +71,10 @@
 + (OBLGooglePlusLogin  *)sharedInstance;
 
 // Attempts to authenticate silently without user interaction.
-// Returns |YES| and calls the delegate if the user has either currently signed
+// Returns YES and calls the delegate if the user has either currently signed
 // in or has previous authentication saved in keychain.
 // Note that if the previous authentication was revoked by the user, this method
-// still returns |YES| but |finishedWithAuth:error:| callback will indicate
+// still returns YES but |finishedWithAuth:error:| callback will indicate
 // that authentication has failed.
 - (BOOL)trySilentAuthentication;
 
@@ -88,12 +88,9 @@
 // completed successfully.
 @property(nonatomic, strong, readonly) NSString *userEmail;
 
-
-// Whether or not to attempt Single-Sign-On when signing in.
 // If setloginUsingInstalledApp has value true,it sets |attemptSSO| to true and hence the sign-in button tries to authenticate with the
 // Google+ application if it is installed. If false, it always uses Google+ via
 // Chrome for iOS, if installed, or Mobile Safari for authentication.
-// The default value is |YES|.
 @property (nonatomic) BOOL loginUsingInstalledApp;
 
 // Disconnects the user from the app and revokes previous authentication.

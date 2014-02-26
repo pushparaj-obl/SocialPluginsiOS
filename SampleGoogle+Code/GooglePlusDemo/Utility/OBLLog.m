@@ -1,4 +1,4 @@
-            //
+//
 //  OBLLog.m
 //  SampleFacebookCode
 //
@@ -12,22 +12,22 @@
 
 @implementation OBLLog
 
-/*Used for facebook library - facebookDebug having state of debugging, if it's on of off*/
+//Used for facebook library - facebookDebug having state of debugging, if it's on of off
 //user can set it when he wants to start facebook debugging.
 static bool facebookDebug;
 
-/*Used for googleplus library - googlePlusDebug having state of debugging, if it's on of off*/
+//Used for googleplus library - googlePlusDebug having state of debugging, if it's on of off
 //user can set it when he wants to start GooglePlus debugging.
 static bool googlePlusDebug;
 
-/*Used for twitter library - twitterDebug having state of debugging, if it's on of off*/
+//Used for twitter library - twitterDebug having state of debugging, if it's on of off
 //user can set it when he wants to start Twitter debugging.
 static bool twitterDebug;
 
 
 #pragma mark - init
 
-/*initialize debug variable with NO*/
+//initialize debug variable with NO
 - (id)init
 {
     self = [super init];
@@ -39,63 +39,69 @@ static bool twitterDebug;
     return self;
 }
 
-#pragma mark - logic
+#pragma mark - googleplus
 
-/*change state of facebook debugging */
-+ (void)setFacebookDebug:(BOOL)debugIn
-{
-    facebookDebug=debugIn;
-}
-
-/*change state of facebook debugging */
+//change state of google plus debugging
 + (void)setGooglePlusDebug:(BOOL)debugIn
 {
-    googlePlusDebug=debugIn;
+    googlePlusDebug = debugIn;
 }
 
-/*change state of facebook debugging */
+
+//log the values for  google plus if debugging is on
+//use this Google+ logs
++ (void)logGPMessage:(NSString *)message
+{
+    if (googlePlusDebug)
+    {
+        NSLog(@"%@",message);
+    }
+}
+
+// google plus error log if error
+//use this Google+ logs
++ (void)GPErrorLog:(NSError *)error
+{
+    if (googlePlusDebug)
+    {
+        if (error)
+        {
+            NSLog(@"Error: %@",error.description);
+        }
+    }
+}
+
+
+
+#pragma mark - twitter
+
+//change state of facebook debugging
 + (void)setTwitterDebug:(BOOL)debugIn
 {
-    twitterDebug=debugIn;
+    twitterDebug = debugIn;
+}
+#pragma mark - facebook
+
+//change state of facebook debugging
+//for facebook only
++ (void)setFacebookDebug:(BOOL)debugIn
+{
+    facebookDebug = debugIn;
 }
 
-/*log the values if debugging is on*/
-+ (void)logMessage:(NSString *)message
+
+//log the values for facebook if debugging is on
+//for facebook only
++ (void)logFBMessage:(NSString *)message
 {
     if (facebookDebug)
     {
         NSLog(@"%@",message);
     }
-    else if(googlePlusDebug)
-    {
-        NSLog(@"%@",message);
-    }
 }
 
-//changes to be made when session state change or handle the errors...
-+ (void)sessionStateChanged:(FBSession *)session state:(FBSessionState) state
-{
-    if (facebookDebug)
-    {
-        // If the session was opened successfully
-        if (state == FBSessionStateOpen)
-        {
-            NSLog(@"Session opened");
-            // Show the user the logged-in UI
-            return;
-        }
-        if (state == FBSessionStateClosed || state == FBSessionStateClosedLoginFailed)
-        {
-            // If the session is closed
-            NSLog(@"Session closed");
-            // Show the user the logged-out UI
-            
-        }
-    }
-}
-
-
-/*error log if error in login*/
+//facebook error log if error in login
+//for facebook only
 + (void)FBErrorLog:(NSError *)error
 {
     if (facebookDebug)
@@ -142,7 +148,6 @@ static bool twitterDebug;
             // Clear this token
             [FBSession.activeSession closeAndClearTokenInformation];
             // Show the user the logged-out UI
-            
         }   //error check close
         
     }   //debug check close

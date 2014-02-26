@@ -13,37 +13,37 @@
 
 @interface OBLGooglePlusFriend : NSObject  <OBLProfileDetails>
 
-//firstname of user's friend
+//Firstname of user's friend.
 @property (nonatomic,strong) NSString *firstName;
 
-//middlename of user's friend
+//Middlename of user's friend.
 @property (nonatomic,strong) NSString *middleName;
 
-//lastname of user's friend
+//Lastname of user's friend.
 @property (nonatomic,strong) NSString *lastName;
 
-//image of user's friend
+//Image of user's friend.
 @property (nonatomic,strong) UIImage *image;
 
-//the URL of image of user's friend
+//The URL of image of user's friend.
 @property (copy) NSString *imageUrl;
 
-// The URL of user's friend profile
-@property (copy) NSString *url;
+//The URL of user's friend profile.
+@property (copy) NSString *profileUrl;
 
-//birthday of user's friend
+//Birthday of user's friend.
 @property (nonatomic,strong) NSString *birthdate;
 
-//current locatiion of user's friend
+//Current locatiion of user's friend.
 @property (nonatomic,strong) NSString *currentLocation;
 
-//gender of user's friend
+//Gender of user's friend.
 @property (nonatomic,strong) NSString *gender;
 
-//place lived information of user's friend
+//Places lived information of user's friend.
 @property (nonatomic,strong) NSArray *placesLived;
 
-//work information of user's friend
+//Work information of user's friend.
 @property (nonatomic,strong) NSArray *organizations;
 
 @end

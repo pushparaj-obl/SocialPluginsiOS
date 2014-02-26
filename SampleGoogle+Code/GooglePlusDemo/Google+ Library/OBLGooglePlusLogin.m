@@ -10,15 +10,72 @@
 
 @implementation OBLGooglePlusLogin
 
+#pragma mark - Setters and Getters
+
+@synthesize loginUsingInstalledApp = _loginUsingInstalledApp;
+@synthesize clientID = _clientID;
+@synthesize scopes = _scopes;
+@synthesize actions = _actions;
+@synthesize shouldFetchGooglePlusUser = _shouldFetchGooglePlusUser;
+@synthesize shouldFetchGoogleUserID = _shouldFetchGoogleUserID;
+
+-(void) setClientID:(NSString *)clientID
+{
+    _clientID = clientID;
+    GPPSignIn *signIn = [GPPSignIn sharedInstance];
+    signIn.clientID = self.clientID;
+}
+
+-(void) setScopes:(NSArray *)scopes
+{
+    _scopes = scopes;
+    GPPSignIn *signIn = [GPPSignIn sharedInstance];
+    signIn.scopes = self.scopes;
+}
+
+-(void) setActions:(NSArray *)actions{
+    _actions = actions;
+    GPPSignIn *signIn = [GPPSignIn sharedInstance];
+    signIn.actions = self.actions;
+}
+
+-(void) setShouldFetchGooglePlusUser:(BOOL)shouldFetchGooglePlusUser
+{
+    _shouldFetchGooglePlusUser = shouldFetchGooglePlusUser;
+    GPPSignIn *signIn = [GPPSignIn sharedInstance];
+    signIn.shouldFetchGooglePlusUser = self.shouldFetchGooglePlusUser;
+}
+
+- (void) setShouldFetchGoogleUserEmail:(BOOL)shouldFetchGoogleUserEmail
+{
+    _shouldFetchGoogleUserEmail = shouldFetchGoogleUserEmail;
+    GPPSignIn *signIn = [GPPSignIn sharedInstance];
+    signIn.shouldFetchGoogleUserEmail = self.shouldFetchGoogleUserEmail;
+}
+
+-(void) setShouldFetchGoogleUserID:(BOOL)shouldFetchGoogleUserID
+{
+    _shouldFetchGoogleUserID = shouldFetchGoogleUserID ;
+    GPPSignIn *signIn = [GPPSignIn sharedInstance];
+    signIn.shouldFetchGoogleUserID = self.shouldFetchGoogleUserID;
+
+}
+-(void) setLoginUsingInstalledApp:(BOOL)loginUsingInstalledApp
+{
+    _loginUsingInstalledApp = loginUsingInstalledApp;
+    [GPPSignIn sharedInstance].attemptSSO = self.loginUsingInstalledApp;
+}
+
 #pragma mark - Singleton Instantiation
 
 static OBLGooglePlusLogin * _sharedInstance = nil;
 
+//Creates a singleton of OBLGooglePlusLogin.
 + (OBLGooglePlusLogin  *)sharedInstance
 {
     @synchronized([OBLGooglePlusLogin class])
     {
-        if (!_sharedInstance)   _sharedInstance= [[self alloc] init];
+        if (!_sharedInstance)   _sharedInstance = [[self alloc] init];
         
         return _sharedInstance;
     }
@@ -28,42 +85,42 @@ static OBLGooglePlusLogin * _sharedInstance = nil;
 
 #pragma mark -  Silent Authentication
 
+//Tries to authenticate the already logged in user.
 - (BOOL)trySilentAuthentication
 {
-   return  [[GPPSignIn sharedInstance] trySilentAuthentication];
+    return  [[GPPSignIn sharedInstance] trySilentAuthentication];
 }
 
 #pragma mark - Log in
 
+//Returns error if clientID or scope is not set
 - (NSError *) login
 {
-    if(!self.clientID|| !self.scopes)
+    NSError *err;
+    
+    if(!self.clientID)
     {
-        NSError *err=[[NSError alloc]initWithDomain:@"ClientID and Scopes not specified" code:0 userInfo:nil];
-        [OBLLog GPErrorLog:err];
-        return err;
+        NSDictionary *errorDictionary = @{ NSLocalizedDescriptionKey : @"Client ID not specified"};
+        err = [[NSError alloc] initWithDomain:@"google+signin"  code:-1 userInfo:errorDictionary];
+    }
+    else if(!self.scopes)
+    {
+        NSDictionary *errorDictionary = @{ NSLocalizedDescriptionKey : @"Scopes are not specified"};
+        err = [[NSError alloc] initWithDomain:@"google+signin"  code:-1 userInfo:errorDictionary];
     }
     else
     {
         GPPSignIn *signIn = [GPPSignIn sharedInstance];
-        [GPPSignInButton class];
-        signIn.clientID=self.clientID;
-        signIn.scopes=self.scopes;
-        signIn.actions=self.actions;
-        signIn.shouldFetchGooglePlusUser = self.shouldFetchGooglePlusUser;
-        signIn.shouldFetchGoogleUserEmail=self.shouldFetchGoogleUserEmail;
-        signIn.shouldFetchGoogleUserID=self.shouldFetchGoogleUserID;
-        signIn.delegate=self;
+        signIn.delegate = self;
         [signIn authenticate];
-        return nil;
+        err = nil;
     }
+    return err;
 }
 
-//called after login to show authenication result
+//Called after login to show authenication result.
 - (void)finishedWithAuth:(GTMOAuth2Authentication *)auth error:(NSError *)error
 {
-    [OBLLog GPErrorLog:error];
-    [OBLLog logGPMessage:auth.accessToken];
     NSError *err;
 
     if(error.code == -1)
@@ -73,23 +130,36 @@ static OBLGooglePlusLogin * _sharedInstance = nil;
     }
     else
     {
-        err=nil;
+        err = error;
     }
 
-    if(auth) self.authentication =auth;
-
-    [self.delegate finishedWithLogin:err];
+    if(auth)
+    {
+        self.authentication =auth;
+    }
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(finishedWithLogin:)])
+    {
+        [self.delegate finishedWithLogin:err ];
+    }
 }
 
 #pragma mark - Log Out
 
+//Returns YES if user is successfully logged out.
 - (BOOL) logout
 {
-    [[GPPSignIn sharedInstance]signOut];
-    if([GPPSignIn sharedInstance].authentication) return NO;
-    else return YES;
+    [[GPPSignIn sharedInstance] signOut];
+    
+    if(( self.authentication=[GPPSignIn sharedInstance].authentication) == nil)
+    {
+        return YES;
+    }
+    else
+    {
+        return NO;
+    }
 }
-
 
 #pragma mark - Disconnect
 
@@ -98,15 +168,20 @@ static OBLGooglePlusLogin * _sharedInstance = nil;
     [[GPPSignIn sharedInstance] disconnect];
 }
 
-//delegate called after disconnect
+//Called after disconnect to show error or not while disconnecting .
 - (void)didDisconnectWithError:(NSError *)error
 {
-    [self.delegate didDisconnectWithError:error];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(didDisconnectWithError:)])
+    {
+        [self.delegate didDisconnectWithError:error];
+    }
+
 }
 
 
 #pragma mark - HandleUrl
 
+//To be called from AppDelegate
 - (BOOL)handleURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication  annotation:(id)annotation;
 {
     return [GPPURLHandler handleURL:url
