@@ -10,7 +10,7 @@
 
 @implementation CallToActionButtonLabels
 
-NSString *const ACCEPT = @"ACCEPT";
+//NSString *const ACCEPT = @"ACCEPT";
 NSString *const  ACCEPT_GIFT = @"ACCEPT_GIFT";
 NSString *const  ADD = @"ADD";
 NSString *const  ANSWER = @"ANSWER";

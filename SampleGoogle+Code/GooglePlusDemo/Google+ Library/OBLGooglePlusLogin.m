@@ -171,6 +171,7 @@ static OBLGooglePlusLogin * _sharedInstance = nil;
 //Called after disconnect to show error or not while disconnecting .
 - (void)didDisconnectWithError:(NSError *)error
 {
+    self.authentication=[GPPSignIn sharedInstance].authentication;
     if (self.delegate && [self.delegate respondsToSelector:@selector(didDisconnectWithError:)])
     {
         [self.delegate didDisconnectWithError:error];

@@ -15,24 +15,30 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    OBLGooglePlusLogin *gpl=[OBLGooglePlusLogin sharedInstance];
+    OBLGooglePlusLogin *gpl = [OBLGooglePlusLogin sharedInstance];
     
-    //set your own clientId here.You can get it from Google APIs Console.
-    gpl.clientID=@"592155868142-t4dtrahjvtfhvsdi997aq712qf1q8pqi.apps.googleusercontent.com";
-    gpl.scopes=@[@"https://www.googleapis.com/auth/plus.login"];
-    gpl.loginUsingInstalledApp=YES;
-    gpl.shouldFetchGooglePlusUser=YES;
-    gpl.shouldFetchGoogleUserEmail=YES;
-    gpl.shouldFetchGoogleUserID=YES;
-    gpl.delegate=self;
+    //Set your own clientId here.You can get it from Google APIs Console.
+    gpl.clientID = @"592155868142-t4dtrahjvtfhvsdi997aq712qf1q8pqi.apps.googleusercontent.com";
     
-    //set debugger ON/OFF as per your need
+    gpl.scopes = @[@"https://www.googleapis.com/auth/plus.login"];
+   
+    //All these values are optional.Set according to your need.
+    gpl.loginUsingInstalledApp = YES;
+    gpl.shouldFetchGooglePlusUser = YES;
+    gpl.shouldFetchGoogleUserEmail = YES;
+    gpl.shouldFetchGoogleUserID = YES;
+    
+    //Setting delegate of <OBLGooglePlusLoginDelegate> to self
+    gpl.delegate = self;
+    
+    //set debugger ON/OFF as per your need.YES will turn on log messages.
     [OBLLog setGooglePlusDebug:YES];
     [self refereshView];
 }
 
 #pragma mark - Sign In
 
+//Signs in the user.
 - (IBAction)signInClicked:(id)sender {
     self.signIn.enabled=NO;
     NSError *error= [[OBLGooglePlusLogin sharedInstance] login];
@@ -53,7 +59,7 @@
     else
     {
         [self refereshView];
-        [OBLLog logGPMessage:@"Successfully logged in"];
+        NSLog(@"Successfully logged in");
     }
     
 }
@@ -73,15 +79,15 @@
          {
              UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Fetch Status" message:@"Operation succesful.Got your profile data." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
              [alert show];
-             NSLog(@"\nUseR ID:%@ email ID:%@",user.socialMediaId,user.email);
+             NSLog(@"\nUser ID:%@ Email ID:%@",user.socialMediaId,user.email);
              NSLog(@"\nF: %@ M:%@ L:%@",user.firstName, user.middleName, user.lastName);
-             NSLog(@"\nProfile name:%@  BiIRTHDATE:%@ & LoCaTiOn:%@ & GEnDer: %@ ", user.name, user.birthdate, user.currentLocation, user.gender);
+             NSLog(@"\nProfile name:%@  Birthdate:%@ & Location:%@ & Gender: %@ ", user.name, user.birthdate, user.currentLocation, user.gender);
              NSLog(@"\nProfile URL:%@ ",user.profileUrl);
          }
      }];
 }
 
-//fetches the signed in user's friends profile information
+//fetches the signed in user's friends' profile information
 - (IBAction)friendsProfileButtonclicked:(id)sender
 {
     self.friendsProfileInfo.enabled=NO;
@@ -90,18 +96,18 @@
         //NSArray returns an array of objcts of type OBLGooglePlusFriend
         if(error)
         {
-            UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Fetch Status" message:@"Operation failed.Please click again." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+            UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Fetch Status" message:@"Query limit exceeded.Details of only some friends are fetched.Please try again." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
             [alert show];
         }
         else
         {
             UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Fetch Status" message:@"Operation succesful.Got friends' profile data." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
             [alert show];
-            for(OBLGooglePlusFriend *friend in friends)
-            {
-                NSLog(@"F: %@ M:%@ L:%@",friend.firstName, friend.middleName, friend.lastName);
-                NSLog(@"\n Profile name:%@  BiIRTHDATE:%@ & LoCaTiOn:%@ & GEnDer: %@ ", friend.name, friend.birthdate, friend.currentLocation, friend.gender);
-            }
+        }
+        for(OBLGooglePlusFriend *friend in friends)
+        {
+            NSLog(@"F: %@ M:%@ L:%@",friend.firstName, friend.middleName, friend.lastName);
+            NSLog(@"\n Profile name:%@  BiIRTHDATE:%@ & LoCaTiOn:%@ & GEnDer: %@ ", friend.name, friend.birthdate, friend.currentLocation, friend.gender);
         }
         self.friendsProfileInfo.enabled=YES;
     }];
@@ -118,15 +124,15 @@
     gps.delegate=self;
 
 //Remove comments to share a post with title,imageURL and description.
-//    [gps shareInteractivePost:@"Check it out!!"
-//           withTitle:@"New SuperHero in Town"
-//      addDescription:@"He just ran 5000 meters in 26:16! That's a new record!"
-//         andImageURL:@"http://wikicheats.gametrailers.com/images/d/de/Super_Smash_Bros_Link_01.jpg"
-//     ];
+    [gps shareInteractivePost:@"Check it out!!This is too cool."
+           withTitle:@"New SuperApp in Town"
+      addDescription:@"Get it! Its surely gonna whirl your mind."
+         andImageURL:@"https://lh3.googleusercontent.com/proxy/b-cFHz7K29l14N549KTiqiBBngKcpsMwhmCNZ_Vz2gUCCAiAbS-nfi7aztR-kkpJyMM0oA0suAq3QrfTmlNstiXZ0G9I1t8BKddt=w120-h120"
+     ];
     
     //Interactive share with URL.
     //To check the list of callTOAction button labels refer the class CallToActinButtonLabels
-    [gps shareInteractivePost:@"Check it out!!" withURL:@"https://www.ridesharebuddy.com" withCallToActionLabel:JOIN];
+    //[gps shareInteractivePost:@"Check it out!!" withURL:@"https://www.godaddy.com" withCallToActionLabel:];
 }
 
 //Delegate called after sharing.
@@ -145,6 +151,7 @@
 
 #pragma  mark - Sign Out
 
+//Signs out the user.
 - (IBAction)signOutClicked:(id)sender
 {
     BOOL logout=[[OBLGooglePlusLogin sharedInstance ]logout];
@@ -157,14 +164,17 @@
 
 #pragma mark - Disconnect
 
+//Disconnects the user.
 - (IBAction)disconnectClicked:(id)sender
 {
     [[OBLGooglePlusLogin sharedInstance ]disconnect];
+    
     [self refereshView];
 }
 
 //Delegate called after disconnecting the user.
-- (void)didDisconnectWithError:(NSError *)error {
+- (void)didDisconnectWithError:(NSError *)error
+{
     if (error)
     {
         NSLog(@"Error: %@",error.description);
@@ -178,28 +188,42 @@
 
 #pragma mark - Refresh View
 
+//Used for setting appropriate view.
 -(void) refereshView
 {
     if([OBLGooglePlusLogin sharedInstance].authentication)
     {
-        self.signIn.hidden=YES;
-        self.signOut.hidden=NO;
-        self.disconnect.hidden=NO;
-        self.shareButton.hidden=NO;
-        self.profileButton.hidden=NO;
-        self.friendsProfileInfo.hidden=NO;
-        self.fetchLabel.hidden=NO;
+        self.signIn.hidden = YES;
+        self.signOut.hidden = NO;
+        self.disconnect.hidden = NO;
+        self.shareButton.hidden = NO;
+        self.profileButton.hidden = NO;
+        self.friendsProfileInfo.hidden = NO;
+        self.fetchLabel.hidden = NO;
     }
     else
     {
-        self.signIn.hidden=NO;
-        self.signOut.hidden=YES;
-        self.disconnect.hidden=YES;
-        self.shareButton.hidden=YES;
-        self.profileButton.hidden=YES;
-        self.friendsProfileInfo.hidden=YES;
-        self.fetchLabel.hidden=YES;
+        self.signIn.hidden = NO;
+        self.signOut.hidden = YES;
+        self.disconnect.hidden = YES;
+        self.shareButton.hidden = YES;
+        self.profileButton.hidden = YES;
+        self.friendsProfileInfo.hidden = YES;
+        self.fetchLabel.hidden = YES;
     }
+}
+
+#pragma mark - dealloc
+
+-(void) dealloc
+{
+    self.signIn = nil;
+    self.signIn = nil;
+    self.disconnect = nil;
+    self.shareButton = nil;
+    self.profileButton = nil;
+    self.friendsProfileInfo = nil;
+    self.fetchLabel = nil;
 }
 
 @end

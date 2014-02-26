@@ -58,11 +58,13 @@ static OBLGooglePlusShare * _sharedInstance = nil;
 
 #pragma mark - Share methods
 
+//To share a basic post.
 - (void) share:(NSString *)status;
 {
     [self shareStatus:status withURL:nil];
 }
 
+//To share a post with given URL.
 -(void) shareStatus:(NSString *)status withURL:(NSString *)url
 {
     [GPPShare sharedInstance].delegate = self;
@@ -80,16 +82,19 @@ static OBLGooglePlusShare * _sharedInstance = nil;
     [shareBuilder open];
 }
 
+//To share a post with given title,description and imageUrl.
 -(void) shareInteractivePost:(NSString *)status withTitle:(NSString *)title addDescription:(NSString *)description andImageURL:(NSString *)imageUrl
 {
     [self shareInteractivePost:status withTitle:title addDescription:description andImageURL:imageUrl withURL:nil withCallToActionLabel:nil];
 }
 
+//To share an interactive post with given URL and callToActionLabel.
 - (void) shareInteractivePost:(NSString *)status withURL:(NSString *)url withCallToActionLabel:(NSString *)label
 {
     [self shareInteractivePost:status withTitle:nil addDescription:nil andImageURL:nil withURL:url withCallToActionLabel:label];
 }
 
+//To share an Interactive post.
 -(void) shareInteractivePost:(NSString *)status withTitle:(NSString *)title addDescription:(NSString *)description andImageURL:(NSString *)imageUrl withURL:(NSString *)url  withCallToActionLabel:(NSString *)label
 {
     [GPPShare sharedInstance].delegate = self;

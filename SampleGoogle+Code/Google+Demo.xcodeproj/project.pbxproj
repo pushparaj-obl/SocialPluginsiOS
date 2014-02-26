@@ -40,7 +40,6 @@
 		F19E9E4618AA1F76006B0C3B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F19E9E2518AA1F76006B0C3B /* UIKit.framework */; };
 		F19E9E4E18AA1F76006B0C3B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F19E9E4C18AA1F76006B0C3B /* InfoPlist.strings */; };
 		F19E9E5018AA1F76006B0C3B /* GooglePlusDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F19E9E4F18AA1F76006B0C3B /* GooglePlusDemoTests.m */; };
-		F1D3EA7B18BCB1A30010C116 /* CallToActionButtonLabels.m in Sources */ = {isa = PBXBuildFile; fileRef = F1D3EA7A18BCB1A30010C116 /* CallToActionButtonLabels.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,7 +106,6 @@
 		F19E9E4D18AA1F76006B0C3B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F19E9E4F18AA1F76006B0C3B /* GooglePlusDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GooglePlusDemoTests.m; sourceTree = "<group>"; };
 		F1D3EA7918BCB1A30010C116 /* CallToActionButtonLabels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallToActionButtonLabels.h; sourceTree = "<group>"; };
-		F1D3EA7A18BCB1A30010C116 /* CallToActionButtonLabels.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallToActionButtonLabels.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,7 +179,6 @@
 				F143630918B48D7F00CC2E72 /* OBLGooglePlusShare.h */,
 				F143630A18B48D7F00CC2E72 /* OBLGooglePlusShare.m */,
 				F1D3EA7918BCB1A30010C116 /* CallToActionButtonLabels.h */,
-				F1D3EA7A18BCB1A30010C116 /* CallToActionButtonLabels.m */,
 			);
 			name = "Google+ Library";
 			path = "../Library/Google+ Library";
@@ -405,7 +402,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F143631018B48D7F00CC2E72 /* OBLGooglePlusShare.m in Sources */,
-				F1D3EA7B18BCB1A30010C116 /* CallToActionButtonLabels.m in Sources */,
 				F19E9E3218AA1F76006B0C3B /* AppDelegate.m in Sources */,
 				F19E9E2E18AA1F76006B0C3B /* main.m in Sources */,
 				F143631118B48D7F00CC2E72 /* OBLGooglePlusUser.m in Sources */,
