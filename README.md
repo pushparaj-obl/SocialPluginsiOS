@@ -6,9 +6,9 @@ Social media plugins for iOS
 Introduction
 ------------
 
-SocialPluginsiOS provides integration with Facebook, Google+ and Twitter for iOS Applications in the simplest and easiest possible way.
+SocialPluginsiOS provides integration with Facebook and Google+ for iOS Applications in the simplest and easiest possible way.
 
-It has different libraries for Facebook, Google+ and Twitter, so you can use any of them or all at the same time.
+It has different libraries for Facebook and Google+ so you can use any of them or both at the same time.
 
 ## Features
 
@@ -22,12 +22,11 @@ Facebook Library:
 
 Google+ Library:
 * Sign in and Sign out with Google+ in your application
-* Share posts with friends.Users can share rich content into the Google+ including text, photos and URL attachments.Interactive posts allow users to share your site or app with their friends and invite them to take a specific action.
+* Share posts with friends.Users can post in the Google+ which includes text, photos and URL attachments.Interactive posts allow users to share your site or app with their friends and invite them to take a specific action.
 * Fetch signed in user's profile details.
 * Fetch user's Google+ friend's profile information.
 * Provides functionality of debugging.Debugging can be activated/deactivated as per user's requirement.
  
-Twitter Library:
 
 ## Requirements 
 
@@ -45,7 +44,6 @@ steps to include library to project:
   - Add Protocol and Utility folder
   - Add FacebookLibrary for facebook integration
   - Add Google+ Library for Google+ integration
-  - Add TwitterLibrary for Twitter integration
 
 3. Include library files wherever you need it like `#import "OBLFacebookogin.h"`.
 
@@ -53,7 +51,7 @@ steps to include library to project:
 
 ####FacebookLibrary:
 
-You can see the demo code present in SampleFacebookCode Folder.
+You can see the demo code present in SampleFacebookCode Folder, (https://github.com/ObjectLounge/SocialPluginsiOS/blob/beta/SampleFacebookCode) .
 
 Login/Logout:
 * `OBLFacebookLogin`
@@ -69,7 +67,7 @@ Login/Logout:
 
 Social media query (Fetch data):
 
-* `OBLFacebookQuey`
+* `OBLFacebookQuery`
   - Refer to **[OBLFacebookQuery.h](https://github.com/ObjectLounge/SocialPluginsiOS/blob/beta/Library/FacebookLibrary/OBLFacebookQuery.h)**
   - Class fetches the user and user's friends' profile.
 
@@ -98,7 +96,7 @@ Log (Debug):
 
 ####Google+ Library:
 
-You can check the demo code present in SampleGoogle+Code Folder.
+You can check the demo code present in SampleGoogle+Code Folder, (https://github.com/jeneena-obl/SocialPluginsiOS/tree/beta/SampleGoogle%2BCode) .
 
 Login/Logout:
 * `OBLGooglePlusLogin`
@@ -110,7 +108,7 @@ Login/Logout:
 
 Social media query (Fetch data):
 
-* `OBLGoogelPlusQuey`
+* `OBLGoogelPlusQuery`
   - Refer to **[OBLGoogelPlusQuey.h](https://github.com/ObjectLounge/SocialPluginsiOS/blob/beta/Library/Google+Library/OBLGoogelPlusQuey.h)**
   - This class fetches the user and user's friends profile information.
 
@@ -119,7 +117,8 @@ Social media posting:
 * `OBLGooglePlusShare`
   - Refer to **[OBLGooglePlusShare.h](https://github.com/ObjectLounge/SocialPluginsiOS/blob/beta/Library/Google+Library/OBLGooglePlusShare.h)**
   - This class allows user to share posts.
-
+  - There are various methods available for posting like basic sharing with thumbnail image,title,description,attaching a     url,sharing with deep linking in interactive posts.
+  - For interactive posts,some of the valid labels for callToAction buttons are defined in file        CallToActionButtonLabels class.For getting a complete list of valid button labels,check https://developers.google.com/+/mobile/ios/share/interactive-post 
 
 Profile details:
 
@@ -136,16 +135,13 @@ Log (Debug):
 * `OBLLog`
   - Refer to **[OBLLog.h](https://github.com/ObjectLounge/SocialPluginsiOS/blob/beta/Library/Utility/OBLLog.h)**
   - Call this class and set googlePlusDebug to YES to turn on the error logs .Eg: `[OBLLog setGooglePlusDebug:YES];`
-  - Use methods like [ logGPMessage ] to log any message and  [ GPErrorLog ] to log any specific error messages.
-
-####Twitter Library:
 
 
 ## Usage
 
 ####FacebookLibrary:
 
-* You can see the demo code present in SampleFacebookCode Folder.
+* You can see the demo code present in SampleFacebookCode Folder, (https://github.com/ObjectLounge/SocialPluginsiOS/blob/beta/SampleFacebookCode) .
 
 #####Initial setup:
 
@@ -199,7 +195,7 @@ Post on user's wall:
 
 ####Google+ Library:
 
-* You can see the demo code present in SampleGoogle+Code Folder.
+* You can see the demo code present in SampleGoogle+Code Folder (https://github.com/jeneena-obl/SocialPluginsiOS/tree/beta/SampleGoogle%2BCode)
 
 #####Initial setup:
 
@@ -224,9 +220,9 @@ Post on user's wall:
 4. Call [ handleURL:sourceApplication:annotation: ] from your main application method [ application:openURL:sourceApplication:annotation: ] of UIApplicationDelegate for handling incoming url.
 ```
 - (BOOL)application:(UIApplication *)application
-               openURL:(NSURL *)url
+            openURL:(NSURL *)url
   sourceApplication:(NSString *)sourceApplication
-             annotation:(id)annotation
+         annotation:(id)annotation
 {
     return [[OBLGooglePlusLogin sharedInstance] handleURL:url
                                         sourceApplication:sourceApplication
@@ -235,59 +231,75 @@ Post on user's wall:
 ```
 
 #####Using Google+Library:
-* Refer the file **[CheckingVC.m](https://github.com/ObjectLounge/SocialPluginsiOS/blob/beta/SampleGoogle+Code/GooglePlusDemo/Controller/CheckingVC.m)** of SampleGoogle+Code to understand how to use Google+Library. Check calls to Google+Library from the sample code.
+* Refer the file **[GooglePlus_ViewController.m](https://github.com/jeneena-obl/SocialPluginsiOS/blob/beta/SampleGoogle%2BCode/GooglePlusDemo/Controller/GooglePlus_ViewController.m)** of SampleGoogle+Code to understand how to use Google+Library. Check calls to Google+Library from the sample code.
 
 Login/Logout and Disconnect:
 
   - For login, call `login` method of `OBLGooglePlusLogin`.
 
-  - Refer `login` method in **[CheckingVC.m](https://github.com/ObjectLounge/SocialPluginsiOS/blob/beta/SampleGoogle+Code/GooglePlusDemo/Controller/CheckingVC.m)** file.
+  - Refer `login` method in **[GooglePlus_ViewController.m](https://github.com/jeneena-obl/SocialPluginsiOS/blob/beta/SampleGoogle%2BCode/GooglePlusDemo/Controller/GooglePlus_ViewController.m)** file.
 ```
     [[OBLGooglePlusLogin sharedInstance] login];
 ```
+  - Impelement delegate method `finishedWithLogin` of OBLGooglePlusLogin protocol to know whether login is successful or not by declaring your view controller to implement <OBLGooglePlusLogin> and setting delgate of OBLGooglePlusLogin to self.
+``` 
+- (void) finishedWithLogin:(NSError *)error;
+``` 
   - For logout, call `logout` method of `OBLGooglePlusLogin`.
  
-  - Refer `logout` method in **[CheckingVC.m](https://github.com/ObjectLounge/SocialPluginsiOS/blob/beta/SampleGoogle+Code/GooglePlusDemo/Controller/CheckingVC.m)** file.
+  - Refer `logout` method in **[GooglePlus_ViewController.m](https://github.com/jeneena-obl/SocialPluginsiOS/blob/beta/SampleGoogle%2BCode/GooglePlusDemo/Controller/GooglePlus_ViewController.m)** file.
 ```
     [[OBLGooglePlusLogin sharedInstance ]logout];
 ```
   - For disconnect, call `disconnect` method of `OBLGooglePlusLogin`.
  
-  - Refer `disconnect` method in **[CheckingVC.m](https://github.com/ObjectLounge/SocialPluginsiOS/blob/beta/SampleGoogle+Code/GooglePlusDemo/Controller/CheckingVC.m)** file.
+  - Refer `disconnect` method in **[GooglePlus_ViewController.m](https://github.com/jeneena-obl/SocialPluginsiOS/blob/beta/SampleGoogle%2BCode/GooglePlusDemo/Controller/GooglePlus_ViewController.m)** file.
 ```
     [[OBLGooglePlusLogin sharedInstance ]disconnect];
 ```
+  - Implement delegate method `didDisconnectWithError`  of OBLGooglePlusLogin protocol to know whether the user is disconnected successfully or not.
+``` 
+- (void)didDisconnectWithError:(NSError *)error
+``` 
 Fetch user's data:
 
-  - Refer `profileButtonClicked` method in **[CheckingVC.m](https://github.com/ObjectLounge/SocialPluginsiOS/blob/beta/SampleGoogle+Code/GooglePlusDemo/Controller/CheckingVC.m)** file.
+  - Refer `profileButtonClicked` method in **[GooglePlus_ViewController.m](https://github.com/jeneena-obl/SocialPluginsiOS/blob/beta/SampleGoogle%2BCode/GooglePlusDemo/Controller/GooglePlus_ViewController.m)** file.
 ```
-    [OBLGooglePlusQuery fetchUserProfileWithCompletionHandler:^(OBLGooglePlusUser *result, NSError *error){ 
+    [OBLGooglePlusQuery fetchProfileDetailOfUser:^(OBLGooglePlusUser *user, NSError *error){
       //code
      }];
 ```
 Fetch user's friends profile data:
 
-  - Refer `profileButtonClicked` method in **[CheckingVC.m](https://github.com/ObjectLounge/SocialPluginsiOS/blob/beta/SampleGoogle+Code/GooglePlusDemo/Controller/CheckingVC.m)** file.
+  - Refer `friendsprofileButtonClicked` method in **[GooglePlus_ViewController.m](https://github.com/jeneena-obl/SocialPluginsiOS/blob/beta/SampleGoogle%2BCode/GooglePlusDemo/Controller/GooglePlus_ViewController.m)** file.
 ```
     [OBLGooglePlusQuery fetchFriendsProfileWithCompletionHandler:^(NSArray *result, NSError *error) {
       //code
      }];
 ```
 Share a post:
-  - Refer `shareButtonClicked` method in **[CheckingVC.m](https://github.com/ObjectLounge/SocialPluginsiOS/blob/beta/SampleGoogle+Code/GooglePlusDemo/Controller/CheckingVC.m)** file.
-  -For basic sharing with a simple text,the following method can be used 
+  - Refer `shareButtonClicked` method in **[GooglePlus_ViewController.m](https://github.com/jeneena-obl/SocialPluginsiOS/blob/beta/SampleGoogle%2BCode/GooglePlusDemo/Controller/GooglePlus_ViewController.m)** file.
+  - For basic sharing with a simple text,the following method can be used 
 ```
  [[OBLGooglePlusShare sharedInstance] shareStatus:@"Check it out!!"];
 ```
-  -For interactive sharing,enter additional details of title,description,imageURL and URL of your app.This method sets a contentDeepLinkID by itself,so for handling incoming URL,make some changes in AppDelegate.m
+  - For basic sharing with a simple textand URL,the following method can be used 
 ```
- [[OBLGooglePlusShare sharedInstance] shareStatus:@"Check it out!!"
-                                        withTitle:@"blah..blah.."
-                                   addDescription:@"blahhh.blahh"
-                                      andImageURL:nil
-                                           andURL:@"https://www.examplecode.com"];
+ [[OBLGooglePlusShare sharedInstance] shareStatus:@"Check it out!!"  withURL:@"http://example.com"];
 ```
-  -When the app launches, it needs to check if the deep-link information is available and launch the correct view in the app.So,follow these steps:
+  - For interactive sharing,there are two methods.Either use the method with parameters like title,description,imageURL or the method with parameter URL(it automatically puts image and title from given URL) of your app and CallToActionButtonLabel.A list of valid labels are given in class CallToActionButtonLabels class.This method sets a contentDeepLinkID by itself,so for handling incoming URL,make some changes in AppDelegate.m
+```
+ [[OBLGooglePlusShare sharedInstance] shareInteractivePost:@"Check it out!!"
+                                                 withTitle:@"blah..blah.."
+                                            addDescription:@"blahhh.blahh"
+                                               andImageURL:nil];
+```
+```
+ [[OBLGooglePlusShare sharedInstance] shareInteractivePost:@"Check it out!!"
+                                                   withURL:@"https://www.myDemo.com" 
+                                     withCallToActionLabel:JOIN]
+```
+  - When the app launches, it needs to check if the deep-link information is available and launch the correct view in the app.So,follow these steps:
 
   1.In your app delegate's .h file, import GooglePlus/GooglePlus.h, and add the GPPDeepLinkDelegate protocol
 ```
@@ -297,36 +309,40 @@ Share a post:
 ```
 - (BOOL)application: (UIApplication *)application didFinishLaunchingWithOptions: (NSDictionary *)launchOptions
 {
-
   [GPPDeepLink setDelegate:self];
   [GPPDeepLink readDeepLinkAfterInstall];
-
   return YES;
 }
 ```
-  3.To process incoming deep-link URLs, call GPPURLHandler's handleURL method from your app delegate's URL handler.
+  3.To process incoming deep-link URLs, call GPPURLHandler's handleURL method from app delegate's URL handler.
 ```
  - (BOOL)application: (UIApplication *)application
-              openURL: (NSURL *)url
-    sourceApplication: (NSString *)sourceApplication
-           annotation: (id)annotation {
-   return [GPPURLHandler handleURL:url
-                 sourceApplication:sourceApplication
-                        annotation:annotation];
+             openURL: (NSURL *)url
+   sourceApplication: (NSString *)sourceApplication
+          annotation: (id)annotation 
+  {
+    return [GPPURLHandler handleURL:url
+                  sourceApplication:sourceApplication
+                         annotation:annotation];
   }
 ```
   4.Handle the incoming deep link in your app delegate by implementing the didRedceiveDeepLink method, which is part of     the GPPDeepLinkDelegate protocol. This method is where you can perform any application logic based on the deep-link       identifier that the app receives.
 ```
-- (void)didReceiveDeepLink: (GPPDeepLink *)deepLink {
+- (void)didReceiveDeepLink: (GPPDeepLink *)deepLink 
+  {
   // An example to handle the deep link data.
-  UIAlertView *alert = [[UIAlertView alloc]
-                         initWithTitle:@"Deep-link Data"
-                               message:[deepLink deepLinkID]
-                              delegate:nil
-                     cancelButtonTitle:@"OK"
-                     otherButtonTitles:nil];
+  UIAlertView *alert = [[UIAlertView alloc]  initWithTitle:@"Deep-link Data"
+                                                   message:[deepLink deepLinkID]
+                                                  delegate:nil
+                                         cancelButtonTitle:@"OK"
+                                         otherButtonTitles:nil];
   [alert show];
+  }
+```
+  - To know the status whether posts are shared,declare that your view controller implements the OBLGooglePlusShareDelegate  protocol. In `shareButtonClicked` set delegate of OBLGooglePlusShare  to self. Implement the method `sharingCompleted`
+```
+-(void) sharingCompleted:(BOOL)shared
+{
+    //code
 }
 ```
-
-####Twitter Library:
