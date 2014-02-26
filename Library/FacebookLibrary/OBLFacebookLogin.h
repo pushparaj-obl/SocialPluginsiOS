@@ -21,10 +21,19 @@
 /*typedef for completionhandler*/
 typedef void (^FBCompletionHandler)(NSError *error);
 
-/*typedef for new permission block completionhandler*/
-typedef void (^FBNewCompletionHandler)();
-
 @interface OBLFacebookLogin : NSObject <OBLLogin>
+
+typedef enum {
+    /*! No audience needed; this value is useful for cases where data will only be read from Facebook */
+    OBLDefaultAudienceNone                = 0,
+    /*! Indicates that only the user is able to see posts made by the application */
+    OBLDefaultAudienceOnlyMe              = 10,
+    /*! Indicates that the user's friends are able to see posts made by the application */
+    OBLDefaultAudienceFriends             = 20,
+    /*! Indicates that all Facebook users are able to see posts made by the application */
+    OBLDefaultAudienceEveryone            = 30,
+} OBLDefaultAudiance;
+
 
 
 #pragma mark - Session handler
@@ -39,33 +48,36 @@ typedef void (^FBNewCompletionHandler)();
 //call this function from [UIApplicationDelegate application:openURL:sourceApplication:annotation:]
 + (BOOL)handleOpenUrl:(NSURL *)url;
 
-/*set the global state change handler*/
-//call this method only if unable to assign a session state change handler explicitly
-+ (void)sessionHandler:(FBSession *)session state:(FBSessionState)state;
-
 #pragma mark - Login
 
 /*checks if token is already available and loaded of not*/
+//it will check if availabele token is already lodded do we can call login method directly.(session state may not be open)
 + (BOOL)isTokenLodded;
 
 
 /*checks if user has already logged in or not. returns status*/
+//it will check if user is logged in (session state is open or not)
 + (BOOL)isLogin;
 
 /*login with default permission*/
 //default permission includes - name, profile-picture, gender, userID, list of friends and information that user made public.
 //block-completion handler block with error if any.
+//Note: completion block called every time whenever the state of the FBSession is changed
 + (void)loginWithFBCompletionHandler:(FBCompletionHandler) block;
 
-/*login with given read permission*/
+/*login with given read permission, user will also get basic info permissions*/
+//default permission includes - name, profile-picture, gender, userID, list of friends and information that user made public.
 //block- completion handler block with error if any.
 //permission- read permissions
+//Note: completion block called every time whenever the state of the FBSession is changed
 + (void)loginWithFBReadPermissions:(NSArray *)permission
               andCompletionHandler:(FBCompletionHandler) block;
 
-/*login with given publish permission*/
+/*login with given publish permission, user will also get basic info permissions*/
+//default permission includes - name, profile-picture, gender, userID, list of friends and information that user made public.
 //block- completion handler block with error if any.
 //permission- publish permissions
+//Note: completion block called every time whenever the state of the FBSession is changed
 + (void)loginWithFBPublishPermissions:(NSArray *)permission
                       defaultAudience:(OBLDefaultAudiance)defaultAudience
                  andCompletionHandler:(FBCompletionHandler) block;
@@ -75,13 +87,14 @@ typedef void (^FBNewCompletionHandler)();
 /*returns array of permission of the current active session*/
 + (NSArray*)getPermissions;
 
-/*request new publish permission with completionhandler block*/
-+ (void)requestNewPublishPermissions:(NSArray *)permission
-                andCompletionHandler:(FBNewCompletionHandler) block;
-
 /*request new read permission with completionhandler block*/
 + (void)requestNewReadPermissions:(NSArray *)permission
-             andCompletionHandler:(FBNewCompletionHandler) block;
+             andCompletionHandler:(FBCompletionHandler) block;
+
+/*request new publish permission with completionhandler block*/
++ (void)requestNewPublishPermissions:(NSArray *)permission
+                     defaultAudience:(OBLDefaultAudiance)defaultAudience
+                andCompletionHandler:(FBCompletionHandler) block;
 
 #pragma mark - Debug
 

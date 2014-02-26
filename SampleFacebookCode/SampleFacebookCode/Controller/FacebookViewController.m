@@ -16,8 +16,9 @@
 @property (strong, nonatomic) IBOutlet UIButton *login;
 @property (strong, nonatomic) IBOutlet UIButton *logout;
 @property (weak, nonatomic) IBOutlet UIButton *post;
-@property (weak, nonatomic) IBOutlet UIButton *fatchButton;
+@property (weak, nonatomic) IBOutlet UIButton *fetchButton;
 @property (weak, nonatomic) IBOutlet UIButton *requestButton;
+@property (weak, nonatomic) IBOutlet UIButton *fetchFriendButton;
 @end
 
 @implementation FacebookViewController
@@ -57,36 +58,27 @@
                                 {
                                     NSLog(@"At start...");
                                 }
-                                
-                            //changes the state of all buttons after login.
-                            [self buttonChange];
+                                //changes the state of all buttons after login.
+                                [self buttonChange];
                             }
      ];
-}
-
-- (IBAction)logout:(id)sender
-{
-    //perform logout from facebook
-    [OBLFacebookLogin logout];
-    
-    //changes the state of all buttons after logout.
-    [self buttonChange];
 }
 
 - (IBAction)request:(id)sender
 {
     //request new publish permission
     [OBLFacebookLogin requestNewPublishPermissions:@[PUBLISH_ACTION]
-                              andCompletionHandler:^
-     {
-         NSLog(@"Got permission");
-         //[OBLFacebookPost postStatus:@"New status check post"];
-     }
+                                   defaultAudience:OBLDefaultAudienceFriends
+                              andCompletionHandler:^(NSError *error)
+                            {
+                                NSLog(@"Got permission");
+                                //[OBLFacebookPost postStatus:@"New status check post"];
+                            }
      ];
 }
 
 
-- (IBAction)fatchDetails:(id)sender
+- (IBAction)fetchUserDetails:(id)sender
 {
     
     //fetch the user profile
@@ -97,16 +89,21 @@
          NSLog(@"my name: %@",result.firstName);
      }];
     
+}
+- (IBAction)fetchFriendDetails:(id)sender
+{
     //fetch the user's friends' profile
     //returns array of objects of OBLFacebookFriend class and error if any in completion handler.
     [OBLFacebookQuery fetchFriendsProfileWithCompletionHandler:^(NSArray *result, NSError *error)
      {
          //friends's profile in "result" array having objects of OBLFacebookFriend
+         for (OBLFacebookFriend *friend in result)
+         {
+             NSLog(@"friend's id: %@",friend.socialMediaId);
+             NSLog(@"friend's name: %@",friend.name);
+         }
          
-         NSLog(@"friend's id: %@",((OBLFacebookFriend *)[result lastObject]).socialMediaId);
-         NSLog(@"friend's name: %@",((OBLFacebookFriend *)[result lastObject]).name);
      }];
-    
 }
 
 
@@ -125,13 +122,25 @@
     //description:- description of link
     //imageUrl:- preview image associated with the link(image url)
     //LinkUrl:- the URL of a link to attach to the post
-    [OBLFacebookPost postStatus:@"my new status"
-                      withTitle:@"Tea Time:"
-                 andDescription:@"the time when u ask ur brain nothing but it gives much"
-                       imageUrl:@"http://www.gstatic.com/webp/gallery/1.jpg"
-                         linkUrl:@"https://developers.facebook.com/docs/reference/fql/permissions/"];
+    [OBLFacebookPost postStatus:@"Check out our social media library"
+                      withTitle:@"SocialPluginsiOS:"
+                 andDescription:@"Easy to integrate social media with ios."
+                       imageUrl:@"http://images.apple.com/v/iphone-5s/gallery/b/images/download/photo_1.jpg#photo-gallery1"     //sample image
+                        linkUrl:@"https://github.com/ObjectLounge/SocialPluginsiOS"
+          withCompletionHandler:^(NSError *error)
+                        {
+                            NSLog(@"Posted");
+                        }
+     ];
+}
+
+- (IBAction)logout:(id)sender
+{
+    //perform logout from facebook
+    [OBLFacebookLogin logout];
     
-  
+    //changes the state of all buttons after logout.
+    [self buttonChange];
 }
 
 - (void)buttonChange
@@ -140,7 +149,8 @@
     if ([OBLFacebookLogin isLogin])
     {
         self.login.enabled = NO;
-        self.fatchButton.enabled = YES;
+        self.fetchButton.enabled = YES;
+        self.fetchFriendButton.enabled = YES;
         self.post.enabled = YES;
         self.requestButton.enabled = YES;
         self.logout.enabled = YES;
@@ -148,7 +158,8 @@
     else
     {
         self.login.enabled = YES;
-        self.fatchButton.enabled = NO;
+        self.fetchButton.enabled = NO;
+        self.fetchFriendButton.enabled = NO;
         self.post.enabled = NO;
         self.requestButton.enabled = NO;
         self.logout.enabled = NO;

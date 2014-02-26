@@ -14,9 +14,14 @@
 
 @interface OBLFacebookPost : NSObject <OBLPost>
 
+typedef void (^FBPostCompletionHandler)(NSError *error);
+
 //implement post:status method of post protocol
-//post on user's wall with status
 + (BOOL)post:(NSString *)status;
+
+
+//post on user's wall with status
++ (BOOL)post:(NSString *)status withCompletionHandler:(FBPostCompletionHandler) block;
 
 /*
  //post status with title, description and image
@@ -30,6 +35,7 @@
           withTitle:(NSString *)title
      andDescription:(NSString *)description
            imageUrl:(NSString *)imageUrl
-            linkUrl:(NSString *)url;
+            linkUrl:(NSString *)url
+withCompletionHandler:(FBPostCompletionHandler) block;
 
 @end

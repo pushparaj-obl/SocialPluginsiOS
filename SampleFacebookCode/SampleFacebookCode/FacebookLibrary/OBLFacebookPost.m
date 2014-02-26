@@ -18,8 +18,20 @@
     return ([OBLFacebookPost postStatus:(NSString *)status
                               withTitle:nil
                          andDescription:nil
-                                  imageUrl:nil
-                                 linkUrl:nil]);
+                               imageUrl:nil
+                                linkUrl:nil
+                  withCompletionHandler:nil]);
+}
+
+//
++ (BOOL)post:(NSString *)status withCompletionHandler:(FBPostCompletionHandler)block
+{
+    return ([OBLFacebookPost postStatus:(NSString *)status
+                              withTitle:nil
+                         andDescription:nil
+                               imageUrl:nil
+                                linkUrl:nil
+                  withCompletionHandler:block]);
 }
 
 //post status with title, description and image
@@ -28,6 +40,7 @@
      andDescription:(NSString *)description //description of link
               imageUrl:(NSString *)imageUrl //preview image associated with the link(image url)
              linkUrl:(NSString *)url        //LinkUrl of a link to attach to the post
+withCompletionHandler:(FBPostCompletionHandler)block
 {
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
                             status, @"message",
@@ -51,8 +64,9 @@
                                 else
                                 {
                                     [OBLLog logFBMessage:@"Post successful"];
-                                    success=YES;
+                                    success = YES;
                                 }
+                                block(error);
                             }
      ];
     return success;
