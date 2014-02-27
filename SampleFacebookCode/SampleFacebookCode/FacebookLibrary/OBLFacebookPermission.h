@@ -12,19 +12,6 @@
 
 @interface OBLFacebookPermission : NSObject
 
-typedef enum {
-    /*! No audience needed; this value is useful for cases where data will only be read from Facebook */
-    OBLDefaultAudienceNone                = 0,
-    /*! Indicates that only the user is able to see posts made by the application */
-    OBLDefaultAudienceOnlyMe              = 10,
-    /*! Indicates that the user's friends are able to see posts made by the application */
-    OBLDefaultAudienceFriends             = 20,
-    /*! Indicates that all Facebook users are able to see posts made by the application */
-    OBLDefaultAudienceEveryone            = 30,
-} OBLDefaultAudiance;
-
-
-
 //basic_info permission, includes:username, userprofileimage, friendlist.
 extern NSString *const BASIC_INFO;
 
