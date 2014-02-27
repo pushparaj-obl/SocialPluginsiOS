@@ -168,8 +168,8 @@
 - (IBAction)disconnectClicked:(id)sender
 {
     [[OBLGooglePlusLogin sharedInstance ]disconnect];
-    
-    [self refereshView];
+    self.disconnect.enabled=NO;
+ 
 }
 
 //Delegate called after disconnecting the user.
@@ -178,11 +178,12 @@
     if (error)
     {
         NSLog(@"Error: %@",error.description);
-
-    } else
+        self.disconnect.enabled=YES;
+    }
+    else
     {
         NSLog(@"User is disconncted.");
-
+        [self refereshView];
     }
 }
 
@@ -194,6 +195,7 @@
     if([OBLGooglePlusLogin sharedInstance].authentication)
     {
         self.signIn.hidden = YES;
+         self.signIn.enabled=YES;
         self.signOut.hidden = NO;
         self.disconnect.hidden = NO;
         self.shareButton.hidden = NO;
@@ -210,6 +212,7 @@
         self.profileButton.hidden = YES;
         self.friendsProfileInfo.hidden = YES;
         self.fetchLabel.hidden = YES;
+        self.disconnect.enabled=YES;
     }
 }
 

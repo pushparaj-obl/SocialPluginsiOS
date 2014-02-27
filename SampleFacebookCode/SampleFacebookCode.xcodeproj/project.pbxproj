@@ -28,6 +28,7 @@
 		5D8CF25A18ADDA0C006C659C /* OBLFacebookQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D8CF25218ADDA0C006C659C /* OBLFacebookQuery.m */; };
 		5D8CF25B18ADDA0C006C659C /* OBLFacebookUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D8CF25418ADDA0C006C659C /* OBLFacebookUser.m */; };
 		5D8CF26418ADE570006C659C /* OBLLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D8CF26318ADE570006C659C /* OBLLog.m */; };
+		F110506218BF15300020DE24 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F110506118BF15300020DE24 /* FacebookSDK.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,7 @@
 		5D8CF26018ADDA1A006C659C /* OBLProfileDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBLProfileDetails.h; sourceTree = "<group>"; };
 		5D8CF26218ADE570006C659C /* OBLLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBLLog.h; sourceTree = "<group>"; };
 		5D8CF26318ADE570006C659C /* OBLLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBLLog.m; sourceTree = "<group>"; };
+		F110506118BF15300020DE24 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../FacebookSDK.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5D448FB918A9E8D4007E90E1 /* CoreGraphics.framework in Frameworks */,
+				F110506218BF15300020DE24 /* FacebookSDK.framework in Frameworks */,
 				5D448FE618A9EA6B007E90E1 /* FacebookSDK.framework in Frameworks */,
 				5D448FBB18A9E8D4007E90E1 /* UIKit.framework in Frameworks */,
 				5D448FB718A9E8D4007E90E1 /* Foundation.framework in Frameworks */,
@@ -170,6 +173,7 @@
 		5D448FEF18A9EB6F007E90E1 /* FacebookLibrary */ = {
 			isa = PBXGroup;
 			children = (
+				F110506118BF15300020DE24 /* FacebookSDK.framework */,
 				5D448FF018A9EB6F007E90E1 /* OBLFacebookLogin.h */,
 				5D448FF118A9EB6F007E90E1 /* OBLFacebookLogin.m */,
 				5D8CF24B18ADDA0C006C659C /* OBLFacebookFriend.h */,
@@ -428,7 +432,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/pushparajzala/Desktop/ios/SampleFacebookCode,
+					/Users/jeneenajose/Documents/SocialMediaRepository,
+					/Users/jeneenajose/Documents/SocialMediaRepository/SampleFacebookCode,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SampleFacebookCode/SampleFacebookCode-Prefix.pch";
@@ -447,7 +452,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/pushparajzala/Desktop/ios/SampleFacebookCode,
+					/Users/jeneenajose/Documents/SocialMediaRepository,
+					/Users/jeneenajose/Documents/SocialMediaRepository/SampleFacebookCode,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SampleFacebookCode/SampleFacebookCode-Prefix.pch";
