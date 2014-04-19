@@ -38,7 +38,7 @@
 #pragma mark - Login
 
 /*checks if token is already available and loaded of not*/
-//it will check if availabele token is already lodded do we can call login method directly.(session state may not be open)
+//it will check if availabele token is already lodded so we can call login method directly.(session state may not be open)
 + (BOOL)isTokenLodded
 {
     if (FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded)
@@ -112,16 +112,16 @@
 //Note: completion block called every time whenever the state of the FBSession is changed
 + (void)login:(NSArray*)permission withCompletion:(FBCompletionHandler)block
 {
-    if (FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded)
+    if (FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded && (FBSession.activeSession.state == FBSessionStateOpen||FBSession.activeSession.state == FBSessionStateOpenTokenExtended))
     {
-        NSLog(@"Found a cached session");
+        DLog(@"Found a cached session");
         // If there's one, just open the session silently, without showing the user the login UI
         [FBSession openActiveSessionWithReadPermissions:permission
                                            allowLoginUI:NO
                                       completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
                                           // Handler for session state changes
                                           // This method will be called EACH time the session state changes,
-                                          if ([FBSession activeSession].state  == FBSessionStateClosed || [FBSession activeSession].state == FBSessionStateClosedLoginFailed)
+                                          if ([FBSession activeSession].state  == FBSessionStateClosed)
                                           {
                                               [OBLLog logFBMessage:@"Session Closed"];
                                           }
@@ -151,7 +151,7 @@
                 completionHandler:^(FBSession *session,
                                     FBSessionState state,
                                     NSError *error) {
-                    if ([FBSession activeSession].state  == FBSessionStateClosed || [FBSession activeSession].state == FBSessionStateClosedLoginFailed)
+                    if ([FBSession activeSession].state  == FBSessionStateClosed)
                     {
                         [OBLLog logFBMessage:@"Session Closed"];
                     }
@@ -181,7 +181,7 @@
                        defaultAudience:(OBLDefaultAudiance)defaultAudience
                   andCompletionHandler:(FBCompletionHandler) block
 {
-    if (FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded)
+    if (FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded && (FBSession.activeSession.state == FBSessionStateOpen||FBSession.activeSession.state == FBSessionStateOpenTokenExtended))
     {
         NSLog(@"Found a cached session");
         // If there's one, just open the session silently, without showing the user the login UI
@@ -191,7 +191,7 @@
                                          completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
                                              // Handler for session state changes
                                              // This method will be called EACH time the session state changes,
-                                             if ([FBSession activeSession].state  == FBSessionStateClosed || [FBSession activeSession].state == FBSessionStateClosedLoginFailed)
+                                             if ([FBSession activeSession].state  == FBSessionStateClosed)
                                              {
                                                  [OBLLog logFBMessage:@"Session Closed"];
                                              }
@@ -222,7 +222,7 @@
                 completionHandler:^(FBSession *session,
                                     FBSessionState state,
                                     NSError *error) {
-                    if ([FBSession activeSession].state  == FBSessionStateClosed || [FBSession activeSession].state == FBSessionStateClosedLoginFailed)
+                    if ([FBSession activeSession].state  == FBSessionStateClosed)
                     {
                         [OBLLog logFBMessage:@"Session Closed"];
                     }
