@@ -204,6 +204,7 @@
     else
     {
         self.signIn.hidden = NO;
+        self.signIn.enabled = YES;
         self.signOut.hidden = YES;
         self.disconnect.hidden = YES;
         self.shareButton.hidden = YES;
