@@ -19,11 +19,9 @@
     [myRequest startWithCompletionHandler: ^(FBRequestConnection *connection,
                                              NSDictionary<FBGraphUser>* result,
                                              NSError *error) {
-        NSError *errorIn=nil;
         OBLFacebookUser *user = [[OBLFacebookUser alloc] init];
         if (error)
         {
-            errorIn=error;
             [OBLLog logFBMessage:error.description];
         }
         else
@@ -40,11 +38,7 @@
             user.currentLocation = [result objectForKey:@"location"];
             user.gender = [result objectForKey:@"gender"];
         }
-        
-        dispatch_async(dispatch_get_main_queue(),
-                       ^{
-                           block(user,errorIn);
-                       });
+        block(user,error);
     }];
 }
 
@@ -55,11 +49,9 @@
     [friendsRequest startWithCompletionHandler: ^(FBRequestConnection *connection,
                                                   NSDictionary* result,
                                                   NSError *error) {
-        NSError *errorIn=nil;
         NSMutableArray *friendArray = [[NSMutableArray alloc] init];
         if (error)
         {
-            errorIn=error;
             [OBLLog logFBMessage:error.description];
         }
         else
@@ -80,14 +72,14 @@
                 [friendArray addObject:userFriend];
             }
         }
-        NSArray *newArray = [[NSArray alloc] initWithArray:friendArray];
-        dispatch_async(dispatch_get_main_queue(),
-                       ^{
-                           block(newArray,errorIn);
-                       });
+        block(friendArray,error);
     }];
 
 }
 
+- (void)dealloc
+{
+    
+}
 
 @end

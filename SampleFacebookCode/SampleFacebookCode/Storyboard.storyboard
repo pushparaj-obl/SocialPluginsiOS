@@ -36,11 +36,11 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mwa-Rj-Uii">
-                                        <rect key="frame" x="20" y="20" width="70" height="30"/>
+                                        <rect key="frame" x="125" y="58" width="70" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="KQK-Fa-kNc"/>
-                                            <constraint firstAttribute="width" constant="70" id="wsW-2V-0eQ"/>
+                                            <constraint firstAttribute="width" constant="70" id="N1M-Fq-z2Y"/>
+                                            <constraint firstAttribute="height" constant="30" id="do9-1R-2Xe"/>
                                         </constraints>
                                         <state key="normal" title="Logout">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -50,11 +50,11 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a4v-ex-Cac">
-                                        <rect key="frame" x="135" y="430" width="50" height="30"/>
+                                        <rect key="frame" x="135" y="263" width="50" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="3Aw-50-s0P"/>
-                                            <constraint firstAttribute="width" constant="50" id="CA1-pk-k0j"/>
+                                            <constraint firstAttribute="height" constant="30" id="FfF-SZ-bgW"/>
+                                            <constraint firstAttribute="width" constant="50" id="KxJ-rG-THv"/>
                                         </constraints>
                                         <state key="normal" title="Post">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -64,25 +64,25 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F80-oC-rHp">
-                                        <rect key="frame" x="20" y="225" width="120" height="30"/>
+                                        <rect key="frame" x="100" y="96" width="120" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="120" id="PG6-I8-zhr"/>
-                                            <constraint firstAttribute="height" constant="30" id="QsX-Dp-FQJ"/>
+                                            <constraint firstAttribute="width" constant="120" id="8Q0-SW-ZXG"/>
+                                            <constraint firstAttribute="height" constant="30" id="iQ0-PV-nCR"/>
                                         </constraints>
-                                        <state key="normal" title="Fatch Details">
+                                        <state key="normal" title="Fetch Details">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="fatchDetails:" destination="X0N-X4-mQJ" eventType="touchUpInside" id="QAT-f4-Pdf"/>
+                                            <action selector="fetchUserDetails:" destination="X0N-X4-mQJ" eventType="touchUpInside" id="fw1-m6-hVj"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9BP-C3-ECi">
-                                        <rect key="frame" x="55" y="392" width="210" height="30"/>
+                                        <rect key="frame" x="55" y="225" width="210" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="BVn-i1-0Zb"/>
-                                            <constraint firstAttribute="width" constant="210" id="mky-Ye-9QI"/>
+                                            <constraint firstAttribute="height" constant="30" id="74Y-oX-opX"/>
+                                            <constraint firstAttribute="width" constant="210" id="GsB-VO-bC5"/>
                                         </constraints>
                                         <state key="normal" title="Request New Permissions">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -91,19 +91,35 @@
                                             <action selector="request:" destination="X0N-X4-mQJ" eventType="touchUpInside" id="vNY-cX-9b7"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Etf-5x-wNZ">
+                                        <rect key="frame" x="70" y="134" width="180" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="9Cu-VL-bzA"/>
+                                            <constraint firstAttribute="width" constant="180" id="nut-0x-hWv"/>
+                                        </constraints>
+                                        <state key="normal" title="Fetch Friends' Details">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="fetchFriendDetails:" destination="X0N-X4-mQJ" eventType="touchUpInside" id="9Be-WA-C6N"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="a4v-ex-Cac" firstAttribute="top" secondItem="9BP-C3-ECi" secondAttribute="bottom" constant="8" symbolic="YES" id="NeP-BW-JZK"/>
-                                    <constraint firstAttribute="bottom" secondItem="a4v-ex-Cac" secondAttribute="bottom" constant="20" symbolic="YES" id="Tau-h4-QCr"/>
+                                    <constraint firstAttribute="centerX" secondItem="9BP-C3-ECi" secondAttribute="centerX" id="1U6-xs-HaN"/>
+                                    <constraint firstItem="a4v-ex-Cac" firstAttribute="top" secondItem="9BP-C3-ECi" secondAttribute="bottom" constant="8" id="3aO-gB-V6D"/>
+                                    <constraint firstItem="Mwa-Rj-Uii" firstAttribute="top" secondItem="200-UF-R91" secondAttribute="bottom" constant="8" id="BQu-nT-rQE"/>
                                     <constraint firstItem="200-UF-R91" firstAttribute="top" secondItem="5hu-Nn-ChE" secondAttribute="top" constant="20" symbolic="YES" id="blQ-Gx-G5f"/>
-                                    <constraint firstItem="Mwa-Rj-Uii" firstAttribute="leading" secondItem="5hu-Nn-ChE" secondAttribute="leading" constant="20" symbolic="YES" id="eR2-y3-QFO"/>
-                                    <constraint firstAttribute="centerX" secondItem="9BP-C3-ECi" secondAttribute="centerX" id="gPU-AG-NvT"/>
-                                    <constraint firstItem="F80-oC-rHp" firstAttribute="leading" secondItem="5hu-Nn-ChE" secondAttribute="leading" constant="20" symbolic="YES" id="lcK-F6-c6H"/>
-                                    <constraint firstItem="Mwa-Rj-Uii" firstAttribute="top" secondItem="5hu-Nn-ChE" secondAttribute="top" constant="20" symbolic="YES" id="ldw-yC-Ucl"/>
-                                    <constraint firstAttribute="centerX" secondItem="a4v-ex-Cac" secondAttribute="centerX" id="qJR-vu-wH3"/>
+                                    <constraint firstAttribute="centerX" secondItem="a4v-ex-Cac" secondAttribute="centerX" id="hfS-Sl-Fsz"/>
+                                    <constraint firstAttribute="centerY" secondItem="9BP-C3-ECi" secondAttribute="centerY" id="luP-Uj-sJu"/>
+                                    <constraint firstAttribute="centerX" secondItem="Etf-5x-wNZ" secondAttribute="centerX" id="qkx-Ro-uMM"/>
                                     <constraint firstAttribute="centerX" secondItem="200-UF-R91" secondAttribute="centerX" id="tSk-G5-G8c"/>
-                                    <constraint firstAttribute="centerY" secondItem="F80-oC-rHp" secondAttribute="centerY" id="x43-K4-Axx"/>
+                                    <constraint firstAttribute="centerX" secondItem="Mwa-Rj-Uii" secondAttribute="centerX" id="x4m-QR-IgZ"/>
+                                    <constraint firstItem="F80-oC-rHp" firstAttribute="top" secondItem="Mwa-Rj-Uii" secondAttribute="bottom" constant="8" id="xnu-Wu-r5R"/>
+                                    <constraint firstAttribute="centerX" secondItem="F80-oC-rHp" secondAttribute="centerX" id="xve-ai-oGn"/>
+                                    <constraint firstItem="Etf-5x-wNZ" firstAttribute="top" secondItem="F80-oC-rHp" secondAttribute="bottom" constant="8" id="zyq-sp-YV1"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -116,7 +132,8 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="fatchButton" destination="F80-oC-rHp" id="uKz-nc-MpY"/>
+                        <outlet property="fetchButton" destination="F80-oC-rHp" id="Fi7-tz-yEy"/>
+                        <outlet property="fetchFriendButton" destination="Etf-5x-wNZ" id="QXf-Mn-oXs"/>
                         <outlet property="login" destination="200-UF-R91" id="3bb-EM-VZa"/>
                         <outlet property="logout" destination="Mwa-Rj-Uii" id="Oro-gg-cjx"/>
                         <outlet property="post" destination="a4v-ex-Cac" id="R7r-3R-wBN"/>
@@ -125,7 +142,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="41u-RF-VEv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="99" y="160"/>
+            <point key="canvasLocation" x="392" y="150"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

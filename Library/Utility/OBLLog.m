@@ -141,13 +141,14 @@ static bool twitterDebug;
                     
                     // Show the user an error message
                     alertTitle = @"Something went wrong";
-                    alertText = [NSString stringWithFormat:@"Please retry. \n\n If the problem persists contact us and mention this error code: %@", [errorInformation objectForKey:@"message"]];
+                    alertText = [NSString stringWithFormat:@"Please retry. \n\n If the problem persists contact facebook and mention this error code: %@", [errorInformation objectForKey:@"message"]];
                     NSLog(@"%@ : %@ ",alertTitle,alertText);
                 }
             }
             // Clear this token
-            [FBSession.activeSession closeAndClearTokenInformation];
+            //[FBSession.activeSession closeAndClearTokenInformation];
             // Show the user the logged-out UI
+            
         }   //error check close
         
     }   //debug check close
