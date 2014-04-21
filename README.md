@@ -103,11 +103,11 @@ You can see the demo code present in `TwitterDemo` Folder.
 Login/Logout:
 
 * `OBLTwitterLoginViewController`
-  - Refer to **[https://github.com/akash-obl/SocialPluginsiOS/blob/beta/Library/OBLTwitterLibrary/OBLLoginViewController.h)**
+  - Refer to **[https://github.com/ObjectLounge/SocialPluginsiOS/blob/beta/Library/OBLTwitterLibrary/OBLTwitterLoginViewController.h)**
   - It allows to log in to Twitter.
 
 * `OBLTwitterLogin`
-  - Refer to **[OBLTwitterLogin.h](https://github.com/akash-obl/SocialPluginsiOS/blob/beta/Library/OBLTwitterLibrary/OBLTwitterLogin.h)**
+  - Refer to **[OBLTwitterLogin.h](https://github.com/ObjectLounge/SocialPluginsiOS/blob/beta/Library/OBLTwitterLibrary/OBLTwitterLogin.h)**
   - It allows to set Twitter consumer key and consumer secret.
   - It allows to check if user is already logged in.
   - It allows to logout from Twitter.
@@ -116,7 +116,7 @@ Login/Logout:
 Tweet:
 
 * `OBLTwitter`
-  - Refer to **[https://github.com/akash-obl/SocialPluginsiOS/blob/beta/Library/OBLTwitterLibrary/OBLTwitter.h)**
+  - Refer to **[https://github.com/ObjectLounge/SocialPluginsiOS/blob/beta/Library/OBLTwitterLibrary/OBLTwitter.h)**
   - This class allows to tweet on user's wall.
 
 
@@ -193,7 +193,7 @@ Post on user's wall:
 2. Download and include Library folder inside project.
 
 #####Using Twitter Library:
-* Refer this file **[OBLViewController.m](https://github.com/akash-obl/SocialPluginsiOS/blob/beta/TwitterDemo/OBLTwitterDemo/OBLViewController.m)** of TwitterDemo to understand how to use Twitter Library.
+* Refer this file **[OBLViewController.m](https://github.com/ObjectLounge/SocialPluginsiOS/blob/beta/TwitterDemo/OBLTwitterDemo/OBLViewController.m)** of TwitterDemo to understand how to use Twitter Library.
 
 - Login:
   ```
@@ -201,7 +201,7 @@ Post on user's wall:
   [OBLTwitterLogin setConsumerKey:@"YOUR_CONSUMER_KEY" secret:@"YOUR_CONSUMER_SECRET"];
         
   // Present login screen
-  OBLLoginViewController * loginController = [[OBLLoginViewController alloc] init];
+  OBLTwitterLoginViewController * loginController = [[OBLTwitterLoginViewController alloc] init];
         
   // Set appropriate delegate to handle login completion event
   loginController.loginDelegate = self;
