@@ -103,7 +103,7 @@ You can see the demo code present in `TwitterDemo` Folder.
 Login/Logout:
 
 * `OBLTwitterLoginViewController`
-  - Refer to **[https://github.com/ObjectLounge/SocialPluginsiOS/blob/beta/Library/OBLTwitterLibrary/OBLTwitterLoginViewController.h)**
+  - Refer to **[OBLTwitterLoginViewController.h](https://github.com/ObjectLounge/SocialPluginsiOS/blob/beta/Library/OBLTwitterLibrary/OBLTwitterLoginViewController.h)**
   - It allows to log in to Twitter.
 
 * `OBLTwitterLogin`
@@ -116,7 +116,7 @@ Login/Logout:
 Tweet:
 
 * `OBLTwitter`
-  - Refer to **[https://github.com/ObjectLounge/SocialPluginsiOS/blob/beta/Library/OBLTwitterLibrary/OBLTwitter.h)**
+  - Refer to **[OBLTwitter.h](https://github.com/ObjectLounge/SocialPluginsiOS/blob/beta/Library/OBLTwitterLibrary/OBLTwitter.h)**
   - This class allows to tweet on user's wall.
 
 
