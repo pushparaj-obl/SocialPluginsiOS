@@ -14,6 +14,7 @@
 
 @interface OBLTwitterPost : NSObject
 
+// Tweet
 + (NSError *)tweet:(NSString *)tweetString;
 
 @end
