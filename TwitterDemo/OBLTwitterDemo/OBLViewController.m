@@ -50,7 +50,7 @@
         [OBLTwitterLogin setConsumerKey:TWITTER_CONSUMER_KEY secret:TWITTER_CONSUMER_SECRET];
         
         // Present login screen
-        OBLLoginViewController * loginController = [[OBLLoginViewController alloc] init];
+        OBLTwitterLoginViewController * loginController = [[OBLTwitterLoginViewController alloc] init];
         
         // Set appropriate delegate to handle login completion event
         loginController.loginDelegate = self;

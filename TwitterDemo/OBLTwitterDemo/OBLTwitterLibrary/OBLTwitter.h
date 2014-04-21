@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "OBLTwitterLogin.h"
 #import "OBLTwitterPost.h"
-#import "OBLLoginViewController.h"
+#import "OBLTwitterLoginViewController.h"
 
 @interface OBLTwitter : UIViewController
 

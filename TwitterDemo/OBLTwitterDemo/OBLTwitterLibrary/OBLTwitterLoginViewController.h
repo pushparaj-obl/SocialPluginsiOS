@@ -27,7 +27,7 @@
 @end
 
 
-@interface OBLLoginViewController : UIViewController <UIWebViewDelegate>
+@interface OBLTwitterLoginViewController : UIViewController <UIWebViewDelegate>
 
 // Delegate for login
 @property (nonatomic, weak) id <OBLTwitterLoginDelegate> loginDelegate;
