@@ -10,6 +10,9 @@
 #import "OBLTwitter.h"
 #import "OBLLog.h"
 
+#define TWITTER_CONSUMER_KEY @"fnZrMcC6lFQYvB3VGU0KTA"
+#define TWITTER_CONSUMER_SECRET @"uwRfbduuxJBxhXcqizTxZZ6RYaYQ4m0SsNzyw7b2Q"
+
 @interface OBLViewController : UIViewController <OBLTwitterLoginDelegate>
 
 @end

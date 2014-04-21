@@ -47,7 +47,7 @@
     else
     {
         // Set consumer key and secret
-        [OBLTwitterLogin setConsumerKey:@"fnZrMcC6lFQYvB3VGU0KTA" secret:@"uwRfbduuxJBxhXcqizTxZZ6RYaYQ4m0SsNzyw7b2Q"];
+        [OBLTwitterLogin setConsumerKey:TWITTER_CONSUMER_KEY secret:TWITTER_CONSUMER_SECRET];
         
         // Present login screen
         OBLLoginViewController * loginController = [[OBLLoginViewController alloc] init];
@@ -72,7 +72,7 @@
 - (IBAction)tweet:(UIButton *)sender
 {
     // Set consumer key and secret
-    [OBLTwitterLogin setConsumerKey:@"fnZrMcC6lFQYvB3VGU0KTA" secret:@"uwRfbduuxJBxhXcqizTxZZ6RYaYQ4m0SsNzyw7b2Q"];
+    [OBLTwitterLogin setConsumerKey:TWITTER_CONSUMER_KEY secret:TWITTER_CONSUMER_SECRET];
     
     // Get OBLTwitter instance
     OBLTwitter * twitter = [OBLTwitter sharedInstance];
