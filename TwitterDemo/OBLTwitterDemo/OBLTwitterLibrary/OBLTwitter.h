@@ -17,10 +17,13 @@
 @property (nonatomic, strong) NSString * consumerKey;
 @property (nonatomic, strong) NSString * consumerSecret;
 
+// Returns shared instance
 + (OBLTwitter *)sharedInstance;
-//- (void)setConsumerKey:(NSString *)consumerKey secret:(NSString *)secret;
-//- (NSError *)login;
+
+// Logs out from Twitter
 - (void)logout;
+
+// Tweet on user's account
 - (NSError *)tweet:(NSString *)status;
 
 @end
