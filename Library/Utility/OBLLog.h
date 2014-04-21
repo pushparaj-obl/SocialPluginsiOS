@@ -16,16 +16,21 @@
 
 
 /*change state of googleplus debugging */
-+ (void)setGooglePlusDebug:(BOOL)debugIn;
++ (void)setGooglePlusDebug:(BOOL)debug;
+
+#pragma mark - Twitter
 
 /*change state of twitter debugging */
-+ (void)setTwitterDebug:(BOOL)debugIn;
++ (void)setTwitterDebug:(BOOL)debug;
+
+// Log message if Twitter debug is ON
++ (void)logTwitterMessage:(NSString *)message;
 
 
-#pragma mark - facebook
+#pragma mark - Facebook
 
 /*change state of facebook debugging */
-+ (void)setFacebookDebug:(BOOL)debugIn;
++ (void)setFacebookDebug:(BOOL)debug;
 
 /*log the values for facebook if debugging is on*/
 //for facebook only

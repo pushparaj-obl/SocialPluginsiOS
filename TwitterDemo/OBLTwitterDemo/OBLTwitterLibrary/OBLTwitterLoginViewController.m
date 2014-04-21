@@ -123,11 +123,11 @@ static NSString * const oldPinJS = @"var d = document.getElementById('oauth-pin'
     
     if (error)
     {
-        [OBLLog logMessage:[NSString stringWithFormat:@"Twitter login failed with error : %@", error]];
+        [OBLLog logTwitterMessage:[NSString stringWithFormat:@"Twitter login failed with error : %@", error]];
     }
     else
     {
-        [OBLLog logMessage:@"Twitter login successful."];
+        [OBLLog logTwitterMessage:@"Twitter login successful."];
     }
     
     if (self.loginDelegate && [self.loginDelegate respondsToSelector:@selector(loginCompleted:)])
@@ -216,7 +216,7 @@ static NSString * const oldPinJS = @"var d = document.getElementById('oauth-pin'
 
         if (self.loginDelegate && [self.loginDelegate respondsToSelector:@selector(loginCompleted:)])
         {
-            [OBLLog logMessage:@"User canceled Twitter login."];
+            [OBLLog logTwitterMessage:@"User canceled Twitter login."];
             // Call delegate method
             [self.loginDelegate loginCompleted:[NSError errorWithDomain:@"OBLTwitter" code:-1 userInfo:@{NSLocalizedDescriptionKey:LOGIN_CANCELED}]];
         }
@@ -233,7 +233,7 @@ static NSString * const oldPinJS = @"var d = document.getElementById('oauth-pin'
 {
     if (self.loginDelegate && [self.loginDelegate respondsToSelector:@selector(loginCompleted:)])
     {
-        [OBLLog logMessage:@"User canceled Twitter login."];
+        [OBLLog logTwitterMessage:@"User canceled Twitter login."];
         // Call delegate method
         [self.loginDelegate loginCompleted:[NSError errorWithDomain:@"OBLTwitter" code:-1 userInfo:@{NSLocalizedDescriptionKey:LOGIN_CANCELED}]];
     }

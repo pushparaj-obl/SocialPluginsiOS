@@ -25,12 +25,12 @@ static bool twitterDebug;
 }
 
 // Set Twitter debug ON/OFF
-+ (void)setTwitterDebug:(BOOL)debugIn
++ (void)setTwitterDebug:(BOOL)debug
 {
-    twitterDebug = debugIn;
+    twitterDebug = debug;
 }
 
-+ (void)logMessage:(NSString *)messag
++ (void)logTwitterMessage:(NSString *)messag
 {
     if (twitterDebug)
     {
