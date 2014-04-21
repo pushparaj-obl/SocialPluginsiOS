@@ -35,11 +35,11 @@ static NSString * const url_statuses_update = @"https://api.twitter.com/1.1/stat
     
     if (error)
     {
-        [OBLLog logMessage:[NSString stringWithFormat:@"Tweet unsuccessful. Error : %@", error]];
+        [OBLLog logTwitterMessage:[NSString stringWithFormat:@"Tweet unsuccessful. Error : %@", error]];
     }
     else
     {
-        [OBLLog logMessage:[NSString stringWithFormat:@"Tweet successful with text : %@", tweetString]];
+        [OBLLog logTwitterMessage:[NSString stringWithFormat:@"Tweet successful with text : %@", tweetString]];
     }
     
     return error;

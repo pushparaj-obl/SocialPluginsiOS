@@ -39,28 +39,38 @@ static bool twitterDebug;
     return self;
 }
 
-#pragma mark - googleplus
+#pragma mark - GooglePlus
 
 /*change state of facebook debugging */
-+ (void)setGooglePlusDebug:(BOOL)debugIn
++ (void)setGooglePlusDebug:(BOOL)debug
 {
-    googlePlusDebug = debugIn;
+    googlePlusDebug = debug;
 }
 
-#pragma mark - twitter
+#pragma mark - Twitter
 
 /*change state of facebook debugging */
-+ (void)setTwitterDebug:(BOOL)debugIn
++ (void)setTwitterDebug:(BOOL)debug
 {
-    twitterDebug = debugIn;
+    twitterDebug = debug;
 }
-#pragma mark - facebook
+
+// Log message if Twitter debug is ON
++ (void)logTwitterMessage:(NSString *)message
+{
+    if (twitterDebug)
+    {
+        NSLog(@"%@", message);
+    }
+}
+
+#pragma mark - Facebook
 
 /*change state of facebook debugging */
 //for facebook only
-+ (void)setFacebookDebug:(BOOL)debugIn
++ (void)setFacebookDebug:(BOOL)debug
 {
-    facebookDebug = debugIn;
+    facebookDebug = debug;
 }
 
 
@@ -70,7 +80,7 @@ static bool twitterDebug;
 {
     if (facebookDebug)
     {
-        NSLog(@"%@",message);
+        NSLog(@"%@", message);
     }
 }
 
@@ -119,8 +129,6 @@ static bool twitterDebug;
                     NSLog(@"%@ : %@ ",alertTitle,alertText);
                 }
             }
-            // Clear this token
-            //[FBSession.activeSession closeAndClearTokenInformation];
             // Show the user the logged-out UI
             
         }   //error check close

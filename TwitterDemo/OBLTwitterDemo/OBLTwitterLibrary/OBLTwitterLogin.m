@@ -148,7 +148,7 @@ static OBLConsumer * consumer;
 + (void)logout
 {
     [self clearAccessToken];
-    [OBLLog logMessage:@"Logged out of Twitter."];
+    [OBLLog logTwitterMessage:@"Logged out of Twitter."];
 }
 
 // Remove accesstoken
