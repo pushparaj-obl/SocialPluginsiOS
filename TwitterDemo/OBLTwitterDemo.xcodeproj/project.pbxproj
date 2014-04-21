@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		DB62189D1904E83500CF4807 /* OBLCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = DB62188B1904E83500CF4807 /* OBLCategories.m */; };
 		DB62189E1904E83500CF4807 /* OBLConsumer.m in Sources */ = {isa = PBXBuildFile; fileRef = DB62188D1904E83500CF4807 /* OBLConsumer.m */; };
-		DB62189F1904E83500CF4807 /* OBLLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB62188F1904E83500CF4807 /* OBLLoginViewController.m */; };
+		DB62189F1904E83500CF4807 /* OBLTwitterLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB62188F1904E83500CF4807 /* OBLTwitterLoginViewController.m */; };
 		DB6218A01904E83500CF4807 /* OBLToken.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6218911904E83500CF4807 /* OBLToken.m */; };
 		DB6218A11904E83500CF4807 /* OBLTwitter.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6218931904E83500CF4807 /* OBLTwitter.m */; };
 		DB6218A21904E83500CF4807 /* OBLTwitterLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6218951904E83500CF4807 /* OBLTwitterLogin.m */; };
@@ -47,8 +47,8 @@
 		DB62188B1904E83500CF4807 /* OBLCategories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBLCategories.m; sourceTree = "<group>"; };
 		DB62188C1904E83500CF4807 /* OBLConsumer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBLConsumer.h; sourceTree = "<group>"; };
 		DB62188D1904E83500CF4807 /* OBLConsumer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBLConsumer.m; sourceTree = "<group>"; };
-		DB62188E1904E83500CF4807 /* OBLLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBLLoginViewController.h; sourceTree = "<group>"; };
-		DB62188F1904E83500CF4807 /* OBLLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBLLoginViewController.m; sourceTree = "<group>"; };
+		DB62188E1904E83500CF4807 /* OBLTwitterLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBLTwitterLoginViewController.h; sourceTree = "<group>"; };
+		DB62188F1904E83500CF4807 /* OBLTwitterLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBLTwitterLoginViewController.m; sourceTree = "<group>"; };
 		DB6218901904E83500CF4807 /* OBLToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBLToken.h; sourceTree = "<group>"; };
 		DB6218911904E83500CF4807 /* OBLToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBLToken.m; sourceTree = "<group>"; };
 		DB6218921904E83500CF4807 /* OBLTwitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBLTwitter.h; sourceTree = "<group>"; };
@@ -113,8 +113,8 @@
 				DB62188B1904E83500CF4807 /* OBLCategories.m */,
 				DB62188C1904E83500CF4807 /* OBLConsumer.h */,
 				DB62188D1904E83500CF4807 /* OBLConsumer.m */,
-				DB62188E1904E83500CF4807 /* OBLLoginViewController.h */,
-				DB62188F1904E83500CF4807 /* OBLLoginViewController.m */,
+				DB62188E1904E83500CF4807 /* OBLTwitterLoginViewController.h */,
+				DB62188F1904E83500CF4807 /* OBLTwitterLoginViewController.m */,
 				DB6218901904E83500CF4807 /* OBLToken.h */,
 				DB6218911904E83500CF4807 /* OBLToken.m */,
 				DB6218921904E83500CF4807 /* OBLTwitter.h */,
@@ -311,7 +311,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DB62189F1904E83500CF4807 /* OBLLoginViewController.m in Sources */,
+				DB62189F1904E83500CF4807 /* OBLTwitterLoginViewController.m in Sources */,
 				DB6218A41904E83500CF4807 /* OBLTwitterRequest.m in Sources */,
 				DB7A5A3018B0D44400B31FF0 /* OBLAppDelegate.m in Sources */,
 				DB6218A01904E83500CF4807 /* OBLToken.m in Sources */,

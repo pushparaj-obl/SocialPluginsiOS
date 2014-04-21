@@ -6,14 +6,14 @@
 //  Copyright (c) 2014 Object Lounge. All rights reserved.
 //
 
-#import "OBLLoginViewController.h"
+#import "OBLTwitterLoginViewController.h"
 
 
 static NSString * const newPinJS = @"var d = document.getElementById('oauth-pin'); if (d == null) d = document.getElementById('oauth_pin'); if (d) { var d2 = d.getElementsByTagName('code'); if (d2.length > 0) d2[0].innerHTML; }";
 static NSString * const oldPinJS = @"var d = document.getElementById('oauth-pin'); if (d == null) d = document.getElementById('oauth_pin'); if (d) d = d.innerHTML; d;";
 
 
-@interface OBLLoginViewController ()
+@interface OBLTwitterLoginViewController ()
 
 @property (nonatomic, strong) UINavigationBar *navBar;
 @property (nonatomic, strong) UIWebView *theWebView;
@@ -23,7 +23,7 @@ static NSString * const oldPinJS = @"var d = document.getElementById('oauth-pin'
 
 @end
 
-@implementation OBLLoginViewController
+@implementation OBLTwitterLoginViewController
 
 @synthesize navBar, theWebView, loadingText, spinner, requestToken, backgroundColor;
 
