@@ -18,11 +18,19 @@ static NSString * authenticatedID;
 
 @interface OBLTwitterLogin : NSObject
 
+// Set Twitter consumer key and secret
 + (void)setConsumerKey:(NSString *)key secret:(NSString *)secret;
+
 + (NSString *)getRequestTokenString;
+
 + (NSError *)finishAuthWithRequestToken:(OBLToken *)reqToken;
+
+// Returns YES/NO based on if user is logged in already
 + (BOOL)isLoggedIn;
+
+// Logout
 + (void)logout;
+
 + (OBLConsumer *)getConsumer;
 
 @end

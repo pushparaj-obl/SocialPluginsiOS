@@ -9,7 +9,7 @@
 
 @interface OBLLog : NSObject
 
-// Set debug ON/OFF
+// Set debugging ON/OFF
 + (void)setTwitterDebug:(BOOL)debugIn;
 
 // Log message if Twitter debug is ON
