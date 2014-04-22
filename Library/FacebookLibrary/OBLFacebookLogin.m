@@ -112,7 +112,11 @@
 //Note: completion block called every time whenever the state of the FBSession is changed
 + (void)login:(NSArray*)permission withCompletion:(FBCompletionHandler)block
 {
-    if (FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded && (FBSession.activeSession.state == FBSessionStateOpen||FBSession.activeSession.state == FBSessionStateOpenTokenExtended))
+    FBSession *session = [[FBSession alloc] initWithPermissions:permission];
+    // Set the active session
+    [FBSession setActiveSession:session];
+    // Open the session
+    if (FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded)
     {
         DLog(@"Found a cached session");
         // If there's one, just open the session silently, without showing the user the login UI
@@ -181,7 +185,11 @@
                        defaultAudience:(OBLDefaultAudiance)defaultAudience
                   andCompletionHandler:(FBCompletionHandler) block
 {
-    if (FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded && (FBSession.activeSession.state == FBSessionStateOpen||FBSession.activeSession.state == FBSessionStateOpenTokenExtended))
+    FBSession *session = [[FBSession alloc] initWithPermissions:permission];
+    // Set the active session
+    [FBSession setActiveSession:session];
+    // Open the session
+    if (FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded)
     {
         NSLog(@"Found a cached session");
         // If there's one, just open the session silently, without showing the user the login UI
