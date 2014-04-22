@@ -21,14 +21,17 @@
 
 @protocol OBLTwitterLoginDelegate <NSObject>
 
+// Called when login is completed
 - (void)loginCompleted:(NSError *)error;
 
 @end
 
 
-@interface OBLLoginViewController : UIViewController <UIWebViewDelegate>
+@interface OBLTwitterLoginViewController : UIViewController <UIWebViewDelegate>
 
+// Delegate for login
 @property (nonatomic, weak) id <OBLTwitterLoginDelegate> loginDelegate;
+// Used to set background color to login screen
 @property (nonatomic, strong) UIColor * backgroundColor;
 
 @end
