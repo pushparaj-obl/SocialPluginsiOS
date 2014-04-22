@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E59523B21906508400EA23C3 /* OBLLog.m in Sources */ = {isa = PBXBuildFile; fileRef = E59523B11906508400EA23C3 /* OBLLog.m */; };
 		E5B0DB0219029CE300D586B7 /* GoogleOpenSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5B0DA9319029CE200D586B7 /* GoogleOpenSource.framework */; };
 		E5B0DB0319029CE300D586B7 /* GooglePlus.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E5B0DA9419029CE200D586B7 /* GooglePlus.bundle */; };
 		E5B0DB0419029CE300D586B7 /* GooglePlus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5B0DA9519029CE200D586B7 /* GooglePlus.framework */; };
@@ -15,8 +16,6 @@
 		E5B0DB3119029CE300D586B7 /* OBLGooglePlusQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = E5B0DAFD19029CE300D586B7 /* OBLGooglePlusQuery.m */; };
 		E5B0DB3219029CE300D586B7 /* OBLGooglePlusShare.m in Sources */ = {isa = PBXBuildFile; fileRef = E5B0DAFF19029CE300D586B7 /* OBLGooglePlusShare.m */; };
 		E5B0DB3319029CE300D586B7 /* OBLGooglePlusUser.m in Sources */ = {isa = PBXBuildFile; fileRef = E5B0DB0119029CE300D586B7 /* OBLGooglePlusUser.m */; };
-		E5B0DB3519029D7D00D586B7 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5B0DB3419029D7D00D586B7 /* FacebookSDK.framework */; };
-		F10FE3DA18B47BF200C0F139 /* OBLLog.m in Sources */ = {isa = PBXBuildFile; fileRef = F10FE3D518B47BF200C0F139 /* OBLLog.m */; };
 		F144FF2518BB811F00D9DE8F /* image2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = F144FF2418BB811F00D9DE8F /* image2.jpeg */; };
 		F155EEBD18AA273B0019A282 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F155EEBC18AA273B0019A282 /* AddressBook.framework */; };
 		F155EEBF18AA27420019A282 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F155EEBE18AA27420019A282 /* AssetsLibrary.framework */; };
@@ -26,7 +25,7 @@
 		F155EEC718AA278A0019A282 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F155EEC618AA278A0019A282 /* MediaPlayer.framework */; };
 		F155EEC918AA27980019A282 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F155EEC818AA27980019A282 /* Security.framework */; };
 		F155EECB18AA27B10019A282 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F155EECA18AA27B10019A282 /* SystemConfiguration.framework */; };
-		F162B26218B48EB700EDCC14 /* GooglePlus_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F162B26018B48EB700EDCC14 /* GooglePlus_ViewController.m */; };
+		F162B26218B48EB700EDCC14 /* GooglePlusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F162B26018B48EB700EDCC14 /* GooglePlusViewController.m */; };
 		F19E9E2218AA1F76006B0C3B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F19E9E2118AA1F76006B0C3B /* Foundation.framework */; };
 		F19E9E2418AA1F76006B0C3B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F19E9E2318AA1F76006B0C3B /* CoreGraphics.framework */; };
 		F19E9E2618AA1F76006B0C3B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F19E9E2518AA1F76006B0C3B /* UIKit.framework */; };
@@ -53,6 +52,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E59523B01906508400EA23C3 /* OBLLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OBLLog.h; path = GooglePlusDemo/Library/Utility/OBLLog.h; sourceTree = "<group>"; };
+		E59523B11906508400EA23C3 /* OBLLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OBLLog.m; path = GooglePlusDemo/Library/Utility/OBLLog.m; sourceTree = "<group>"; };
 		E5B0DA9119029CE200D586B7 /* CallToActionButtonLabels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallToActionButtonLabels.h; sourceTree = "<group>"; };
 		E5B0DA9319029CE200D586B7 /* GoogleOpenSource.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleOpenSource.framework; sourceTree = "<group>"; };
 		E5B0DA9419029CE200D586B7 /* GooglePlus.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GooglePlus.bundle; sourceTree = "<group>"; };
@@ -71,9 +72,6 @@
 		E5B0DAFF19029CE300D586B7 /* OBLGooglePlusShare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBLGooglePlusShare.m; sourceTree = "<group>"; };
 		E5B0DB0019029CE300D586B7 /* OBLGooglePlusUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBLGooglePlusUser.h; sourceTree = "<group>"; };
 		E5B0DB0119029CE300D586B7 /* OBLGooglePlusUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBLGooglePlusUser.m; sourceTree = "<group>"; };
-		E5B0DB3419029D7D00D586B7 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = GooglePlusDemo/Library/FacebookSDK.framework; sourceTree = "<group>"; };
-		F10FE3D418B47BF200C0F139 /* OBLLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBLLog.h; sourceTree = "<group>"; };
-		F10FE3D518B47BF200C0F139 /* OBLLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBLLog.m; sourceTree = "<group>"; };
 		F10FE3D718B47BF200C0F139 /* OBLLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBLLogin.h; sourceTree = "<group>"; };
 		F10FE3D818B47BF200C0F139 /* OBLPost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBLPost.h; sourceTree = "<group>"; };
 		F10FE3D918B47BF200C0F139 /* OBLProfileDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBLProfileDetails.h; sourceTree = "<group>"; };
@@ -86,8 +84,8 @@
 		F155EEC618AA278A0019A282 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		F155EEC818AA27980019A282 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		F155EECA18AA27B10019A282 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		F162B26018B48EB700EDCC14 /* GooglePlus_ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GooglePlus_ViewController.m; path = GooglePlusDemo/Controller/GooglePlus_ViewController.m; sourceTree = SOURCE_ROOT; };
-		F162B26118B48EB700EDCC14 /* GooglePlus_ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GooglePlus_ViewController.h; path = GooglePlusDemo/Controller/GooglePlus_ViewController.h; sourceTree = SOURCE_ROOT; };
+		F162B26018B48EB700EDCC14 /* GooglePlusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GooglePlusViewController.m; path = GooglePlusDemo/Controller/GooglePlusViewController.m; sourceTree = SOURCE_ROOT; };
+		F162B26118B48EB700EDCC14 /* GooglePlusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GooglePlusViewController.h; path = GooglePlusDemo/Controller/GooglePlusViewController.h; sourceTree = SOURCE_ROOT; };
 		F19E9E1E18AA1F76006B0C3B /* GooglePlusDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GooglePlusDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F19E9E2118AA1F76006B0C3B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F19E9E2318AA1F76006B0C3B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -126,7 +124,6 @@
 				F19E9E2618AA1F76006B0C3B /* UIKit.framework in Frameworks */,
 				E5B0DB0219029CE300D586B7 /* GoogleOpenSource.framework in Frameworks */,
 				F19E9E2218AA1F76006B0C3B /* Foundation.framework in Frameworks */,
-				E5B0DB3519029D7D00D586B7 /* FacebookSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,12 +140,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E59523AF1906505000EA23C3 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				E59523B01906508400EA23C3 /* OBLLog.h */,
+				E59523B11906508400EA23C3 /* OBLLog.m */,
+			);
+			name = Utility;
+			sourceTree = "<group>";
+		};
 		E5B0DA8F1902977400D586B7 /* Library */ = {
 			isa = PBXGroup;
 			children = (
-				E5B0DB3419029D7D00D586B7 /* FacebookSDK.framework */,
+				E59523AF1906505000EA23C3 /* Utility */,
 				E5B0DA9019029CE200D586B7 /* Google+Library */,
-				F10FE3D318B47BF200C0F139 /* Utility */,
 				F10FE3D618B47BF200C0F139 /* Protocol */,
 			);
 			name = Library;
@@ -196,16 +201,6 @@
 			path = GPProtocols;
 			sourceTree = "<group>";
 		};
-		F10FE3D318B47BF200C0F139 /* Utility */ = {
-			isa = PBXGroup;
-			children = (
-				F10FE3D418B47BF200C0F139 /* OBLLog.h */,
-				F10FE3D518B47BF200C0F139 /* OBLLog.m */,
-			);
-			name = Utility;
-			path = ../Library/Utility;
-			sourceTree = "<group>";
-		};
 		F10FE3D618B47BF200C0F139 /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
@@ -220,8 +215,8 @@
 		F18AB2D318B3461C0030AE04 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				F162B26018B48EB700EDCC14 /* GooglePlus_ViewController.m */,
-				F162B26118B48EB700EDCC14 /* GooglePlus_ViewController.h */,
+				F162B26018B48EB700EDCC14 /* GooglePlusViewController.m */,
+				F162B26118B48EB700EDCC14 /* GooglePlusViewController.h */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -412,10 +407,10 @@
 				F19E9E3218AA1F76006B0C3B /* AppDelegate.m in Sources */,
 				F19E9E2E18AA1F76006B0C3B /* main.m in Sources */,
 				E5B0DB3119029CE300D586B7 /* OBLGooglePlusQuery.m in Sources */,
+				E59523B21906508400EA23C3 /* OBLLog.m in Sources */,
 				E5B0DB3019029CE300D586B7 /* OBLGooglePlusLogin.m in Sources */,
-				F10FE3DA18B47BF200C0F139 /* OBLLog.m in Sources */,
 				E5B0DB3219029CE300D586B7 /* OBLGooglePlusShare.m in Sources */,
-				F162B26218B48EB700EDCC14 /* GooglePlus_ViewController.m in Sources */,
+				F162B26218B48EB700EDCC14 /* GooglePlusViewController.m in Sources */,
 				E5B0DB2F19029CE300D586B7 /* OBLGooglePlusFriend.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

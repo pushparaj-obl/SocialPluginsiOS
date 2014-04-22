@@ -8,7 +8,7 @@
         <!--Google Plus View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="GooglePlus_ViewController" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" customClass="GooglePlusViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Obg-Dl-u3E"/>
                         <viewControllerLayoutGuide type="bottom" id="CjN-6o-JV0"/>
@@ -31,8 +31,8 @@
                                     <action selector="signInClicked:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="TTW-Zc-o9K"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fSD-Cu-SO4">
-                                <rect key="frame" x="120" y="319" width="80" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fSD-Cu-SO4">
+                                <rect key="frame" x="130" y="319" width="60" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Sign Out">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -41,8 +41,8 @@
                                     <action selector="signOutClicked:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="FYe-kd-VZn"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DrZ-Fj-y6w">
-                                <rect key="frame" x="103" y="415" width="115" height="26"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DrZ-Fj-y6w">
+                                <rect key="frame" x="122" y="413" width="78" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Disconnect">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -51,16 +51,16 @@
                                     <action selector="disconnectClicked:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="1qp-Vs-WT2"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xyy-IT-10M">
-                                <rect key="frame" x="20" y="142" width="128" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xyy-IT-10M">
+                                <rect key="frame" x="43" y="142" width="83" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="User Details"/>
                                 <connections>
                                     <action selector="profileButtonClicked:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Xqv-Dh-Zrb"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xte-tq-XRF">
-                                <rect key="frame" x="128" y="232" width="65" height="35"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xte-tq-XRF">
+                                <rect key="frame" x="141" y="230" width="40" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Share">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -69,15 +69,15 @@
                                     <action selector="shareButtonClicked:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="fMb-IX-Oej"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Fetch Profile Details:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zc4-dU-kWU">
-                                <rect key="frame" x="72" y="113" width="177" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fetch Profile Details:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zc4-dU-kWU">
+                                <rect key="frame" x="90" y="115" width="142" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hPV-SQ-lj9">
-                                <rect key="frame" x="174" y="142" width="118" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hPV-SQ-lj9">
+                                <rect key="frame" x="186" y="142" width="95" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Friends Detail">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -89,8 +89,24 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="hPV-SQ-lj9" firstAttribute="top" secondItem="Zc4-dU-kWU" secondAttribute="bottom" constant="9" id="3qV-ZZ-9tp"/>
+                            <constraint firstAttribute="centerY" secondItem="fSD-Cu-SO4" secondAttribute="centerY" constant="-50" id="62a-lx-CLj"/>
+                            <constraint firstAttribute="centerX" secondItem="Xte-tq-XRF" secondAttribute="centerX" constant="-0.5" id="6E2-6i-HXq"/>
+                            <constraint firstAttribute="centerY" secondItem="Xte-tq-XRF" secondAttribute="centerY" constant="36.5" id="6Jt-fa-0bp"/>
+                            <constraint firstAttribute="centerX" secondItem="Zc4-dU-kWU" secondAttribute="centerX" constant="-0.5" id="7z2-uk-0o6"/>
+                            <constraint firstAttribute="centerX" secondItem="Xyy-IT-10M" secondAttribute="centerX" constant="76" id="9sW-AN-LDn"/>
+                            <constraint firstItem="Xte-tq-XRF" firstAttribute="top" secondItem="Xyy-IT-10M" secondAttribute="bottom" constant="58" id="Bg2-F1-0yC"/>
+                            <constraint firstItem="Xyy-IT-10M" firstAttribute="top" secondItem="Zc4-dU-kWU" secondAttribute="bottom" constant="9" id="DFf-ly-M1M"/>
+                            <constraint firstAttribute="centerX" secondItem="hPV-SQ-lj9" secondAttribute="centerX" constant="-73" id="DfX-R0-LFv"/>
+                            <constraint firstAttribute="centerY" secondItem="hPV-SQ-lj9" secondAttribute="centerY" constant="127" id="In8-a8-QqM"/>
+                            <constraint firstAttribute="centerY" secondItem="Xyy-IT-10M" secondAttribute="centerY" constant="127" id="K9R-BI-9la"/>
                             <constraint firstAttribute="centerX" secondItem="QZA-5h-9DR" secondAttribute="centerX" id="L2d-A3-tUD"/>
+                            <constraint firstAttribute="centerX" secondItem="DrZ-Fj-y6w" secondAttribute="centerX" constant="-0.5" id="R8i-ag-Wcc"/>
                             <constraint firstAttribute="centerY" secondItem="QZA-5h-9DR" secondAttribute="centerY" id="UtA-6X-dDM"/>
+                            <constraint firstAttribute="centerY" secondItem="fSD-Cu-SO4" secondAttribute="centerY" constant="-50" id="ZkU-CA-1BN"/>
+                            <constraint firstAttribute="centerY" secondItem="Zc4-dU-kWU" secondAttribute="centerY" constant="160.5" id="Zrp-uC-tsf"/>
+                            <constraint firstAttribute="centerX" secondItem="fSD-Cu-SO4" secondAttribute="centerX" id="cyg-cb-kJD"/>
+                            <constraint firstAttribute="centerY" secondItem="DrZ-Fj-y6w" secondAttribute="centerY" constant="-144" id="iwb-gc-dv2"/>
                         </constraints>
                     </view>
                     <connections>

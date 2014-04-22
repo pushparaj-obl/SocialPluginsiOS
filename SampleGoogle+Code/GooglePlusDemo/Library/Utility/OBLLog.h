@@ -10,12 +10,8 @@
 //for facebook, googleplus and twitter additional debuggin use setFacebookDebug:, setGooglePlusDebug and setTwitterDebug respectively.
 
 #import <Foundation/Foundation.h>
-#import <FacebookSDK/FacebookSDK.h>
 
 @interface OBLLog : NSObject
-
-
-#pragma mark - google plus
 
 /*change state of googleplus debugging */
 + (void)setGooglePlusDebug:(BOOL)debugIn;
@@ -27,25 +23,6 @@
 /* google plus  error log if error in login and debugging is ON*/
 //for  google plus  only
 + (void)GPErrorLog:(NSError *)error;
-
-#pragma mark - twitter
-
-/*change state of twitter debugging */
-+ (void)setTwitterDebug:(BOOL)debugIn;
-
-
-#pragma mark - facebook
-
-/*change state of facebook debugging */
-+ (void)setFacebookDebug:(BOOL)debugIn;
-
-/*log the values for facebook if debugging is on*/
-//for facebook only
-+ (void)logFBMessage:(NSString *)message;
-
-/*facebook error log if error in login and debugging is ON*/
-//for facebook only
-+ (void)FBErrorLog:(NSError *)error;
 
 
 @end
