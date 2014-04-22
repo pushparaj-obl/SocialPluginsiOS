@@ -234,25 +234,25 @@ Post on user's wall:
 
 #####Initial setup:
 
-1. In the Google APIs Console,create an APIs Console project, enable the Google+ API then create and get a client ID.(Note:Keep Bundle ID of Xcode project and  APIs Console project same)
-2. Include the following frameworks in your Xcode project:
-      AddressBook.framework
-      AssetsLibrary.framework
-      Foundation.framework
-      CoreLocation.framework
-      CoreMotion.framework
-      CoreGraphics.framework
-      CoreText.framework
-      MediaPlayer.framework
-      Security.framework
-      SystemConfiguration.framework
-      UIKit.framework
+1. In the Google APIs Console, create an APIs Console project, enable the Google+ API then create and get a client ID.(Note:Keep Bundle ID of Xcode project and  APIs Console project same).Follow Step 1. Creating the APIs Console project from this link (https://developers.google.com/+/mobile/ios/getting-started) .
 2. Download and include Library folder inside project.
-3. Add the ObjC linker flag to the app target's build settings:
+3. Include the following frameworks in your Xcode project:
+      AddressBook.framework,
+      AssetsLibrary.framework,
+      Foundation.framework,
+      CoreLocation.framework,
+      CoreMotion.framework,
+      CoreGraphics.framework,
+      CoreText.framework,
+      MediaPlayer.framework,
+      Security.framework,
+      SystemConfiguration.framework,
+      UIKit.framework.
+4. Add the ObjC linker flag to the app target's build settings:
       Other Linker Flags: -ObjC
-4. Add a URL type
+5. Add a URL type
     In your app's Info tab, add a URL type and enter your bundle ID as the identifier and scheme.
-4. Call [handleURL:sourceApplication:annotation:] from your main application method [application:openURL:sourceApplication:annotation:] of UIApplicationDelegate for handling incoming url.
+6. Call `handleURL:sourceApplication:annotation:` from your main application method `application:openURL:sourceApplication:annotation:` of UIApplicationDelegate for handling incoming url.
 ```
 - (BOOL)application:(UIApplication *)application
             openURL:(NSURL *)url
