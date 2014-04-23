@@ -78,6 +78,16 @@ static bool twitterDebug;
 {
     twitterDebug = debugIn;
 }
+
+// Log message if Twitter debug is ON
++ (void)logTwitterMessage:(NSString *)message
+{
+    if (twitterDebug)
+    {
+        NSLog(@"%@", message);
+    }
+}
+
 #pragma mark - facebook
 
 /*change state of facebook debugging */

@@ -32,6 +32,8 @@
 /*change state of twitter debugging */
 + (void)setTwitterDebug:(BOOL)debugIn;
 
+/* Log message if Twitter debug is ON */
++ (void)logTwitterMessage:(NSString *)message;
 
 #pragma mark - facebook
 
