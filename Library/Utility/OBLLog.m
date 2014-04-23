@@ -1,4 +1,4 @@
-            //
+//
 //  OBLLog.m
 //  SampleFacebookCode
 //
@@ -17,11 +17,11 @@
 static bool facebookDebug;
 
 /*Used for googleplus library - googlePlusDebug having state of debugging, if it's on of off*/
-//user can set it when he wants to start GooglePlus debugging.
+//user can set it when he wants to start facebook debugging.
 static bool googlePlusDebug;
 
 /*Used for twitter library - twitterDebug having state of debugging, if it's on of off*/
-//user can set it when he wants to start Twitter debugging.
+//user can set it when he wants to start facebook debugging.
 static bool twitterDebug;
 
 
@@ -39,38 +39,52 @@ static bool twitterDebug;
     return self;
 }
 
-#pragma mark - GooglePlus
+#pragma mark - googleplus
 
-/*change state of facebook debugging */
-+ (void)setGooglePlusDebug:(BOOL)debug
+/*change state of google plus debugging */
++ (void)setGooglePlusDebug:(BOOL)debugIn
 {
-    googlePlusDebug = debug;
+    googlePlusDebug = debugIn;
 }
 
-#pragma mark - Twitter
 
-/*change state of facebook debugging */
-+ (void)setTwitterDebug:(BOOL)debug
+/*log the values for  google plus if debugging is on*/
+//for  google plus only
++ (void)logGPMessage:(NSString *)message
 {
-    twitterDebug = debug;
-}
-
-// Log message if Twitter debug is ON
-+ (void)logTwitterMessage:(NSString *)message
-{
-    if (twitterDebug)
+    if (googlePlusDebug)
     {
-        NSLog(@"%@", message);
+        NSLog(@"%@",message);
     }
 }
 
-#pragma mark - Facebook
+/* google plus error log if error */
+//for  google plus only
++ (void)GPErrorLog:(NSError *)error
+{
+    if (googlePlusDebug)
+    {
+        if (error)
+        {
+            NSLog(@"Error: %@",error.description);
+        }
+    }
+}
+            
+#pragma mark - twitter
+
+/*change state of facebook debugging */
++ (void)setTwitterDebug:(BOOL)debugIn
+{
+    twitterDebug = debugIn;
+}
+#pragma mark - facebook
 
 /*change state of facebook debugging */
 //for facebook only
-+ (void)setFacebookDebug:(BOOL)debug
++ (void)setFacebookDebug:(BOOL)debugIn
 {
-    facebookDebug = debug;
+    facebookDebug = debugIn;
 }
 
 
@@ -80,7 +94,7 @@ static bool twitterDebug;
 {
     if (facebookDebug)
     {
-        NSLog(@"%@", message);
+        NSLog(@"%@",message);
     }
 }
 
@@ -125,12 +139,13 @@ static bool twitterDebug;
                     
                     // Show the user an error message
                     alertTitle = @"Something went wrong";
-                    alertText = [NSString stringWithFormat:@"Please retry. \n\n If the problem persists contact facebook and mention this error code: %@", [errorInformation objectForKey:@"message"]];
+                    alertText = [NSString stringWithFormat:@"Please retry. \n\n If the problem persists contact us and mention this error code: %@", [errorInformation objectForKey:@"message"]];
                     NSLog(@"%@ : %@ ",alertTitle,alertText);
                 }
             }
+            // Clear this token
+            [FBSession.activeSession closeAndClearTokenInformation];
             // Show the user the logged-out UI
-            
         }   //error check close
         
     }   //debug check close

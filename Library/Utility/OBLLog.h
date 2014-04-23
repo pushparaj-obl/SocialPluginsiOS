@@ -14,23 +14,29 @@
 
 @interface OBLLog : NSObject
 
+#pragma mark - google plus
 
 /*change state of googleplus debugging */
-+ (void)setGooglePlusDebug:(BOOL)debug;
++ (void)setGooglePlusDebug:(BOOL)debugIn;
 
-#pragma mark - Twitter
+/*log the values for google plus if debugging is on*/
+//for  google plus  only
++ (void)logGPMessage:(NSString *)message;
+
+/* google plus  error log if error in login and debugging is ON*/
+//for  google plus  only
++ (void)GPErrorLog:(NSError *)error;
+
+#pragma mark - twitter
 
 /*change state of twitter debugging */
-+ (void)setTwitterDebug:(BOOL)debug;
-
-// Log message if Twitter debug is ON
-+ (void)logTwitterMessage:(NSString *)message;
++ (void)setTwitterDebug:(BOOL)debugIn;
 
 
-#pragma mark - Facebook
+#pragma mark - facebook
 
 /*change state of facebook debugging */
-+ (void)setFacebookDebug:(BOOL)debug;
++ (void)setFacebookDebug:(BOOL)debugIn;
 
 /*log the values for facebook if debugging is on*/
 //for facebook only
