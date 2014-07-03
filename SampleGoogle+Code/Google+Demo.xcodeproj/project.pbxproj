@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E56C1F7919655B2F0068ED3F /* GoogleOpenSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5B0DA9319029CE200D586B7 /* GoogleOpenSource.framework */; };
+		E56C1F7A19655B320068ED3F /* GooglePlus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5B0DA9519029CE200D586B7 /* GooglePlus.framework */; };
 		E59523B21906508400EA23C3 /* OBLLog.m in Sources */ = {isa = PBXBuildFile; fileRef = E59523B11906508400EA23C3 /* OBLLog.m */; };
-		E5B0DB0219029CE300D586B7 /* GoogleOpenSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5B0DA9319029CE200D586B7 /* GoogleOpenSource.framework */; };
 		E5B0DB0319029CE300D586B7 /* GooglePlus.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E5B0DA9419029CE200D586B7 /* GooglePlus.bundle */; };
-		E5B0DB0419029CE300D586B7 /* GooglePlus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5B0DA9519029CE200D586B7 /* GooglePlus.framework */; };
 		E5B0DB2F19029CE300D586B7 /* OBLGooglePlusFriend.m in Sources */ = {isa = PBXBuildFile; fileRef = E5B0DAF919029CE300D586B7 /* OBLGooglePlusFriend.m */; };
 		E5B0DB3019029CE300D586B7 /* OBLGooglePlusLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = E5B0DAFB19029CE300D586B7 /* OBLGooglePlusLogin.m */; };
 		E5B0DB3119029CE300D586B7 /* OBLGooglePlusQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = E5B0DAFD19029CE300D586B7 /* OBLGooglePlusQuery.m */; };
@@ -111,19 +111,19 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F19E9E2218AA1F76006B0C3B /* Foundation.framework in Frameworks */,
 				F155EECB18AA27B10019A282 /* SystemConfiguration.framework in Frameworks */,
 				F155EEC918AA27980019A282 /* Security.framework in Frameworks */,
 				F155EEC718AA278A0019A282 /* MediaPlayer.framework in Frameworks */,
 				F155EEC518AA277C0019A282 /* CoreText.framework in Frameworks */,
+				E56C1F7919655B2F0068ED3F /* GoogleOpenSource.framework in Frameworks */,
 				F155EEC318AA27670019A282 /* CoreMotion.framework in Frameworks */,
-				E5B0DB0419029CE300D586B7 /* GooglePlus.framework in Frameworks */,
 				F19E9E2418AA1F76006B0C3B /* CoreGraphics.framework in Frameworks */,
 				F155EEC118AA27520019A282 /* CoreLocation.framework in Frameworks */,
 				F155EEBF18AA27420019A282 /* AssetsLibrary.framework in Frameworks */,
 				F155EEBD18AA273B0019A282 /* AddressBook.framework in Frameworks */,
+				E56C1F7A19655B320068ED3F /* GooglePlus.framework in Frameworks */,
 				F19E9E2618AA1F76006B0C3B /* UIKit.framework in Frameworks */,
-				E5B0DB0219029CE300D586B7 /* GoogleOpenSource.framework in Frameworks */,
-				F19E9E2218AA1F76006B0C3B /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -551,11 +551,11 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/Library/Google+Library",
-					"$(SRCROOT)/Library/Google+Frameworks",
 					"$(SRCROOT)/Library/Protocol",
 					"$(SRCROOT)/Library/Utility",
+					"$(SRCROOT)/Library/Google+Library/Google+Frameworks",
+					"$(SRCROOT)/Library",
 					"/Users/Jeneena/Documents/ObjectLoungeSocialMediaRepository/SampleGoogle+Code/GooglePlusDemo/Library/Google+Library/Google+Frameworks",
-					"/Users/Jeneena/Documents/ObjectLoungeSocialMediaRepository/SampleGoogle+Code/GooglePlusDemo/Library",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GooglePlusDemo/GooglePlusDemo-Prefix.pch";
@@ -576,11 +576,11 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/Library/Google+Library",
-					"$(SRCROOT)/Library/Google+Frameworks",
 					"$(SRCROOT)/Library/Protocol",
 					"$(SRCROOT)/Library/Utility",
+					"$(SRCROOT)/Library/Google+Library/Google+Frameworks",
+					"$(SRCROOT)/Library",
 					"/Users/Jeneena/Documents/ObjectLoungeSocialMediaRepository/SampleGoogle+Code/GooglePlusDemo/Library/Google+Library/Google+Frameworks",
-					"/Users/Jeneena/Documents/ObjectLoungeSocialMediaRepository/SampleGoogle+Code/GooglePlusDemo/Library",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GooglePlusDemo/GooglePlusDemo-Prefix.pch";

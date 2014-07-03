@@ -29,10 +29,10 @@ typedef void (^CompletionFriendAll)(NSArray *friends,
 @interface OBLGooglePlusQuery : NSObject
 
 //Fetches user data and returns the object of OBLGooglePlusUser class with detail and error if any.
-+(void) fetchProfileDetailOfUser:(CompletionBlockOFUser)block;
++(void) fetchProfileDetailOfUserWithImageSize:(NSInteger)size  completion:(CompletionBlockOFUser)block;
 
 //Fetches all the friends profile data and returns array of the OBLGooglePlusFriend object.
-+ (void)fetchFriendsProfileWithCompletionHandler:(CompletionFriendAll)block;
++ (void)fetchFriendsProfileWithImageSize:(NSInteger)size  completionHandler:(CompletionFriendAll)block;
 
 
 @end
