@@ -57,7 +57,7 @@
         else
         {
             NSArray *friends = [result objectForKey:@"data"];
-            
+
             for (NSDictionary<FBGraphUser>* friend in friends)
             {
                 OBLFacebookFriend *userFriend = [[OBLFacebookFriend alloc] init];
@@ -74,7 +74,7 @@
         }
         block(friendArray,error);
     }];
-    
+
 }
 
 - (void)dealloc

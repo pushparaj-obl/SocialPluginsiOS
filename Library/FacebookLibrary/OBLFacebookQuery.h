@@ -21,7 +21,7 @@ typedef void (^CompletionBlock)(OBLFacebookUser *result,
 
 //complition block having output all the friend data in array or error if any.
 typedef void (^CompletionFriendAll)(NSArray *result,
-                                    NSError *error);
+                                      NSError *error);
 
 @interface OBLFacebookQuery : NSObject
 

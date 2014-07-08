@@ -53,20 +53,6 @@
 
 
 
-/*checks if token is already available and lodded*/
-+ (BOOL)isTokenLodded
-{
-    if (FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded)
-    {
-        return YES;
-    }
-    else
-    {
-        return NO;
-    }
-}
-    
-
 /*checks if user has already logged in or not. returns status*/
 //it will check if user is logged in (session state is open or not)
 + (BOOL)isLogin
@@ -118,7 +104,7 @@
     // Open the session
     if (FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded)
     {
-        DLog(@"Found a cached session");
+        NSLog(@"Found a cached session");
         // If there's one, just open the session silently, without showing the user the login UI
         [FBSession openActiveSessionWithReadPermissions:permission
                                            allowLoginUI:NO
