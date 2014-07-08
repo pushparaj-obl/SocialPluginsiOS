@@ -104,7 +104,7 @@
     // Open the session
     if (FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded)
     {
-        DLog(@"Found a cached session");
+        NSLog(@"Found a cached session");
         // If there's one, just open the session silently, without showing the user the login UI
         [FBSession openActiveSessionWithReadPermissions:permission
                                            allowLoginUI:NO

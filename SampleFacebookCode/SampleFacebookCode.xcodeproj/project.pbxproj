@@ -17,7 +17,6 @@
 		5D448FD018A9E8D4007E90E1 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D448FCF18A9E8D4007E90E1 /* XCTest.framework */; };
 		5D448FD118A9E8D4007E90E1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D448FB618A9E8D4007E90E1 /* Foundation.framework */; };
 		5D448FD218A9E8D4007E90E1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D448FBA18A9E8D4007E90E1 /* UIKit.framework */; };
-		5D448FE618A9EA6B007E90E1 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D448FE518A9EA6B007E90E1 /* FacebookSDK.framework */; };
 		5D448FEC18A9EB1C007E90E1 /* FacebookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D448FEB18A9EB1C007E90E1 /* FacebookViewController.m */; };
 		5D448FEE18A9EB33007E90E1 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D448FED18A9EB33007E90E1 /* Storyboard.storyboard */; };
 		5D448FF418A9EB6F007E90E1 /* OBLFacebookLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D448FF118A9EB6F007E90E1 /* OBLFacebookLogin.m */; };
@@ -29,6 +28,8 @@
 		5D8CF25B18ADDA0C006C659C /* OBLFacebookUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D8CF25418ADDA0C006C659C /* OBLFacebookUser.m */; };
 		5D8CF26418ADE570006C659C /* OBLLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D8CF26318ADE570006C659C /* OBLLog.m */; };
 		F110506218BF15300020DE24 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F110506118BF15300020DE24 /* FacebookSDK.framework */; };
+		FB1E2C76196AA69C0074CABA /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB1E2C75196AA69C0074CABA /* FacebookSDK.framework */; };
+		FB1E2C7A196ACB670074CABA /* OBLFacebookFriendPostHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1E2C79196ACB670074CABA /* OBLFacebookFriendPostHandle.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,7 +57,6 @@
 		5D448FC818A9E8D4007E90E1 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		5D448FCE18A9E8D4007E90E1 /* SampleFacebookCodeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SampleFacebookCodeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D448FCF18A9E8D4007E90E1 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		5D448FE518A9EA6B007E90E1 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		5D448FEA18A9EB1C007E90E1 /* FacebookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookViewController.h; sourceTree = "<group>"; };
 		5D448FEB18A9EB1C007E90E1 /* FacebookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookViewController.m; sourceTree = "<group>"; };
 		5D448FED18A9EB33007E90E1 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
@@ -77,6 +77,9 @@
 		5D8CF26218ADE570006C659C /* OBLLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBLLog.h; sourceTree = "<group>"; };
 		5D8CF26318ADE570006C659C /* OBLLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBLLog.m; sourceTree = "<group>"; };
 		F110506118BF15300020DE24 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../FacebookSDK.framework; sourceTree = "<group>"; };
+		FB1E2C75196AA69C0074CABA /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
+		FB1E2C78196ACB670074CABA /* OBLFacebookFriendPostHandle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBLFacebookFriendPostHandle.h; sourceTree = "<group>"; };
+		FB1E2C79196ACB670074CABA /* OBLFacebookFriendPostHandle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBLFacebookFriendPostHandle.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,9 +89,9 @@
 			files = (
 				5D448FB918A9E8D4007E90E1 /* CoreGraphics.framework in Frameworks */,
 				F110506218BF15300020DE24 /* FacebookSDK.framework in Frameworks */,
-				5D448FE618A9EA6B007E90E1 /* FacebookSDK.framework in Frameworks */,
 				5D448FBB18A9E8D4007E90E1 /* UIKit.framework in Frameworks */,
 				5D448FB718A9E8D4007E90E1 /* Foundation.framework in Frameworks */,
+				FB1E2C76196AA69C0074CABA /* FacebookSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -128,7 +131,7 @@
 		5D448FB518A9E8D4007E90E1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				5D448FE518A9EA6B007E90E1 /* FacebookSDK.framework */,
+				FB1E2C75196AA69C0074CABA /* FacebookSDK.framework */,
 				5D448FB618A9E8D4007E90E1 /* Foundation.framework */,
 				5D448FB818A9E8D4007E90E1 /* CoreGraphics.framework */,
 				5D448FBA18A9E8D4007E90E1 /* UIKit.framework */,
@@ -196,6 +199,8 @@
 		5D8CF25D18ADDA1A006C659C /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
+				FB1E2C78196ACB670074CABA /* OBLFacebookFriendPostHandle.h */,
+				FB1E2C79196ACB670074CABA /* OBLFacebookFriendPostHandle.m */,
 				5D2FA80918B1D8E200DDAD5A /* OBLLogin.h */,
 				5D8CF25F18ADDA1A006C659C /* OBLPost.h */,
 				5D8CF26018ADDA1A006C659C /* OBLProfileDetails.h */,
@@ -312,6 +317,7 @@
 				5D448FF718A9F3EA007E90E1 /* FacebookViewController.m in Sources */,
 				5D8CF25A18ADDA0C006C659C /* OBLFacebookQuery.m in Sources */,
 				5D8CF25718ADDA0C006C659C /* OBLFacebookFriend.m in Sources */,
+				FB1E2C7A196ACB670074CABA /* OBLFacebookFriendPostHandle.m in Sources */,
 				5D8CF25818ADDA0C006C659C /* OBLFacebookPermission.m in Sources */,
 				5D8CF25B18ADDA0C006C659C /* OBLFacebookUser.m in Sources */,
 				5D8CF26418ADE570006C659C /* OBLLog.m in Sources */,
@@ -432,8 +438,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/jeneenajose/Documents/SocialMediaRepository,
-					/Users/jeneenajose/Documents/SocialMediaRepository/SampleFacebookCode,
+					/Users/pushparaj/SocialPluginsiOS/SampleFacebookCode,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SampleFacebookCode/SampleFacebookCode-Prefix.pch";
@@ -452,8 +457,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/jeneenajose/Documents/SocialMediaRepository,
-					/Users/jeneenajose/Documents/SocialMediaRepository/SampleFacebookCode,
+					/Users/pushparaj/SocialPluginsiOS/SampleFacebookCode,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SampleFacebookCode/SampleFacebookCode-Prefix.pch";

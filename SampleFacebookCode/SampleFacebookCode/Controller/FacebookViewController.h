@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <FacebookSDK/FacebookSDK.h>
+#import "OBLFacebookFriendPostHandle.h"
 
-@interface FacebookViewController : UIViewController
+@interface FacebookViewController : UIViewController <OBLFacebookFriendPostDelegate>
 
 @end

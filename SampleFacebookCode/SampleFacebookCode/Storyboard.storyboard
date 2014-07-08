@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="X0N-X4-mQJ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="X0N-X4-mQJ">
     <dependencies>
         <deployment defaultVersion="1536" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
@@ -105,15 +105,31 @@
                                             <action selector="fetchFriendDetails:" destination="X0N-X4-mQJ" eventType="touchUpInside" id="9Be-WA-C6N"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ekz-Gz-Hni">
+                                        <rect key="frame" x="60" y="301" width="200" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="3XF-2s-4Xr"/>
+                                            <constraint firstAttribute="width" constant="200" id="IT5-X6-9Ef"/>
+                                        </constraints>
+                                        <state key="normal" title="Post on friends' wall">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="postOnFriendWall:" destination="X0N-X4-mQJ" eventType="touchUpInside" id="Aoj-lg-5NS"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="centerX" secondItem="9BP-C3-ECi" secondAttribute="centerX" id="1U6-xs-HaN"/>
                                     <constraint firstItem="a4v-ex-Cac" firstAttribute="top" secondItem="9BP-C3-ECi" secondAttribute="bottom" constant="8" id="3aO-gB-V6D"/>
                                     <constraint firstItem="Mwa-Rj-Uii" firstAttribute="top" secondItem="200-UF-R91" secondAttribute="bottom" constant="8" id="BQu-nT-rQE"/>
+                                    <constraint firstItem="Ekz-Gz-Hni" firstAttribute="top" secondItem="a4v-ex-Cac" secondAttribute="bottom" constant="8" id="Koa-9d-27Z"/>
                                     <constraint firstItem="200-UF-R91" firstAttribute="top" secondItem="5hu-Nn-ChE" secondAttribute="top" constant="20" symbolic="YES" id="blQ-Gx-G5f"/>
                                     <constraint firstAttribute="centerX" secondItem="a4v-ex-Cac" secondAttribute="centerX" id="hfS-Sl-Fsz"/>
                                     <constraint firstAttribute="centerY" secondItem="9BP-C3-ECi" secondAttribute="centerY" id="luP-Uj-sJu"/>
+                                    <constraint firstAttribute="centerX" secondItem="Ekz-Gz-Hni" secondAttribute="centerX" id="oiZ-5D-uaW"/>
                                     <constraint firstAttribute="centerX" secondItem="Etf-5x-wNZ" secondAttribute="centerX" id="qkx-Ro-uMM"/>
                                     <constraint firstAttribute="centerX" secondItem="200-UF-R91" secondAttribute="centerX" id="tSk-G5-G8c"/>
                                     <constraint firstAttribute="centerX" secondItem="Mwa-Rj-Uii" secondAttribute="centerX" id="x4m-QR-IgZ"/>
@@ -137,6 +153,7 @@
                         <outlet property="login" destination="200-UF-R91" id="3bb-EM-VZa"/>
                         <outlet property="logout" destination="Mwa-Rj-Uii" id="Oro-gg-cjx"/>
                         <outlet property="post" destination="a4v-ex-Cac" id="R7r-3R-wBN"/>
+                        <outlet property="postToFriendButton" destination="Ekz-Gz-Hni" id="9gI-gf-CZt"/>
                         <outlet property="requestButton" destination="9BP-C3-ECi" id="DjC-5b-Wrc"/>
                     </connections>
                 </viewController>

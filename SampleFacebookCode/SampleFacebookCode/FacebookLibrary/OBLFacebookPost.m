@@ -72,4 +72,50 @@ withCompletionHandler:(FBPostCompletionHandler)block
     return success;
 }
 
+//post status with title, description and image
++ (BOOL)postToFacebookFriendWithTitle:(NSString *)title         //status message for posting
+                               status:(NSString *)status        //title of post
+                       andDescription:(NSString *)description   //description of post
+                             imageUrl:(NSString *)imageUrl      //preview image associated with the link(image url)
+                              linkUrl:(NSString *)url           //LinkUrl of a link to attach to the post
+                              caption:(NSString *)caption       //caption in post
+                                 from:(NSString *)from          //user's id
+                                   to:(NSString *)to            //friend's profile (facebookId)
+                             delegate:(id <OBLFacebookFriendPostDelegate>)delegate
+                withCompletionHandler:(FBPostCompletionHandler)block
+{
+    NSMutableDictionary *params =
+    [NSMutableDictionary dictionaryWithObjectsAndKeys:
+     title, @"name",
+     caption, @"caption",
+     status, @"message",
+     description, @"description",
+     url, @"link",
+     imageUrl, @"picture",
+     [NSString stringWithFormat:@"%@",from], @"from",
+     [NSString stringWithFormat:@"%@",to], @"to",
+     nil];
+    
+    __block BOOL success=NO;
+    // Invoke the dialog
+    [FBWebDialogs presentFeedDialogModallyWithSession:nil
+                                           parameters:params
+                                              handler:
+     ^(FBWebDialogResult result, NSURL *resultURL, NSError *error) {
+         if (error)
+         {
+             // Error launching the dialog or publishing a story.
+             [OBLLog logFBMessage:error.description];
+             [OBLLog logFBMessage:@"Error publishing story."];
+         }
+         else
+         {
+             [OBLFacebookFriendPostHandle parseResult:result withURL:resultURL delegate:delegate];
+             success = YES;
+         }
+         block(error);
+     }];
+    return success;
+}
+
 @end

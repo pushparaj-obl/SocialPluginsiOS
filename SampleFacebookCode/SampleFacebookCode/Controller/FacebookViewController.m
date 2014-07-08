@@ -19,9 +19,15 @@
 @property (weak, nonatomic) IBOutlet UIButton *fetchButton;
 @property (weak, nonatomic) IBOutlet UIButton *requestButton;
 @property (weak, nonatomic) IBOutlet UIButton *fetchFriendButton;
+@property (weak, nonatomic) IBOutlet UIButton *postToFriendButton;
+@property (nonatomic, strong) NSString *userId;
+@property (nonatomic, strong) NSMutableArray *friendsId;
+@property (nonatomic) NSUInteger currentPostOnFriendCount;
 @end
 
 @implementation FacebookViewController
+@synthesize userId, friendsId;
+@synthesize currentPostOnFriendCount;
 
 - (void)viewDidLoad
 {
@@ -85,10 +91,13 @@
     //returns object of OBLFacebookUser class and error if any in completion handler.
     [OBLFacebookQuery fetchUserProfileWithCompletionHandler:^(OBLFacebookUser *result, NSError *error)
      {
-         NSLog(@"my id: %@",result.socialMediaId);
-         NSLog(@"my name: %@",result.firstName);
+         if (!error)
+         {
+             NSLog(@"my id: %@",result.socialMediaId);
+             NSLog(@"my name: %@",result.firstName);
+             self.userId = result.socialMediaId;
+         }
      }];
-    
 }
 - (IBAction)fetchFriendDetails:(id)sender
 {
@@ -96,11 +105,13 @@
     //returns array of objects of OBLFacebookFriend class and error if any in completion handler.
     [OBLFacebookQuery fetchFriendsProfileWithCompletionHandler:^(NSArray *result, NSError *error)
      {
+         self.friendsId = [[NSMutableArray alloc] init];
          //friends's profile in "result" array having objects of OBLFacebookFriend
          for (OBLFacebookFriend *friend in result)
          {
              NSLog(@"friend's id: %@",friend.socialMediaId);
              NSLog(@"friend's name: %@",friend.name);
+             [self.friendsId addObject:friend.socialMediaId];
          }
          
      }];
@@ -134,6 +145,60 @@
      ];
 }
 
+- (IBAction)postOnFriendWall:(id)sender
+{
+    self.currentPostOnFriendCount = 0;
+    if (self.userId && [self.friendsId count] > self.currentPostOnFriendCount)
+    {
+        [OBLFacebookPost postToFacebookFriendWithTitle:@"SocialPluginsiOS:"
+                                                status:@"Check out our social media library"
+                                        andDescription:@"Easy to integrate social media with ios."
+                                              imageUrl:@"http://playfantasycricket.com/img/website/topLogo.png"
+                                               linkUrl:@"https://github.com/ObjectLounge/SocialPluginsiOS"
+                                               caption:@"SOCIAL MEDIA LIBRARY"
+                                                  from:self.userId
+                                                    to:self.friendsId.firstObject
+                                              delegate:self
+                                 withCompletionHandler:^(NSError *error) {
+                                     if (!error)
+                                     {
+                                         NSLog(@"No error");
+                                     }
+                                     else
+                                     {
+                                         NSLog(@"Error posting on friend's wall");
+                                     }
+        }];
+        
+    }
+}
+
+- (void)postWithFriendId:(NSString *)friendId
+{
+    if (self.userId && friendsId)
+    {
+        [OBLFacebookPost postToFacebookFriendWithTitle:@"SocialPluginsiOS:"
+                                                status:@"Check out our social media library"
+                                        andDescription:@"Easy to integrate social media with ios."
+                                              imageUrl:@"http://playfantasycricket.com/img/website/topLogo.png"
+                                               linkUrl:@"https://github.com/ObjectLounge/SocialPluginsiOS"
+                                               caption:@"SOCIAL MEDIA LIBRARY"
+                                                  from:self.userId
+                                                    to:friendId
+                                              delegate:self
+                                 withCompletionHandler:^(NSError *error) {
+                                     if (!error)
+                                     {
+                                         NSLog(@"No error");
+                                     }
+                                     else
+                                     {
+                                         NSLog(@"Error posting on friend's wall");
+                                     }
+                                 }];
+    }
+}
+
 - (IBAction)logout:(id)sender
 {
     //perform logout from facebook
@@ -152,6 +217,7 @@
         self.fetchButton.enabled = YES;
         self.fetchFriendButton.enabled = YES;
         self.post.enabled = YES;
+        self.postToFriendButton.enabled = YES;
         self.requestButton.enabled = YES;
         self.logout.enabled = YES;
     }
@@ -161,10 +227,36 @@
         self.fetchButton.enabled = NO;
         self.fetchFriendButton.enabled = NO;
         self.post.enabled = NO;
+        self.postToFriendButton.enabled = NO;
         self.requestButton.enabled = NO;
         self.logout.enabled = NO;
     }
     
+}
+
+#pragma mark - OBLFacebookFriendPostDelegate methods
+
+- (void)userCancelledFeedDialog
+{
+    NSLog(@"User cancelled dialog-");
+    self.currentPostOnFriendCount = 0;
+}
+
+- (void)userCancelledShareToFriend
+{
+    NSLog(@"User cancelled posting-");
+    self.currentPostOnFriendCount = 0;
+}
+
+- (void)userPostedToFriendWithId:(NSString *)postId
+{
+    NSLog(@"Posted on friend's wall- %@:", postId);
+    self.currentPostOnFriendCount++;
+    
+    if ([self.friendsId count] > self.currentPostOnFriendCount)
+    {
+        [self postWithFriendId:[self.friendsId objectAtIndex:self.currentPostOnFriendCount]];
+    }
 }
 
 - (void)didReceiveMemoryWarning

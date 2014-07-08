@@ -11,6 +11,7 @@
 #import "OBLPost.h"
 #import <FacebookSDK/FacebookSDK.h>
 #import "OBLLog.h"
+#import "OBLFacebookFriendPostHandle.h"
 
 @interface OBLFacebookPost : NSObject <OBLPost>
 
@@ -37,5 +38,25 @@ typedef void (^FBPostCompletionHandler)(NSError *error);
            imageUrl:(NSString *)imageUrl
             linkUrl:(NSString *)url
 withCompletionHandler:(FBPostCompletionHandler) block;
+
+/*
+//post status on friend's wall
+//caption - Caption on the post
+//from - facebookId of the sender(logged in user)
+//to - facebookId of the friend
+//delegate - OBLFacebookFriendPostDelegate for dialog handling
+//Other arguments are same as post method
+*/
+
++ (BOOL)postToFacebookFriendWithTitle:(NSString *)title         //status message for posting
+                               status:(NSString *)status        //title of post
+                       andDescription:(NSString *)description   //description of post
+                             imageUrl:(NSString *)imageUrl      //preview image associated with the link(image url)
+                              linkUrl:(NSString *)url           //LinkUrl of a link to attach to the post
+                              caption:(NSString *)caption       //caption in post
+                                 from:(NSString *)from          //user's facebookId
+                                   to:(NSString *)to            //friend's facebookId
+                             delegate:(id <OBLFacebookFriendPostDelegate>)delegate
+                withCompletionHandler:(FBPostCompletionHandler)block;
 
 @end
