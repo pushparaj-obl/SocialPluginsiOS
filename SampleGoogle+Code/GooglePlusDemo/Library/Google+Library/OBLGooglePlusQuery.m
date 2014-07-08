@@ -13,9 +13,9 @@
 #pragma  mark - User Profile Details
 
 //Fetches user data
-+(void) fetchProfileDetailOfUser:(CompletionBlockOFUser)block
++(void) fetchProfileDetailOfUserWithImageSize:(NSInteger)size  completion:(CompletionBlockOFUser)block
 {
-    [OBLGooglePlusQuery getProfileDetails:@"me" completion:^(OBLGooglePlusUser *user, NSError *error) {
+    [OBLGooglePlusQuery getProfileDetails:@"me" imageSize:size completion:^(OBLGooglePlusUser *user, NSError *error) {
         
         NSString *accessToken=[GPPSignIn sharedInstance].authentication.accessToken;
         NSString *str=[NSString stringWithFormat:@"https://www.googleapis.com/oauth2/v1/userinfo?access_token=%@",accessToken];
@@ -35,7 +35,7 @@
     }];
 }
 
-+(void) getProfileDetails:(NSString *)id completion:(CompletionBlockOFUser)block
++(void) getProfileDetails:(NSString *)id imageSize:(NSInteger)size  completion:(CompletionBlockOFUser)block
 {
     GTLServicePlus* plusService = [[GTLServicePlus alloc] init];
     plusService.retryEnabled = YES;
@@ -68,8 +68,17 @@
                     
                     GTLPlusPersonImage *image  =person.image;
                     user.imageUrl=[image valueForKey:@"url"];
+                  
+                    if(size > 10000 || size < 0 )
+                    {
+                        user.imageUrl = [user.imageUrl stringByReplacingOccurrencesOfString:@"?sz=50" withString:[NSString stringWithFormat:@"?sz=200"]];
+                    }
+                    else
+                    {
+                        user.imageUrl = [user.imageUrl stringByReplacingOccurrencesOfString:@"?sz=50" withString:[NSString stringWithFormat:@"?sz=%d",size]];
+                    }
                     
-                    NSData *receivedData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[image valueForKey:@"url"] ]];
+                    NSData *receivedData = [NSData dataWithContentsOfURL:[NSURL URLWithString:user.imageUrl]];
                     user.image= [[UIImage alloc] initWithData:receivedData ];
                 }
                 block(user,error);
@@ -80,7 +89,7 @@
 #pragma  mark - Friend's Profile Details
 
 //Fetches user's friends' data and returns the object of OBLGooglePlusUser class 
-+ (void)fetchFriendsProfileWithCompletionHandler:(CompletionFriendAll)block
++ (void)fetchFriendsProfileWithImageSize:(NSInteger)size  completionHandler:(CompletionFriendAll)block
 {
     GTLServicePlus* plusService = [[GTLServicePlus alloc] init];
     plusService.retryEnabled = YES;
@@ -142,7 +151,16 @@
                           GTLPlusPersonImage *image  =person.image;
                           user.imageUrl=[image valueForKey:@"url"];
                           
-                          NSData *receivedData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[image valueForKey:@"url"] ]];
+                          if(size > 10000 || size < 0 )
+                          {
+                              user.imageUrl = [user.imageUrl stringByReplacingOccurrencesOfString:@"?sz=50" withString:[NSString stringWithFormat:@"?sz=200"]];
+                          }
+                          else
+                          {
+                              user.imageUrl = [user.imageUrl stringByReplacingOccurrencesOfString:@"?sz=50" withString:[NSString stringWithFormat:@"?sz=%d",size]];
+                          }
+
+                          NSData *receivedData = [NSData dataWithContentsOfURL:[NSURL URLWithString:user.imageUrl ]];
                           user.image= [[UIImage alloc] initWithData:receivedData ];
                           
                           [friends addObject:user];

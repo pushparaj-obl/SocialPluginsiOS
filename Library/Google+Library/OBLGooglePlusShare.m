@@ -40,7 +40,7 @@ static OBLGooglePlusShare * _sharedInstance = nil;
     {
         didShare=NO;
         NSDictionary *errorDictionary = @{ NSLocalizedDescriptionKey : @"User has cancelled sharing Post process"};
-        NSError *error = [[NSError alloc] initWithDomain:@"google+share"  code:-1 userInfo:errorDictionary];
+        NSError *error = [[NSError alloc] initWithDomain:@"Google+share"  code:-1 userInfo:errorDictionary];
         [OBLLog GPErrorLog:error];
     }
     else
@@ -68,7 +68,7 @@ static OBLGooglePlusShare * _sharedInstance = nil;
 -(void) shareStatus:(NSString *)status withURL:(NSString *)url
 {
     [GPPShare sharedInstance].delegate = self;
-    id<GPPNativeShareBuilder> shareBuilder = [[GPPShare sharedInstance] nativeShareDialog];
+    id<GPPShareBuilder> shareBuilder = [[GPPShare sharedInstance] shareDialog];
     
     [shareBuilder setPrefillText:status];
     
@@ -98,7 +98,7 @@ static OBLGooglePlusShare * _sharedInstance = nil;
 -(void) shareInteractivePost:(NSString *)status withTitle:(NSString *)title addDescription:(NSString *)description andImageURL:(NSString *)imageUrl withURL:(NSString *)url  withCallToActionLabel:(NSString *)label
 {
     [GPPShare sharedInstance].delegate = self;
-    id<GPPNativeShareBuilder> shareBuilder = [[GPPShare sharedInstance] nativeShareDialog];
+    id<GPPShareBuilder> shareBuilder = [[GPPShare sharedInstance] shareDialog];
     
     // This will manually fill out the title, description, and thumbnail of the item you're sharing.
     [shareBuilder setTitle:title

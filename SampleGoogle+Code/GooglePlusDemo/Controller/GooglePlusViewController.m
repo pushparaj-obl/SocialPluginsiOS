@@ -77,7 +77,7 @@
 //fetches user details
 - (IBAction)profileButtonClicked:(id)sender
 {
-    [OBLGooglePlusQuery fetchProfileDetailOfUser:^(OBLGooglePlusUser *user, NSError *error)
+    [OBLGooglePlusQuery fetchProfileDetailOfUserWithImageSize:200 completion:^(OBLGooglePlusUser *user, NSError *error)
      {
          if(error)
          {
@@ -99,7 +99,7 @@
 - (IBAction)friendsProfileButtonclicked:(id)sender
 {
     self.friendsProfileInfo.enabled=NO;
-    [OBLGooglePlusQuery fetchFriendsProfileWithCompletionHandler:^(NSArray *friends, NSError *error) {
+    [OBLGooglePlusQuery fetchFriendsProfileWithImageSize:200 completionHandler:^(NSArray *friends, NSError *error) {
         
         //NSArray returns an array of objcts of type OBLGooglePlusFriend
         if(error)

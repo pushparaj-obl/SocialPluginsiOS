@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <GooglePlus/GooglePlus.h>
 #import "OBLGooglePlusLogin.h"
 
 
